@@ -28,4 +28,17 @@ public class UmemberService {
 		return vo;
 	}
 	
+	public boolean idCheck(MemberVO param) throws SQLException {
+		int cnt = umemberDao.idCheck(param);
+		boolean result = false;
+		if (cnt == 1) {
+			result = true;
+		}
+		return result;
+	}
+	
+	public MemberVO findId(MemberVO param) throws SQLException {
+		MemberVO vo = umemberDao.findId(param);
+		return vo;
+	}
 }

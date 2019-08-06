@@ -25,7 +25,7 @@ public class UserMainController {
 	
 	@RequestMapping("/user")
 	public String main2(Model model) throws Exception {
-		return "/user/login";
+		return "/user/member/login";
 	}
 
 	@RequestMapping("/user/login")

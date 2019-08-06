@@ -11,6 +11,14 @@
     <select id="loginSessionInfo" parameterClass="umembervo" resultClass="umembervo">
     	select * from member where id=#id# and password=md5(#password#)
     </select>
+    
+    <select id="idCheck" parameterClass="umembervo" resultClass="Integer">
+        select count(*) as cnt from member where name=#name# and email=#email#
+    </select>
+    
+    <select id="findId" parameterClass="umembervo" resultClass="umembervo">
+        select * from member where name=#name# and email=#email#
+    </select>
 
 	
 

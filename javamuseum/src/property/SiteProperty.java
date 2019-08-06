@@ -59,7 +59,7 @@ public class SiteProperty {
 	/**
 	 * 메일계정 패스워드
 	 */
-	public static final String 	SMTP_PASSWORD			= "akdlszm4209";
+	public static final String 	SMTP_PASSWORD			= "thdthddl3!";
 	/**
 	 * 이메일 기본 폼
 	 */

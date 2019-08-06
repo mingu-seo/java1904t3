@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import email.SendMail;
 import util.Function;
 
 
@@ -33,10 +32,14 @@ public class RentalController {
 	}
 	
 	@RequestMapping("/manage/rental/read")
-	public String read(Model model, RentalVO param) throws Exception {
+	public String read(Model model, RentalVO param, Rental_replyVO reparam) throws Exception {
 		RentalVO data = rentalService.read(param.getNo());
 		model.addAttribute("data", data);
 		model.addAttribute("vo", param);
+		model.addAttribute("revo", reparam);
+		
+		ArrayList<Rental_replyVO> list = rentalService.replylist(reparam);
+		model.addAttribute("list", list);
 		
 		return "manage/rental/read";
 	}
@@ -44,12 +47,13 @@ public class RentalController {
 	@RequestMapping("/user/hall2")	// 사용자 페이지 - 대관 신청
 	public String write(Model model, RentalVO param) throws Exception {
 		model.addAttribute("vo", param);
-		return "user/hall2";
+		return "user/rental/hall2";
 	}
 	
 	@RequestMapping("/user/rental/process")
-	public String process(Model model, RentalVO param, HttpServletRequest request) throws Exception {
+	public String process(Model model, RentalVO param, HttpServletRequest request, Rental_replyVO reparam) throws Exception {
 		model.addAttribute("vo", param);
+		model.addAttribute("revo", reparam);
 		
 		if ("write".equals(param.getCmd())) {
 			int r = rentalService.insert(param, request);
@@ -57,12 +61,19 @@ public class RentalController {
 			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
 			model.addAttribute("url", "/user/hall2");
 		}
-//		if ("sendMail".equals(param.getCmd())) {
-//			model.addAttribute("code", "alertMessageUrl");
-//			model.addAttribute("message", Function.message(r, "정상적으로 송신되었습니다.", "송신실패"));
-//			model.addAttribute("url", "/manage/rental/read?no=" + param.getNo());
-//		} 
+		if ("sendMail".equals(param.getCmd())) {
+			int r = rentalService.update(param);
+			rentalService.rentalReInsert(reparam);
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", Function.message(r, "정상적으로 송신되었습니다.", "송신실패"));
+			model.addAttribute("url", "/manage/rental/read?no=" + param.getNo());
+		} 
 		return "include/alert";
+	}
+	
+	@RequestMapping("/user/hall")	// 사용자 페이지 - 대관 안내
+	public String hall() {
+		return "user/rental/hall";
 	}
 	
 }

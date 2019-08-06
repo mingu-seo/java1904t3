@@ -34,4 +34,9 @@ String target = (String)request.getAttribute("target");
 	<%=target%>.location.href='<%=url%>';
 	window.reload();
 </script>
+<% } else if ("alertMessagePopUpClose".equals(code)) {%>
+<script>
+	alert("<%=message%>");
+	window.close();
+</script>
 <% } %>

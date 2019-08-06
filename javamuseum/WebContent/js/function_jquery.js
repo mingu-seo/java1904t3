@@ -304,3 +304,17 @@ function validEnterDateFormat(date) {
 	}
 	return check;
 }
+
+function validId(id) {
+	var jQuerypass = id.val();
+	var jQuerystr = /^[a-zA-Z0-9@]{6,12}$/;
+	var check = false;
+	if (jQuerypass == "") {
+		alert("아이디를 입력해 주세요.");
+		id.focus();
+	}else if(!jQuerystr.test(jQuerypass) || jQuerypass.indexOf(' ') > -1){
+		alert("아이디는 영문 또는 숫자 6~12자리를 입력해 주세요.");
+		id.focus();
+	}
+	
+}
