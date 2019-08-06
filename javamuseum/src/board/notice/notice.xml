@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="notice">
+    
+    <typeAlias alias="notice_vo" type="board.notice.NoticeVO"/>
+    
+    <!-- 공통조건 -->
+	<sql id="searchSql">		
+		<!-- WHERE 절 검색 -->
+		<dynamic prepend="where">
+			1=1
+			<!-- 검색어 검색 -->
+			<isNotEqual property="sval" compareValue="">
+				<!-- 검색 타입이 all일 때 -->
+				<isEqual property="stype" compareValue="all" prepend="and">
+					( (writer like '%$sval$%' ) or (contents like '%$sval$%' ) or (title like '%$sval$%' ) ) 					
+				</isEqual>
+				<!-- 검색 타입이 all이 아닐때 해당 stype으로 검색 -->
+				<isNotEqual property="stype" compareValue="all" prepend="and">
+					($stype$ like '%$sval$%' )
+				</isNotEqual>
+			</isNotEqual>
+		</dynamic>
+	</sql>
+	
+	<!-- 해당 테이블의 총 게시글 수 -->
+	<select id="count" parameterClass="notice_vo" resultClass="Integer">
+        select count(*) from notice
+        <include refid="searchSql" />	
+    </select>
+    
+	<select id="list" parameterClass="notice_vo" resultClass="notice_vo">
+        select *
+        from notice
+        <include refid="searchSql" />
+		ORDER BY registdate DESC LIMIT $startPageNo$, $pageRows$
+    </select>
+	
+	<!-- 해당 테이블에 게시글 작성 -->
+    <insert id="insert" parameterClass="notice_vo">
+        INSERT INTO notice (
+        	writer, title, contents, registdate,
+        	filename_org, filename
+        ) VALUES (
+        	#writer#, #title#, #contents#, now(), 
+        	#filename_org#, #filename#
+        )
+        <selectKey keyProperty="no" resultClass="Integer">
+        	SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    
+    <update id="update" parameterClass="notice_vo">
+        UPDATE notice SET
+        	writer=#writer#, title=#title#,
+        <isNotEqual property="registdate" compareValue="">
+       	    registdate = #registdate#,
+       	</isNotEqual>      	
+        <isEqual property="filename_chk" compareValue="1">
+        	filename='', filename_org='',
+        </isEqual>
+        <isNotEqual property="filename" compareValue="">
+            <isNotNull property="filename"> 
+        		filename=#filename#, filename_org=#filename_org#,
+        	</isNotNull>
+        </isNotEqual>
+        	contents=#contents#
+        WHERE no = #no#
+    </update>
+    
+    <select id="read" parameterClass="notice_vo" resultClass="notice_vo">
+        SELECT 
+        	*
+        FROM notice
+        where no = #no#
+    </select>
+    
+    <select id="filenames" parameterClass="notice_vo" resultClass="notice_vo">
+    	<![CDATA[
+        SELECT 
+        	file_name
+        FROM notice
+        where no = #no#
+        ]]>
+    </select> 
+        
+    
+    <delete id="delete" parameterClass="notice_vo">
+        DELETE FROM notice WHERE no=#no#
+    </delete>
+    
+    <update id="updateReadno" parameterClass="notice_vo">
+        UPDATE notice SET readno = readno+1 WHERE no = #no#
+    </update>
+    
+    <select id="mainList" parameterClass="notice_vo" resultClass="notice_vo">
+        select *
+        from notice
+        <include refid="searchSql" />
+		ORDER BY registdate DESC LIMIT 0, $number$
+    </select>
+    
+</sqlMap>

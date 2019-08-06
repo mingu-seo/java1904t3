@@ -1,0 +1,153 @@
+CREATE TABLE `admin` (
+  `no` int(11) NOT NULL,
+  `admin_id` varchar(55) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `memo` text NOT NULL,
+  `registdate` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ticket` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `member_pk` int(11) DEFAULT '1',
+  `display_pk` int(11) DEFAULT '1',
+  `usepoint` int(11) DEFAULT '0',
+  `storepoint` int(11) NOT NULL,
+  `method` varchar(10) NOT NULL DEFAULT '0',
+  `price` int(11) DEFAULT '10000',
+  `pay_price` int(11) NOT NULL,
+  `sale_price` int(11) DEFAULT '0',
+  `displaydate` char(10) NOT NULL,
+  `reservedate` char(10) NOT NULL,
+  `reservestate` int(1) NOT NULL,
+  `canceldate` char(10) DEFAULT '-',
+  `refundstate` int(1) DEFAULT '0',
+  `paydate` char(10) NOT NULL,
+  `paystate` int(1) NOT NULL,
+  `number` int(20) NOT NULL,
+  `old_number` int(11) DEFAULT '0',
+  `adult_number` int(11) DEFAULT '0',
+  `student_number` int(11) DEFAULT '0',
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `review` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `member_pk` int(11) NOT NULL,
+  `display_pk` int(11) NOT NULL,
+  `title` varchar(45) NOT NULL,
+  `contents` text NOT NULL,
+  `review_score` double DEFAULT '0',
+  `readno` int(11) DEFAULT '0',
+  `registdate` timestamp NULL DEFAULT NULL,
+  `imagename` varchar(45) DEFAULT NULL,
+  `imagename_org` varchar(45) DEFAULT NULL,
+  `like_cnt` int(11) DEFAULT '0',
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `rental` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `member_pk` int(11) NOT NULL,
+  `hallnumber` int(11) NOT NULL,
+  `startdate` timestamp NOT NULL,
+  `enddate` timestamp NOT NULL,
+  `price` int(11) NOT NULL,
+  `filename` varchar(45) DEFAULT NULL,
+  `filename_org` varchar(45) DEFAULT NULL,
+  `filesize` int(11) DEFAULT NULL,
+  `registdate` timestamp NULL DEFAULT NULL,
+  `confirm` varchar(45) NOT NULL,
+  `tel` varchar(45) NOT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `qna` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `memberid` varchar(45) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `contents` text NOT NULL,
+  `registdate` timestamp NULL DEFAULT NULL,
+  `filename` varchar(45) DEFAULT NULL,
+  `filename_org` varchar(45) DEFAULT NULL,
+  `filesize` int(11) DEFAULT NULL,
+  `gno` int(11) NOT NULL,
+  `ono` int(11) DEFAULT NULL,
+  `nest` int(11) DEFAULT NULL,
+  `admin_pk` int(11) DEFAULT NULL,
+  `answer` text,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `point` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `member_pk` int(11) NOT NULL,
+  `registdate` timestamp NOT NULL,
+  `memo` text NOT NULL,
+  `state` varchar(20) NOT NULL,
+  `accum` int(11) DEFAULT '0',
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `notice` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `contents` text NOT NULL,
+  `writer` varchar(55) NOT NULL,
+  `registdate` timestamp NULL DEFAULT NULL,
+  `filename` varchar(45) DEFAULT NULL,
+  `filename_org` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `member` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `id` varchar(20) NOT NULL,
+  `zipcode` varchar(45) DEFAULT NULL,
+  `addr1` varchar(100) DEFAULT NULL,
+  `addr2` varchar(100) DEFAULT NULL,
+  `point` int(11) DEFAULT '0',
+  `tel` varchar(45) NOT NULL,
+  `reg_date` timestamp NULL DEFAULT NULL,
+  `mod_date` timestamp NULL DEFAULT NULL,
+  `birthday` varchar(45) NOT NULL,
+  `gender` int(1) NOT NULL,
+  PRIMARY KEY (`no`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `faq` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `question` text NOT NULL,
+  `answer` text NOT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `display` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) NOT NULL,
+  `artist` varchar(45) NOT NULL,
+  `hallnumber` int(11) NOT NULL,
+  `contents` text NOT NULL,
+  `score` double DEFAULT '0',
+  `imagename` varchar(45) NOT NULL,
+  `startdate` char(10) NOT NULL,
+  `enddate` char(10) NOT NULL,
+  `registdate` timestamp NOT NULL,
+  `state` int(5) DEFAULT '1',
+  `like_cnt` int(11) DEFAULT '0',
+  `preview` text NOT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `admin_login_history` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(45) NOT NULL,
+  `ip` varchar(45) NOT NULL,
+  `logindate` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
