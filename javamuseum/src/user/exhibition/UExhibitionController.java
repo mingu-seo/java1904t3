@@ -61,6 +61,8 @@ public class UExhibitionController {
 	public String pastDetail(Model model, UExhibitionVO param) throws Exception {
 		UExhibitionVO detail = uexhibitionService.pastReview(param.getNo());
 
+		
+		
 		model.addAttribute("detail", detail);
 		return "user/exhibition/pastDetail";
 	}
