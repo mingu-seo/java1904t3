@@ -59,11 +59,9 @@ public class UExhibitionController {
 	
 	@RequestMapping("/user/exhibition/pastDetail")
 	public String pastDetail(Model model, UExhibitionVO param) throws Exception {
-		UExhibitionVO detaileded = uexhibitionService.pastReview(param.getNo());
-
+		UExhibitionVO detail = uexhibitionService.pastReview(param.getNo());
 		
-		
-		model.addAttribute("detail", detaileded);
+		model.addAttribute("detail", detail);
 		return "user/exhibition/pastDetail";
 	}
 }
