@@ -1,9 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
 <%@ page import="manage.review.*" %>
+<%@ page import="manage.member.*" %>
 <%@ page import="util.*" %>
 <%
 ReviewVO param = (ReviewVO)request.getAttribute("vo");
+MemberVO member = (MemberVO)request.getAttribute("mvo");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
@@ -83,6 +85,22 @@ ReviewVO param = (ReviewVO)request.getAttribute("vo");
 										</td>
 									</tr>
 									<tr>
+										<th scope="row"><label for="">*전시이름</label></th>
+										<td colspan="3">
+											<select name="hallnumber">
+												<%=CodeUtil.getHallnum(0) %>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">*평점</label></th>
+										<td colspan="3">
+											<select name="reviewscore">
+												<%=CodeUtil.getReviewScore(0) %>
+											</select>
+										</td>
+									</tr>
+									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="3">
 											<input type="text" id="title" name="title" class="w50" title="제목을 입력해주세요" />	
@@ -97,6 +115,7 @@ ReviewVO param = (ReviewVO)request.getAttribute("vo");
 								</tbody>
 							</table>
 							<input type="hidden" name="cmd" value="write" />
+							<input type="hidden" name="name" value="review.member_pk" />
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

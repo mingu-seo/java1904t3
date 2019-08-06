@@ -16,29 +16,29 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/manage/include/headHtml.jsp"%>
 <script type="text/javascript">
-	$(function() {
-		$("#").click(function(){
-			goDelete();
-		});
+$(function() {
+	$("#").click(function(){
+		goDelete();
 	});
-	function goDelete() {
-		var del = confirm ('삭제하시겠습니까?');
-		if (del){
-			document.location.href = "process?no=<%=data.getNo()%>&cmd=delete";
-		} else {
-			return false;
-		}
+});
+function goDelete() {
+	var del = confirm ('삭제하시겠습니까?');
+	if (del){
+		document.location.href = "process?no=<%=data.getNo()%>&cmd=delete";
+	} else {
+		return false;
 	}
-	
-	function groupDelete() {	
-		if ( isSeleted(document.frm.no) ){
-			if (confirm ('삭제하시겠습니까?')) {
-				document.frm.submit();
-			}
-		} else {
-			alert("삭제할 항목을 하나 이상 선택해 주세요.");
+}
+
+function groupDelete() {	
+	if ( isSeleted(document.frm.no) ){
+		if (confirm ('삭제하시겠습니까?')) {
+			document.frm.submit();
 		}
+	} else {
+		alert("삭제할 항목을 하나 이상 선택해 주세요.");
 	}
+}
 </script>
 </head>
 <body>
@@ -54,7 +54,7 @@
 			<div id="container">
 				<div id="content">
 					<div class="con_tit">
-						<h2>공지상황관리 - [상세]</h2>
+						<h2>리뷰관리 - [상세]</h2>
 					</div>
 					<!-- //con_tit -->
 
@@ -64,7 +64,7 @@
 							<div id="bread">
 								<h3>기본 정보</h3>
 								<table width="100%" border="0" cellspacing="0" cellpadding="0"
-									summary="회원 관리 기본내용입니다.">
+									summary="리뷰 관리 기본내용입니다.">
 									<colgroup>
 										<col width="15%" />
 										<col width="35%" />
@@ -81,12 +81,28 @@
 
 										</tr>
 										<tr>
-											<th scope="row"><label for="">제목</label></th>
+											<th scope="row"><label for="">전시이름</label></th>
 											<td><%=data.getTitle()%></td>
+										</tr>
+										<tr>
+											<th scope="row"><label for="">제목</label></th>
+											<td><%=data.getReviewtitle()%></td>
+											<th scope="row"><label for="">조회수</label></th>
+											<td><%=data.getReadno()%></td>
 										</tr>
 										<tr>
 											<th scope="row"><label for="">내용</label></th>
 											<td><%=data.getContents()%></td>
+										</tr>
+										<tr>
+											<th scope="row"><label for="">이름</label></th>
+											<td><%=data.getName()%></td>
+										</tr>
+										<tr>
+											<th scope="row"><label for="">평점</label></th>
+											<td><%=data.getReview_score()%></td>
+											<th scope="row"><label for="">좋아요</label></th>
+											<td><%=data.getLike_cnt()%></td>
 										</tr>
 										
 										<tr>
@@ -95,7 +111,6 @@
 										</tr>
 									</tbody>
 								</table>
-								<input type="hidden" name="member" id="member" value="<%=param.getMember_pk()%>"/>
 								<input type="hidden" name="cmd" id="cmd" value="groupDelete" />
 								<input type="hidden" name="stype" id="stype"
 									value="<%=param.getStype()%>" /> <input type="hidden"

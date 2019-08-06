@@ -47,9 +47,9 @@ public class ReviewService {
 		return cnt;
 	}
 
-	public ReviewVO read(int no) throws SQLException {
-		ReviewVO vo = reviewDao.read(no);
-		return vo;
+	public ReviewVO read(ReviewVO vo, boolean userCon) throws SQLException {
+		ReviewVO data = reviewDao.read(vo);
+		return data;
 	}
 
 //	public boolean loginCheck(ReviewVO param) throws SQLException {

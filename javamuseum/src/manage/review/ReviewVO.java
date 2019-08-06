@@ -10,7 +10,7 @@ public class ReviewVO extends Parameter {
 	private int no;
 	private int member_pk;
 	private int display_pk;
-	private String title;
+	private String reviewtitle;
 	private String contents;
 	private double review_score;
 	private int readno;
@@ -19,6 +19,8 @@ public class ReviewVO extends Parameter {
 	private String imagename_org;
 	private String imagename_chk;
 	private int like_cnt;	
+	private String name;
+	private String title;
 
 	public ReviewVO() {
 		super.setPageRows(10);
@@ -48,12 +50,12 @@ public class ReviewVO extends Parameter {
 		this.display_pk = display_pk;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getReviewtitle() {
+		return reviewtitle;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setReviewtitle(String reviewtitle) {
+		this.reviewtitle = reviewtitle;
 	}
 
 	public String getContents() {
@@ -119,6 +121,24 @@ public class ReviewVO extends Parameter {
 	public void setLike_cnt(int like_cnt) {
 		this.like_cnt = like_cnt;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	
 	
 	
 	

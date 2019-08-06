@@ -13,7 +13,7 @@
 			<isNotEqual property="sval" compareValue="">
 				<!-- 검색 타입이 all일 때 -->
 				<isEqual property="stype" compareValue="all" prepend="and">
-					( (name like '%$sval$%' ) or (contents like '%$sval$%' ) or (title like '%$sval$%' ) ) 					
+					( (name like '%$sval$%' ) or (contents like '%$sval$%' ) or (reviewtitle like '%$sval$%' ) ) 					
 				</isEqual>
 				<!-- 검색 타입이 all이 아닐때 해당 stype으로 검색 -->
 				<isNotEqual property="stype" compareValue="all" prepend="and">
@@ -28,17 +28,21 @@
         <include refid="searchSql" />	
     </select>
 	
-    <select id="list" parameterClass="review_vo" resultClass="review_vo">
-        select * from review
+	<select id="list" parameterClass="review_vo" resultClass="review_vo">
+        select review.*, member.name, display.title
+         from review 
+         	LEFT OUTER JOIN member ON review.member_pk = member.no
+         	LEFT OUTER JOIN display ON review.display_pk = display.no
         <include refid="searchSql" />
-		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$	
+		ORDER BY review.no DESC LIMIT $startPageNo$, $pageRows$	
     </select>
+
     
     <insert id="insert" parameterClass="review_vo" >
         insert into review
-        	(title, contents, review_score, imagename, imagename_org, registdate)
+        	( reviewtitle, contents, review_score, imagename, imagename_org, registdate)
         values
-        	(#title#, #contents#, #review_score#, #imagename#, #imagename_org#, now())
+        	( #reviewtitle#, #contents#, #review_score#, #imagename#, #imagename_org#, now())
         <selectKey keyProperty="no" resultClass="Integer">
 			SELECT  LAST_INSERT_ID()
 		</selectKey>
@@ -46,7 +50,7 @@
     
     <update id="update" parameterClass="review_vo">
         update review set
-        	title=#title#, contents=#contents#, review_score=#review_score#
+        	reviewtitle=#reviewtitle#, contents=#contents#, review_score=#review_score#
         <isNotEqual property="registdate" compareValue="">
        	    registdate = #registdate#,
        	</isNotEqual>  
@@ -65,13 +69,9 @@
         delete from review where no=#no#
     </delete>
     
-    <select id="read" parameterClass="Integer" resultClass="review_vo">
-    	<![CDATA[
-        select * ,
-        	ifnull((select max(no) from review where no>1 and no<#no#), 0) as prev_no,
-        	ifnull((select min(no) from review where no>1 and no>#no#), 0) as next_no
-         from review where no>1 and no=#no#
-         ]]>
+    <select id="read" parameterClass="review_vo" resultClass="review_vo">
+        select review.*	, member.name , display.title
+         from review, member, display where review.member_pk = member.no and review.display_pk = display.no and review.no=#no#
     </select>
     
 

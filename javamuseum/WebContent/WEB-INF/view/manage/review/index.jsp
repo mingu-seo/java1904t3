@@ -1,10 +1,13 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="manage.review.*" %>
+<%@ page import="manage.member.*" %>
+<%@ page import="manage.exhibition.*" %>
 <%@ page import="property.SiteProperty" %>
 <%@ page import="util.*" %>
 <%@ page import="java.util.*" %>
 <%
 ReviewVO param = (ReviewVO)request.getAttribute("vo");
+ReviewVO data = (ReviewVO)request.getAttribute("data");
 ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
 int totCount = (Integer)request.getAttribute("totCount");
 int totPage = (Integer)request.getAttribute("totPage");
@@ -99,7 +102,7 @@ function goSearch() {
 									 } else {
 										String targetUrl = "";
 										String topClass = "";
-										ReviewVO data;
+										
 										for (int i=0; i<list.size(); i++) {
 											data = list.get(i);
 											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("read", param, data.getNo())+"'\"";
@@ -107,10 +110,10 @@ function goSearch() {
 									<tr <%=topClass%>>
 										<td class="first"><input type="checkbox" name="no" id="no" value="<%=data.getNo()%>"/></td>
 										<td <%=targetUrl%>><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%></td>
-										<td <%=targetUrl%> class="member"><%=data.getMember_pk()%></td>
-										<td <%=targetUrl%> class="display"><%=data.getDisplay_pk()%></td>
+										<td <%=targetUrl%> class="member"><%=data.getName()%></td>
+										<td <%=targetUrl%> class="display"><%=data.getTitle()%></td>
 										<td <%=targetUrl%> class="imagename"><%=data.getImagename()%></td>
-										<td <%=targetUrl%> class="title"><%=data.getTitle()%></td>
+										<td <%=targetUrl%> class="title"><%=data.getReviewtitle()%></td>
 										<td <%=targetUrl%> class="contents"><%=data.getContents()%></td>
 										<td <%=targetUrl%> class="score"><%=data.getReview_score()%></td>
 										<td <%=targetUrl%> class="readno"><%=data.getReadno()%></td>
@@ -148,7 +151,7 @@ function goSearch() {
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>
 										<option value="id" <%=Function.getSelected(param.getStype(), "member") %>>아이디</option>
-										<option value="display_pk" <%=Function.getSelected(param.getStype(), "display_pk") %>>전시회</option>
+										<option value="display_pk" <%=Function.getSelected(param.getStype(), "display") %>>전시회</option>
 										<option value="title" <%=Function.getSelected(param.getStype(), "title") %>>제목</option>
 										<option value="contents" <%=Function.getSelected(param.getStype(), "contents") %>>내용</option>
 										
