@@ -5,6 +5,7 @@
     <typeAlias alias="membervo" type="manage.member.MemberVO"/>
     <typeAlias alias="pointvo" type="manage.member.PointVO"/>
     
+    
     <!-- 공통조건 -->
 	<sql id="searchSql">		
 		<!-- WHERE 절 검색 -->
