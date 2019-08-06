@@ -930,6 +930,22 @@ public class CodeUtil {
 		return result.toString();
 	}
 
+	
+	//평점 선택
+			public static String getReviewScore(int arg) {
+				StringBuffer result = new StringBuffer();
+				result.append("<option value='1'"+Function.getSelected(1,arg)+">★☆☆☆☆</option>");
+				result.append("<option value='2'"+Function.getSelected(2,arg)+">★★☆☆☆</option>");
+				result.append("<option value='3'"+Function.getSelected(3,arg)+">★★★☆☆</option>");
+				result.append("<option value='4'"+Function.getSelected(4,arg)+">★★★★☆</option>");
+				result.append("<option value='5'"+Function.getSelected(5,arg)+">★★★★★</option>");
+				
+
+				return result.toString();
+			}
+		
+	
+	
 	 	
 }
 
