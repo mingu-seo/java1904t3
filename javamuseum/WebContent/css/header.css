@@ -1,7 +1,8 @@
 @charset "utf-8";
 
-#header {position:absolute; width:100%; z-index: 10; }
+#header {position:absolute; width:100%; z-index: 10;}
 .con1 {height:1089px; width:100%; background-image:url("../img/con1-banner.jpg"); background-repeat:no-repeat; background-attachment:fixed;}
+.con1-join {height:1300px; width:100%; background-image:url("../img/con1-banner.jpg"); background-repeat:no-repeat; background-attachment:fixed;}
 /* login 메뉴 부분 */
 .h-top {width:1200px; margin:0 auto;}
 .login {float:right; height:40px; margin-right:37px;}
@@ -10,15 +11,14 @@
 .login li:after {content:"|"; margin:0 10px; color:white;}
 .login li:last-child:after {display:none;}
 .login li a {color:white; font-size:14px;}
-.login li {color:white; font-size:14px;}
 /* login 메뉴 부분 */
 
 /* 헤더 메뉴 부분 */
-.h-bot { transition:all 0.5s; height:200px;}
+.h-bot { height:200px; transition:all 0.5s;}
 .h-bot.on { background-color:rgba(255,255,255,1);}
 .h-bot-in {width:1200px; margin:0 auto;}
 .h-bot-line { position: absolute;top: 94px; width: 100%;background-color: #d7d7d7; height: 1px; display:none;}
-.logo {float:left; margin-top:15px; background-image:url("../img/logo.png"); width:281px; height:29px; background-size: cover;text-indent:-9999px;}
+.logo {float:left; margin-top:15px; background-image:url("../img/logo.png"); width:281px; height:29px; text-indent:-9999px; background-size: cover;}
 .logo a {display:block;}
 .logo.on {background-image:url("../img/logo2.png");}
 .h-menu {float:right; height:60px; position:relative;}
@@ -28,6 +28,7 @@
 .h-menu > li:hover > a:after { opacity:1; width:100px;} 
 .h-menu > li:hover > a {color:#c2ad6f!important;}
 .h-menu > li > a {display:block; color:white; font-size:20px;}
+#memberName {display:block; color:white; font-size:16px;}
 .sub-menu { display:none;}
 .sub-menu > li {line-height:30px; text-align:center;}
 .sub-menu > li a { color:#000; font-size:16px;}

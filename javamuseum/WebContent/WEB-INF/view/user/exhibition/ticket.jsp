@@ -1,15 +1,20 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
 <%@ page import="user.exhibition.*" %>
-<%@ page import="manage.member.*" %>
 <%@ page import="util.*" %>
 <%
 UExhibitionVO ticket = (UExhibitionVO)request.getAttribute("ticket");
-MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 %>
 <link rel="stylesheet" href="/css/jquery-ui.css">
 <script src="/js/jquery-ui.js"></script>
 <script>
+function goSave() {
+	 if ($("#number").val() != $("#old_number").val() + $("#adult_number").val()+ $("student_#number").val()) {
+			alert('인원이 다릅니다.\r\n인원을 다시 확인해주세요.');
+			$("#number").focus();
+			return false;
+		}
+};
 
 function sumPrice() {
 	var totalPrice = 0;
@@ -22,6 +27,7 @@ function sumPrice() {
 	$("#totnumber").val(num);
 	$("#totalPrice").text(totalprice);
 }
+
 $(function(){
 	// 대관 시작
 	$("#con3-day-start").datepicker({
@@ -106,14 +112,14 @@ $(function(){
 						</tr>
 						<tr>
 							<th>보유포인트</th>
-							<td colspan="2"><input type="text" id="con3-point" value="<%=member.getPoint()%>" readonly></td>
+							<td colspan="2"><input type="text" id="con3-point" value="0"></td>
 							<td colspan="2">
 								<span class="point-span">점</span>
 							</td>
 						</tr>
 						<tr>
 							<th>사용포인트</th>
-							<td colspan="2"><input type="text" id="con3-point" name="usepoint" value="0" onkeydown="minPrice()"></td>
+							<td colspan="2"><input type="text" id="con3-point" value="0"></td>
 							<td colspan="2"><span class="point-span">점</span></td>
 						</tr>
 						<tr>
@@ -129,13 +135,8 @@ $(function(){
 						</tr>
 					</table>
 					<input type="hidden" name="cmd" value="reserve"/>
-					<input type="hidden" name="canceldate" value=""/>
 					<input type="hidden" name="reservestate" value="1"/>
 					<input type="hidden" name="reservedate" value="<%=DateUtil.getToday()%>"/>
-					<input type="hidden" name="paydate" value="<%=DateUtil.getToday()%>"/>
-					<input type="hidden" name="paystate" value="1"/>
-					<input type="hidden" name="member_pk" value="<%=member.getNo()%>"/>
-					<input type="hidden" name="display_pk" value="<%=ticket.getNo()%>" />
 					<div class="con3-btn clear">
 						<ul class="btn-group">
 							<li><input type="submit" id="submit-btn1" name="submit-btn1" value="예매하기" onclick="javascript:$('#frm').submit();"></li>

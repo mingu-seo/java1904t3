@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 /* 상단배경 */
-.con1 {height:600px; width:100%; background-image:url("../img/hall-banner.jpg"); background-repeat:no-repeat; background-attachment:fixed;}
+.con1 {height:600px; width:100%; background-image:url("/img/hall-banner.jpg"); background-repeat:no-repeat; background-attachment:fixed;}
 .con1-box{text-align: center; color: #fff; font-weight: bold; padding-top: 250px;}
 .con1-box h3{font-size: 70px; margin-bottom: 10px;}
 .con1-box p{font-size: 20px;}
@@ -21,11 +21,11 @@
 .con2-list {width:170px; margin-right:87.5px; float:left;height:170px; background-position:center top 30px; position:relative;}
 .con2-list p {position:absolute; left:50%; transform:translateX(-50%); top:60%; font-size:18px;}
 .arrow {position:absolute; top:50%; transform:translateY(-50%); right:-60px;}
-.list1 {background-image:url("../img/hall-03.png"); background-repeat:no-repeat;}
-.list2 {background-image:url("../img/hall-04.png"); background-repeat:no-repeat;}
-.list3 {background-image:url("../img/hall-05.png"); background-repeat:no-repeat;}
-.list4 {background-image:url("../img/hall-06.png"); background-repeat:no-repeat;}
-.list5 {background-image:url("../img/hall-07.png"); background-repeat:no-repeat; margin-right:0;}
+.list1 {background-image:url("/img/hall-03.png"); background-repeat:no-repeat;}
+.list2 {background-image:url("/img/hall-04.png"); background-repeat:no-repeat;}
+.list3 {background-image:url("/img/hall-05.png"); background-repeat:no-repeat;}
+.list4 {background-image:url("/img/hall-06.png"); background-repeat:no-repeat;}
+.list5 {background-image:url("/img/hall-07.png"); background-repeat:no-repeat; margin-right:0;}
 
 /* 표, 설명 구역 */
 .con2 h4 {font-size:18px; margin:30px 0; margin-top:60px;}

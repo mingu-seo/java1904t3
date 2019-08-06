@@ -10,9 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import manage.member.MemberService;
-import manage.member.MemberVO;
 import manage.program.ProgramService;
+import manage.program.ProgramVO;
 import util.Function;
 
 @Controller
@@ -20,10 +19,7 @@ public class ReservationController {
 
    @Autowired
    private ReservationService reservationService;
-   @Autowired 
    private ProgramService programService;
-   @Autowired
-   private MemberService memberService;
    
    
    @RequestMapping("/manage/program/reservation/list")
@@ -44,7 +40,7 @@ public class ReservationController {
       ReservationVO data = reservationService.read(param.getNo());
       
       model.addAttribute("data", data);
-      model.addAttribute("param", param);
+      model.addAttribute("vo", param);
       
       return "manage/program/reservation/read";
    }
@@ -59,41 +55,24 @@ public class ReservationController {
       return "manage/program/reservation/edit";
    }
 
-   @RequestMapping("/manage/program/reserve")
+   @RequestMapping("/manage/program/reservation/write")
    public String write(Model model, ReservationVO param) throws Exception {
-	   
-	   model.addAttribute("param", param);
-      
+      model.addAttribute("param", param);
 
-      return "manage/program/reserve";
+      return "manage/program/reservation/write";
    }
-   
-   @RequestMapping("/manage/program/searchMemb")
-   public String searchMemb(Model model, MemberVO mparam, ReservationVO param) throws Exception {
-		int[] rowPageCount = memberService.count(mparam);
-		ArrayList<MemberVO> list = memberService.list(mparam);
-		
-		model.addAttribute("totCount", rowPageCount[0]);
-		model.addAttribute("totPage", rowPageCount[1]);
-		model.addAttribute("list", list);
-		model.addAttribute("param", param);
-		
-		return "manage/program/searchMemb";
-   }
-
 
    
 
    @RequestMapping("/manage/program/reservation/process")
    public String process(Model model, ReservationVO param,  HttpServletRequest request) throws Exception {
-      model.addAttribute("vo", param);
-      
+      model.addAttribute("programvo", param);
       if ("write".equals(param.getCmd())) {
-          int r = reservationService.insert(param);
-          model.addAttribute("code", "alertMessageUrl");
-          model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
-          model.addAttribute("url", param.getTargetURLParam("list", param, 0));
- 	} else if ("edit".equals(param.getCmd())) {
+         int r = reservationService.insert(param, request);
+         model.addAttribute("code", "alertMessageUrl");
+         model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
+         model.addAttribute("url", "list");
+      } else if ("edit".equals(param.getCmd())) {
          int r = reservationService.update(param, request);
          model.addAttribute("code", "alertMessageUrl");
          model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));

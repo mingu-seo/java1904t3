@@ -4,6 +4,7 @@
 <sqlMap namespace="rental">
     
     <typeAlias alias="rentalvo" type="manage.rental.RentalVO"/>
+    <typeAlias alias="rental_replyvo" type="manage.rental.Rental_replyVO"/>
     
 	
 	<select id="count" parameterClass="rentalvo" resultClass="Integer">
@@ -29,10 +30,27 @@
 		</selectKey>
     </insert>
     
-    <update id="sendMail" parameterClass="rentalvo">
+    <update id="sendMail" parameterClass="rentalvo" >
     	UPDATE rental SET
         	confirm = 1
         where no=#no#
     </update>
+    
+    <select id="select" parameterClass="rentalvo" resultClass="rentalvo">
+    	SELECT * FROM rental where no=#no#
+    </select>
+    
+    <!-- 대관문의 답변 -->
+    <insert id="rentalReInsert" parameterClass="rental_replyvo">
+    	INSERT INTO rental_reply
+    		(rental_pk, reply, registdate)
+    	VALUES
+    		(#rental_pk#, #reply#, now())
+    </insert>
+    
+    <select id="replylist" parameterClass="rental_replyvo" resultClass="rental_replyvo">
+		SELECT * FROM rental_reply where rental_pk=#no#
+	</select>
+    
 </sqlMap>
 

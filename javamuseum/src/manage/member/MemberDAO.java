@@ -36,7 +36,7 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 	public int idcheck(MemberVO param) throws SQLException {
 		return (Integer) getSqlMapClient().queryForObject("member.idcheck", param);
 	}
-
+	
 	// 포인트관련
 	public int pointcount(PointVO param) throws SQLException {
 		return (Integer)getSqlMapClient().queryForObject("member.pointcount", param);

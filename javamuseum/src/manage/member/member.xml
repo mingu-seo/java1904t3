@@ -117,4 +117,5 @@
     	update member set point=point-#accum#
     	where no=#member_pk#
     </update>
+    
 </sqlMap>

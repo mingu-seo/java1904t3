@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import email.SendMail;
+import manage.member.MemberDAO;
+import manage.member.MemberVO;
 import property.SiteProperty;
 import util.FileUtil;
 import util.Page;
@@ -20,6 +22,8 @@ public class RentalService {
 
 	@Autowired
 	private RentalDAO rentalDao;
+	@Autowired
+	private MemberDAO memberDao;
 	
 	public int[] count(RentalVO vo) throws Exception {
 		int rowCount = rentalDao.count(vo);
@@ -55,11 +59,28 @@ public class RentalService {
 	}
 	
 	public int update(RentalVO vo) throws Exception {
-		RentalVO read = rentalDao.read(vo.getNo());
-		String email = read.getEmail();
-		String contents = read.getContents();
+		
 		int no = rentalDao.update(vo);
-		SendMail.sendEmail("handrush@naver.com", email, "테스트메일", contents);
+		RentalVO select = rentalDao.select(vo);
+		String email = select.getEmail();
+		MemberVO member = memberDao.read(select.getMember_pk());
+		String id = member.getId();
+		String contents = select.getContents();
+		SendMail.sendEmail("handrush@naver.com", email, "[JAVA MUSEUM] " + id + "님의 대관문의에 대한 답변", contents);
 		return no;
+	}
+	
+	public RentalVO select(RentalVO vo) throws SQLException {
+		RentalVO s = rentalDao.select(vo);
+		return s;
+	}
+	
+	public void rentalReInsert(Rental_replyVO vo) throws Exception {
+		rentalDao.rentalReInsert(vo);
+	}
+	
+	public ArrayList replylist(Rental_replyVO vo) throws Exception {
+		ArrayList list = rentalDao.replylist(vo);
+		return list;
 	}
 }

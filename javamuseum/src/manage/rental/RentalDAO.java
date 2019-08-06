@@ -30,5 +30,15 @@ public class RentalDAO extends SqlMapClientDAOSupport {
 		return getSqlMapClient().update("rental.sendMail", vo);
 	}
 	
+	public RentalVO select(RentalVO vo) throws SQLException {
+		return (RentalVO)getSqlMapClient().queryForObject("rental.select", vo);
+	}
+	
+	public void rentalReInsert(Rental_replyVO vo) throws SQLException {
+		getSqlMapClient().insert("rental.rentalReInsert", vo);
+	}
 
+	public ArrayList replylist(Rental_replyVO vo) throws SQLException {
+		return (ArrayList)getSqlMapClient().queryForList("rental.replylist", vo);
+	}
 }

@@ -22,6 +22,7 @@
 .con2-tb2{border: 1px solid #191919; background-color: #fff;}
 .con2-tb2 span{ position:relative; right:4px;}
 .con2-tb2 input[type="text"]{width: 130px; height: 30px; margin-left: 10px; border: 1px solid #191919;}
-.con2-tb3 input[type="submit"]{margin-top: 30px;}
+#selectEmail {width: 130px; height: 30px; margin-left: 10px; border: 1px solid #191919;}
+.con2-tb3 input[type="button"]{margin-top: 30px;}
 .con2-select{width: 130px; height: 30px; background-color: transparent; border: 1px solid #191919;}
-.con2-loginbox input[type="submit"]{width: 100%;height: 60px; background-color: #191919; color: #fff;padding-left: 0px; border: transparent;}
+.con2-loginbox input[type="button"]{width: 100%;height: 60px; background-color: #191919; color: #fff;padding-left: 0px; border: transparent;}

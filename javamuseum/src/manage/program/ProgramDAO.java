@@ -7,8 +7,6 @@ import java.util.HashMap;
 import org.springframework.stereotype.Repository;
 
 import db.SqlMapClientDAOSupport;
-import manage.reservation.ReservationDAO;
-import manage.reservation.ReservationVO;
 
 
 @Repository
@@ -37,50 +35,47 @@ public class ProgramDAO extends SqlMapClientDAOSupport {
 	public ProgramVO read(int i) throws SQLException {
 		return (ProgramVO)getSqlMapClient().queryForObject("program.read", i);
 	}
-
-	public ArrayList<HashMap> listOption(int program_pk) throws SQLException{
-		return (ArrayList<HashMap>)getSqlMapClient().queryForList("program.listOption", program_pk);
-	}
-	
+	   
 	public void insertOption(HashMap map) throws SQLException {
 		getSqlMapClient().insert("program.insertOption", map);
+	}
+	   
+	public ArrayList<HashMap> listOption(int program_pk) throws SQLException{
+		return (ArrayList<HashMap>)getSqlMapClient().queryForList("program.listOption", program_pk);
 	}
 	   
 	public int deleteOption(int program_pk) throws SQLException {
 		return getSqlMapClient().delete("program.deleteOption", program_pk);
 	}
-
-	public int countMember(ReservationVO vo) throws SQLException {
-		return (Integer)getSqlMapClient().queryForObject("program.countMember", vo);
-	}
+	
 	   public static void main(String[] args) throws SQLException {
-		      ProgramDAO pd = new ProgramDAO();
+		      ProgramDAO ad = new ProgramDAO();
 		      ProgramVO av = new ProgramVO();
-		      ReservationVO pv = new ReservationVO();
-		      av.setContents("asd");
-		      pd.update(av);
-//		      pd.countMember(pv);
-//		      pv.setDate("d");
-//		      pv.setMember_pk(1);
+		      ad.count(av);
+		      ad.list(av);
+		      av.setTitle("dd");
+		      av.setContents("ddd");
 //		      av.setName("dayeong");
-//		    int no = pd.insert(pv);
+		      int no = ad.insert(av);
 //		      int cnt = ad.idcheck("dayeong1234");
 //		      System.out.println(cnt);
 		      
-//		      HashMap m = new HashMap();
-//		      m.put("product_pk",1);
-//		      m.put("title", "테스트옵션");
-//		      m.put("price", 99119);
-//		      pd.insertOption(m);
-//		      ArrayList<HashMap> list = pd.listOption(99);
+		      HashMap m = new HashMap();
+		      m.put("program_pk", 160);
+		      m.put("time", 1);
+		      m.put("date", 1);
+		      ad.insertOption(m);
+		      
+//		      ArrayList<HashMap> list = pd.listOption(268);
 //		      
 //		      for(int i=0; i<list.size(); i++) {
-//		         System.out.println("상품명 : " + list.get(i).get("time")+"상품명 : " + list.get(i).get("date"));
+//		         System.out.println("상품명 : " + list.get(i).get("title")+"상품명 : " + list.get(i).get("price"));
 //		      }
 //		     pd.deleteOption(9999);
 		      
 //		      pd.reviewDelete(159);
 		      
 		   }
+
 
 }

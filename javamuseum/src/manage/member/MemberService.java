@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import email.SendMail;
+import test.Test;
 import util.Page;
 
 @Service
-public class MemberService {
+public class MemberService extends Test {
 	
 	@Autowired
 	private MemberDAO memberDao;
@@ -91,4 +93,14 @@ public class MemberService {
 	public void pointuse(PointVO vo) throws SQLException {
 		memberDao.pointuse(vo);
 	}
+	
+	public String cerNum(MemberVO vo) throws Exception {
+		String cerNum = numberGen(6,1);
+		vo.setEmail(vo.getEmail());
+		String email = vo.getEmail();
+		
+		SendMail.sendEmail("handrush@naver.com", email, "[JAVA MUSEUM] 회원가입 인증번호 발송", "인증번호: " + cerNum);
+		return cerNum;
+	}
+	
 }
