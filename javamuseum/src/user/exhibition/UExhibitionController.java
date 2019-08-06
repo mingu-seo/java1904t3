@@ -62,6 +62,7 @@ public class UExhibitionController {
 		UExhibitionVO detail = uexhibitionService.pastReview(param.getNo());
 
 		model.addAttribute("detail", detail);
+		// 대근씨 자리에서 수정
 		return "user/exhibition/pastDetail";
 	}
 }
