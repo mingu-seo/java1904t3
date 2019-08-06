@@ -29,9 +29,21 @@ public class UExhibitionService {
 		return rowPageCount;
 	}
 	
-	public UExhibitionVO ticket(int no) throws Exception {
-		UExhibitionVO ticket = uexhibitionDao.ticket(no);
+	public ArrayList edList(UExhibitionVO param) throws Exception {
+		ArrayList list = uexhibitionDao.edList(param);
+		
+		return list;
+	}
+	
+	public UExhibitionVO display(int no) throws Exception {
+		UExhibitionVO ticket = uexhibitionDao.display(no);
 		
 		return ticket;
+	}
+	
+	public UExhibitionVO pastReview(int no) throws Exception {
+		UExhibitionVO pastreview = uexhibitionDao.pastReview(no);
+
+		return pastreview;
 	}
 }
