@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import manage.exhibition.ExhibitionDAO;
+import manage.exhibition.ExhibitionVO;
 import manage.review.ReviewDAO;
 import manage.review.ReviewVO;
 import util.Page;
@@ -17,6 +19,8 @@ public class ReviewService {
 	
 	@Autowired
 	private ReviewDAO reviewDao;
+	@Autowired
+	private ExhibitionDAO exhibitionDao;
 	
 	public int[] count(ReviewVO param) throws SQLException {
 		int rowCount = reviewDao.count(param);
@@ -39,6 +43,7 @@ public class ReviewService {
 
 	public int update(ReviewVO vo) throws SQLException {
 		int cnt = reviewDao.update(vo);
+		
 		return cnt;
 	}
 

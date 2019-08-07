@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import manage.exhibition.ExhibitionService;
+import manage.exhibition.ExhibitionVO;
 import manage.ticket.TicketVO;
 import util.Function;
 
@@ -18,6 +20,9 @@ public class ReviewController {
 
 	@Autowired
 	private ReviewService reviewService;
+	@Autowired
+	private ExhibitionService exhibitionService;
+
 	
 	@RequestMapping("/manage/review/index")
 	public String index(Model model, ReviewVO param) throws Exception {
@@ -53,9 +58,10 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/manage/review/write")
-	public String write(Model model, ReviewVO param) throws Exception {
+	public String write(Model model, ReviewVO param, ExhibitionVO dparam) throws Exception {
+		ArrayList<ExhibitionVO> list = exhibitionService.ingList(dparam);
 		model.addAttribute("vo", param);
-		
+		model.addAttribute("list", list);
 		return "manage/review/write";
 	}
 	
@@ -147,8 +153,11 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/customer/review/write")
-	public String userwrite(Model model, ReviewVO param) throws Exception {
+	public String userwrite(Model model, ReviewVO param, ExhibitionVO dparam) throws Exception {
+		
+		ArrayList<ExhibitionVO> list = exhibitionService.ingList(dparam);
 		model.addAttribute("vo", param);
+		model.addAttribute("list", list);
 		
 		return "customer/review/write";
 	}

@@ -32,7 +32,7 @@
         select review.*, member.name, display.title
          from review 
          	LEFT OUTER JOIN member ON review.member_pk = member.no
-         	LEFT OUTER JOIN display ON review.display_pk = display.no
+         	LEFT OUTER JOIN display ON review.display_pk = display.hallnumber
         <include refid="searchSql" />
 		ORDER BY review.no DESC LIMIT $startPageNo$, $pageRows$	
     </select>
@@ -71,7 +71,7 @@
     
     <select id="read" parameterClass="review_vo" resultClass="review_vo">
         select review.*	, member.name , display.title
-         from review, member, display where review.member_pk = member.no and review.display_pk = display.no and review.no=#no#
+         from review, member, display where review.member_pk = member.no and review.display_pk = display.hallnumber and review.no=#no#
     </select>
     
 

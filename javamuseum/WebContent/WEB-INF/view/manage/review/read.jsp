@@ -21,24 +21,9 @@ $(function() {
 		goDelete();
 	});
 });
-function goDelete() {
-	var del = confirm ('삭제하시겠습니까?');
-	if (del){
-		document.location.href = "process?no=<%=data.getNo()%>&cmd=delete";
-	} else {
-		return false;
-	}
-}
 
-function groupDelete() {	
-	if ( isSeleted(document.frm.no) ){
-		if (confirm ('삭제하시겠습니까?')) {
-			document.frm.submit();
-		}
-	} else {
-		alert("삭제할 항목을 하나 이상 선택해 주세요.");
-	}
-}
+
+
 </script>
 </head>
 <body>
@@ -77,7 +62,7 @@ function groupDelete() {
 										<tr>
 											<th scope="row"><label for="">원본사진</label></th>
 											<td><img src="/upload/notice/<%=data.getImagename()%>"
-												width="100" height="100"></td>
+												width="100" height="100"/></td>
 
 										</tr>
 										<tr>
@@ -111,7 +96,6 @@ function groupDelete() {
 										</tr>
 									</tbody>
 								</table>
-								<input type="hidden" name="cmd" id="cmd" value="groupDelete" />
 								<input type="hidden" name="stype" id="stype"
 									value="<%=param.getStype()%>" /> <input type="hidden"
 									name="sval" id="sval" value="<%=param.getSval()%>" />

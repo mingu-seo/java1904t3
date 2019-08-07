@@ -1,11 +1,13 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
 <%@ page import="manage.review.*" %>
+<%@ page import="manage.exhibition.*" %>
 <%@ page import="util.*" %>
 <%@ page import="property.*" %>
 <%
 ReviewVO param = (ReviewVO)request.getAttribute("param");
 ReviewVO data = (ReviewVO)request.getAttribute("data");
+ArrayList<ExhibitionVO> list = (ArrayList)request.getAttribute("list");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
@@ -22,18 +24,13 @@ ReviewVO data = (ReviewVO)request.getAttribute("data");
 	});
 	
 	function goSave() {
-		var regex=/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
-			var regex2=/[0-9]{4}[\-][0-1][0-9][\-][0-3][0-9]\s[0-2][0-9]:[0-6][0-9]:[0-6][0-9]$/i; 
-			if(!regex2.test($("#registdate").val())){
-				alert('잘못된 날짜 형식입니다.\\n올바로 입력해 주세요.\\n ex)2013-02-14 03:28:85.0');
-				$("#registdate").focus();
-				return false;
-			} 
+
 		if ($("#title").val() == "") {
 			alert('제목을 입력하세요.');
 			$("#title").focus();
 			return false;
 		}
+		
 		var sHTML = oEditors.getById["contents"].getIR();
 		if (sHTML == "" || sHTML == "<p><br></p>") {
 			alert('내용을 입력하세요.');
@@ -60,7 +57,7 @@ ReviewVO data = (ReviewVO)request.getAttribute("data");
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [수정]</h2>
+					<h2>리뷰 - [수정]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -80,7 +77,7 @@ ReviewVO data = (ReviewVO)request.getAttribute("data");
 										
 										<th scope="row"><label for="">등록일</label></th>
 										<td>
-											<input type="text" id="registdate" name="registdate" class="inputTitle" value="<%=DateUtil.getDateTimeFormat(data.getRegistdate())%>" title="등록일을 입력해주세요"/>&nbsp;
+											<input type="text" id="registdate" name="registdate" class="inputTitle" value="<%=DateUtil.getFullToday()%>" title="등록일을 입력해주세요"/>&nbsp;
 											<span id="CalregistdateIcon">
 												<img src="/manage/img/calendar_icon.png" id="CalregistdateIconImg" style="cursor:pointer;"/>
 											</span>
@@ -103,9 +100,19 @@ ReviewVO data = (ReviewVO)request.getAttribute("data");
 										</td>
 									</tr>
 									<tr>
+									<th scope="row"><label for="">전시관</label></th>
+										<td>
+											<select name="display_pk">
+											<%for(int i = 0; i < list.size(); i++){ %>
+												<option value="<%=list.get(i).getNo()%>" <%=Function.getSelected(data.getDisplay_pk(), list.get(i).getNo())%>>[<%=i+1%>관] <%=list.get(i).getTitle()%></option>
+											<%} %>
+											</select>
+										</td>
+									</tr>
+									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="3">
-											<input type="text" id="title" name="title" class="w50" title="제목을 입력해주세요" value="<%=Function.checkNull(data.getTitle())%>" />	
+											<input type="text" id="title" name="title" class="w50" title="제목을 입력해주세요" value="<%=Function.checkNull(data.getReviewtitle())%>" />	
 										</td>
 									</tr>
 									<tr>

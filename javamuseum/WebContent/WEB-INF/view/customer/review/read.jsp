@@ -142,7 +142,7 @@ ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
 											<td><%=data.getTitle()%></td>
 											<th scope="row"><label for="">평점</label></th>
 											<td><%=data.getReview_score()%></td>
-											<th scope="row"><label for="">좋아요수</label></th>
+											<th scope="row"><label for="">좋아요</label></th>
 											<td><%=data.getLike_cnt()%></td>
 										</tr>
 										<tr>

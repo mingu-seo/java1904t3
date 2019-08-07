@@ -9,9 +9,7 @@
 <%
 ReviewVO param = (ReviewVO)request.getAttribute("vo");
 ReviewVO data = (ReviewVO) request.getAttribute("data");
-ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
-MemberVO member = (MemberVO) request.getAttribute("mvo");
-ArrayList<ReviewVO> mlist = (ArrayList)request.getAttribute("mlist");
+ArrayList<ExhibitionVO> list = (ArrayList)request.getAttribute("list");
 %>	
 	
 	
@@ -154,8 +152,10 @@ ArrayList<ReviewVO> mlist = (ArrayList)request.getAttribute("mlist");
 									<tr>
 										<th scope="row"><label for="">*전시이름</label></th>
 										<td colspan="3">
-											<select name="hallnumber">
-												<%=CodeUtil.getHallnum(0) %>
+											<select name="display_pk">
+												<%for(int i = 0; i < list.size(); i++){ %>
+												<option value='<%=list.get(i).getNo()%>'>[<%=i+1%>관] <%=list.get(i).getTitle()%></option>
+											<%} %>
 											</select>
 										</td>
 									</tr>
