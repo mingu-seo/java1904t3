@@ -23,6 +23,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 <script type="text/javascript" src="/js/slick.js"></script>
 <script type="text/javascript" src="/js/aos.js"></script>
 <script>
+console.log(<%=list.size()%>);
 	function getTicket(i) {
 		<%if(member != null) {%>
 		$.ajax({
