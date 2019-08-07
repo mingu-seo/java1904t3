@@ -94,7 +94,7 @@ public class SiteProperty {
 	/**
 	 * 로컬 홈디렉토리경로 (실서버 변경 필요)
 	 */
-	public static final String REAL_PATH				= "C:\\java\\git\\java190412\\javamuseum\\WebContent";
+	public static final String REAL_PATH				= "C:\\java\\git\\java1904t3\\javamuseum\\WebContent";
 	/**
 	 * 공지사항 첨부파일 경로
 	 */
