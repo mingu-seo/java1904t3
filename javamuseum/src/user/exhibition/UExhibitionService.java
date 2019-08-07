@@ -40,6 +40,15 @@ public class UExhibitionService {
 					list.add(i, vo);
 				}
 			}
+		} else if(list.size() == 0) {
+			list.add(new UExhibitionVO());
+			for(int i = 0; i < 8; i++) {
+				if(list.get(i).getHallnumber() != i+1) {
+					UExhibitionVO vo = new UExhibitionVO();
+					list.add(i, vo);
+				}
+				
+			}
 		}
 		
 		return list;
