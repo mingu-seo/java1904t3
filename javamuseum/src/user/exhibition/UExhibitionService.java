@@ -16,14 +16,29 @@ public class UExhibitionService {
 	
 	public ArrayList<UExhibitionVO> ingList(UExhibitionVO param) throws Exception {
 		ArrayList<UExhibitionVO> list = uexhibitionDao.ingList(param);
+		int count = list.size();
 		
-		if(list.size() < 9 && list.size() != 0) {
+		if(count < 9 && count != 0) {
+			for(int i = 0; i < 9-count; i++) {
+				UExhibitionVO vo = new UExhibitionVO();
+				list.add(vo);
+			}
+			int last = list.size();
 			for(int i = 0; i < list.size(); i++) {
+				if(list.get(i).getHallnumber() != i+1 && list.get(i).getHallnumber() > 0) {
+					list.add(list.get(i).getHallnumber()-1, list.get(i));
+					list.remove(i);
+					list.add(i, list.get(list.size()-1));
+					list.remove(last);
+				}
+			}
+		} else if(list.size() == 0) {
+			list.add(new UExhibitionVO());
+			for(int i = 0; i < 8; i++) {
 				if(list.get(i).getHallnumber() != i+1) {
 					UExhibitionVO vo = new UExhibitionVO();
 					list.add(i, vo);
 				}
-				
 			}
 		} else if(list.size() == 0) {
 			list.add(new UExhibitionVO());
