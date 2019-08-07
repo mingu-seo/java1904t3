@@ -164,7 +164,12 @@ function goSearch() {
 							<!-- //페이징 처리 -->
  							<form name="searchForm" id="searchForm" action="list" method="post">
 								<div class="search">
-
+									<select name="category" title="검색을 선택해주세요">
+										<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>
+										<option value="kid" <%=Function.getSelected(param.getStype(), "kid") %>>아동</option>
+										<option value="student" <%=Function.getSelected(param.getStype(), "student") %>>청소년</option>
+										<option value="adult" <%=Function.getSelected(param.getStype(), "adult") %>>성인</option>
+									</select>
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>
 										<option value="title" <%=Function.getSelected(param.getStype(), "title") %>>제목</option>

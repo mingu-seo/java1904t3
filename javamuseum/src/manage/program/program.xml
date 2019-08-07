@@ -10,10 +10,17 @@
 		<!-- WHERE 절 검색 -->
 		<dynamic prepend="where">
 			<!-- 검색어 검색 -->
-			<isNotEqual property="category" compareValue="0" prepend="and">
-				category = #category#
-			</isNotEqual>
+
 			<isNotEqual property="sval" compareValue="" prepend="and">
+				<!-- 검색 타입이 all일 때 -->
+				<isEqual property="category" compareValue="all" >
+				((category like '%$sval$%' ) or (instructor like '%$sval$%' ) or (contents like '%$sval$%' ))
+				</isEqual>
+				<!-- 검색 타입이 all이 아닐때 해당 stype으로 검색 -->
+				<isNotEqual property="category" compareValue="all">
+				($stype$ like '%$sval$%' )
+				</isNotEqual>
+							
 				<!-- 검색 타입이 all일 때 -->
 				<isEqual property="stype" compareValue="all" >
 				((title like '%$sval$%' ) or (instructor like '%$sval$%' ) or (contents like '%$sval$%' ))

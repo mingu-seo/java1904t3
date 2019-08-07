@@ -122,22 +122,26 @@ $(function(){
 								<p>시간 : <%=list.get(i).getP_time() %></p>
 								<p>교육비 : <%=list.get(i).getPrice() %></p>
 							    <ul class="sub01-btn">
-	                                <li class="li1" onclick="program(<%=list.get(i).getNo()%>)"><a href="javascript:;">신청하기</a></li>
-	                                <li class="li2" onclick="detail(<%=list.get(i).getNo()%>)"><a href="javascript:;">상세보기</a></li>
+	                                <li class="li1" onclick="getProgram(<%=list.get(i).getNo()%>)"><a href="javascript:;">신청하기</a></li>
+	                                <li class="li2" onclick="getDetail(<%=list.get(i).getNo()%>)"><a href="javascript:;">상세보기</a></li>
                            		</ul>
 							</div>
 						</div>
 					<%
 						}
 					%>
-					
 					</div>
 				</div>
-				
-
 			</div>
 		</div>
-      	</div>
+						        <!-- //con2 종료 -->
+		<div class="con3">
+	
+		</div>
+        <!-- con3 예매 페이지 -->
+		<div class="con4">
+			
+        </div>
 	</div>
 <%@ include file="/WEB-INF/view/user/include/footer.jsp" %>
 	

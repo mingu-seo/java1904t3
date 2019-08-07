@@ -9,8 +9,8 @@
 	</select>
 
 	<select id="list" parameterClass="uprogramvo" resultClass="uprogramvo">
-		SELECT program.*, member.id, member.name
-		FROM program, member
+		SELECT program.*
+		FROM program
 		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$
 	</select>
 	
@@ -18,6 +18,12 @@
 		SELECT *, (select count(*) from program_res where program_pk=po.program_pk and date=po.date and time=po.time) as member_cnt
 		FROM program_option as po
 		WHERE program_pk=#program_pk#
+	</select>
+	
+	<select id="detail" parameterClass="Integer" resultClass="uprogramvo">
+		SELECT *
+		FROM program
+		WHERE no=#no#
 	</select>
 	
 	

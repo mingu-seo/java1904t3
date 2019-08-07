@@ -19,7 +19,7 @@
 .con2-text .calender select {width:120px; height:30px; font-size:18px; padding:0 10px;}
 /* 서브페이지 */
 .con2-box {border:1px solid black;}
-.con2-box-list {border-bottom:1px solid lightgray; height:300px; overflow:hidden;margin-top: 10px;}
+.con2-box-list {border-bottom:1px solid lightgray; height:300px; overflow:hidden;}
 .con2-box-list a {transition:all 0.5s;}
 .con2-box-right {transition:all 0.5s;}
 /* 설명란 호버시 */
@@ -27,8 +27,8 @@
 .con2-box-left {float:left; width:300px; height:300px;}
 .con2-box-left img {width:100%; height:100%;}
 .con2-box-right {float:left;  width:898px; height:300px; padding:40px; color:black; position:relative;}
-.con2-box-right h4 {font-size:30px;}
-.con2-box-right p {font-size:18px; margin-top:10px; line-height:40px;}
+.con2-box-right h4 {font-size:25px;}
+.con2-box-right p {font-size:18px; margin-top:5px; line-height:30px;}
 .con2-box-right span {font-size:18px; margin-top:40px; display:inline-block;}
 /*이전 전시 목록 작업*/
 .con2-box-wrap > .con2-box:nth-child(1) {display:block;}
@@ -68,6 +68,40 @@
 .btn-group li{float: left; width: 400px; height: 60px;margin-right: 20px;}
 .btn-group li:nth-child(2){margin-right: 0px;}
 .con3-btn{margin-top:16px;}
-.con3-btn input[type="submit"]{width: 100%; height: 50px;background-color: #191919; border: none;color: #fff; font-size: 16px;}
+.con3-btn input[type="submit"]{cursor:pointer;width: 100%; height: 50px;background-color: #191919; border: none;color: #fff; font-size: 16px;}
 .con3-btn #submit-btn2{width: 100%; height: 50px;background-color: #191919;color: #fff; font-size: 16px; border: none;}
 /*작품 후기*/
+/* 작품 소개 시작 */
+.con4-bot {border:2px solid black; margin-top:16px;}
+.con4-bg{ display:none; background-color: #000; background-color: rgba(0,0,0,0.8); z-index:30; position: fixed; top: 0; left: 0; width:100%; height:100%;}
+.con4-gr{width: 980px; margin: 50px auto; padding-bottom:30px; background-color: #fff;}
+.con4-header{width: 100%; height: 40px; background-color: #191919; padding-top: 7px;}
+.con4-header h3{color: #fff; font-size: 15px; margin-left: 15px;}
+.con4-center{width: 820px; margin: 0 auto; margin-top: 20px;}
+.con4-top{border: 2px solid #000; width: 100%; height: 270px; padding: 10px 10px;}
+.con4-top li{float: left;}
+.con4-top-img{width: 30%; height: 250px;}
+.con4-top-img > img{ width: 100%; height: 100%;}
+/* 작품 소개 끝 */
+/* BEST 한줄평/후기 시작 */
+.con4-top-text{margin-top: 5px; margin-left: 36px; width:65%;}
+.con4-bot-title {width:100%; background-color:#191919; height:50px; line-height:50px; text-align:center; color:white; font-size:18px;}
+.con4-top-text h4{font-size: 14px;}
+.con4-top-text h3{font-size: 20px; margin-top: 15px; margin-bottom: 12px;}
+.con4-top-text p{font-size: 15px; margin-top: 5px;}
+.con4-bot-text-list {border-bottom:1px solid #191919;}
+.con4-btn{margin-top:16px;}
+.con4-btn .btn-group li {width:398px;}
+.con4-btn #submit-btn1{width:398px; height: 50px;background-color: #191919;color: #fff; font-size: 16px; border: none; }
+.con4-btn #submit-btn2{width:398px; height: 50px;background-color: #191919;color: #fff; font-size: 16px; border: none; }
+#write-submit {width:100px; height:40px; border:none; border:2px solid black; background-color:transparent;}
+/* BEST 한줄평/후기 끝 */
+/* 상세 페이지 */
+.con5-btn { width:100%;}
+.con5-btn li { background-color:white;float:left; width: 100%; height: 50px; color: black; text-align: center; line-height: 50px;display: block; font-size: 16px; font-weight: bold;}
+.con5-btn li.on{ background-color:black; color:white;}
+.con5-top { border: 2px solid #000; width: 100%; height: 450px; padding: 10px 10px;}
+.con5-top li { float: left;}
+.con5-top .detail { width:100%;}
+.con5-top .con5-contents {  width: 100%; height: 380px; overflow: auto; }
+/* 상세 페이지 종료*/

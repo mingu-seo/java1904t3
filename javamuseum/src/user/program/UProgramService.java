@@ -36,5 +36,11 @@ public class UProgramService {
 	      return list;
    }
 	
+	public ProgramVO detail(int no) throws Exception {
+		ProgramVO list = uprogramDao.detail(no);
+		
+		return list;
+	}
+	
 	
 }

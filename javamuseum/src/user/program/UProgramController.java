@@ -44,5 +44,13 @@ public class UProgramController {
 		return "user/program/program";
 	}
 	
+	
+	@RequestMapping("/user/program/detail")
+	public String detail(Model model, ProgramVO param) throws Exception {
+		ProgramVO detail = (ProgramVO)uprogramService.detail(param.getNo());
+		
+		model.addAttribute("detail", detail);
+		return "user/program/detail";
+	}
 
 }
