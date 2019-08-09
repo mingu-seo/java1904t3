@@ -54,6 +54,26 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 			}
 		});
 	}
+	
+	function cancelBtn(no, i){
+		var idx = i;
+		if(confirm("예매를 취소하시겠습니까?") == true) {
+			$.ajax({
+				type: "POST",
+				url: "/user/mypage/cancel?no="+no,
+				data: {
+					canceldate : "<%=DateUtil.getToday()%>"
+				},
+				async: false,
+				success: function(data){
+					alert("예매를 취소하였습니다.");
+					ticketShow(<%=member.getNo()%>);
+					$(".members-wrap > div").hide();
+					$(".members-wrap > div").eq(2).show();
+				}
+			}); 
+		}
+	}
 </script>
 </head>
 <body>

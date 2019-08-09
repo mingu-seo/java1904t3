@@ -3,6 +3,7 @@
 <%@ page import="util.*" %>
 <%@ page import="user.ticket.*" %>
 <%@ page import="manage.ticket.*" %>
+<%@ page import="manage.member.*" %>
 <%
 ArrayList<UTicketVO> myResList = (ArrayList)request.getAttribute("myResList");
 TicketVO tparam = (TicketVO)request.getAttribute("tparam");
@@ -11,56 +12,7 @@ int restotPage = (Integer)request.getAttribute("restotPage");
 %>
 <link rel="stylesheet" href="/css/jquery-ui.css">
 <script>
-function cancelBtn(no){
-	if(confirm("예매를 취소하시겠습니까?") == true) {
-		$.ajax({
-			type: "POST",
-			url: "/user/mypage/cancel?no="+no,
-			data: {
-				canceldate : "<%=DateUtil.getToday()%>"
-			},
-			async: false,
-			success: function(data){
-				alert("예매를 취소하였습니다.");
-			}
-		}); 
-	}
-}
-$(function(){
-	/* function cancelBtn(no){
-		var btnnem = $(".con6-right-btn span").index(this);
-		if(confirm("예매를 취소하시겠습니까?") == true) {
-			$.ajax({
-				type: "POST",
-				url: "/user/mypage/cancel?no="+no,
-				async: false,
-				success: function(data){
-					alert("예매를 취소하였습니다.");
-					$(".con6-right-btn").eq(btnnem).hide();
-					console.log(btnnem);
-				}
-			}); 
-		}
-	} */
-	/* $(".con6-right-btn span").click(function(){
-		var btnnem = $(".con6-right-btn span").index(this);
-		if(confirm(예매를 취소하시겠습니까?) == true) {
-			$.ajax({
-				type: "POST",
-				url: "/user/mypage/cancel?",
-				data: {	
-					reservestate : 2
-				},
-				async: false,
-				success: function(data){
-					alert("예매를 취소하였습니다.");
-					$(".con6-right-btn").eq(btnnem).hide();
-				}
-			}); 
-		}
-		console.log(btnnem);
-	}); */
-});
+
 </script>
 <div class="con6-center">
 	<div class="con6-text">
@@ -71,11 +23,16 @@ $(function(){
 	<div class="con6-exhibition">
 		<%for(int i = 0; i < myResList.size(); i++){ %>
 		<div class="con6-gr clear">
-		<div class="con6-left">
-			<img src="/upload/exhibition/<%=myResList.get(i).getImagename()%>">
-		</div>
-		<div class="con6-right clear">
-				<h5><%=myResList.get(i).getTitle() %><%if(myResList.get(i).getReservestate() != 1){%><span style="color:red; font-size: 20px;">(예매 취소)</span><%}%></h5>
+			<div class="con6-left">
+				<img src="/upload/exhibition/<%=myResList.get(i).getImagename()%>">
+			</div>
+			<div class="con6-right clear">
+				<h5>
+					<%=myResList.get(i).getTitle() %>
+					<% if(myResList.get(i).getReservestate() != 1){ %>
+						<span id="resCan" style="color:red; font-size: 20px;">(예매 취소)</span>
+					<% } %>
+				</h5>
 				<div class="con6-left-text">
 					<p>예매번호 : <%=myResList.get(i).getNo()%></p>
 					<p>예매날짜 : <%=myResList.get(i).getReservedate()%></p>
@@ -87,7 +44,7 @@ $(function(){
 					<p>결제상태 : <%=CodeUtil.getPayStateSave(myResList.get(i).getPaystate())%></p>
 				</div>
 				<%if(myResList.get(i).getReservestate() == 1){ %>
-				<div class="con6-right-btn" onclick="cancelBtn(<%=myResList.get(i).getNo()%>)">
+				<div class="con6-right-btn" onclick="cancelBtn(<%=myResList.get(i).getNo()%>, <%=i%>)">
 					<span class="cancelbtn">예매 취소하기</span>
 				</div>
 				<%} %>

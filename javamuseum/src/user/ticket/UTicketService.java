@@ -45,7 +45,7 @@ public class UTicketService {
 		//실제 결제 금액과 할인 금액 셋
 		param.setPay_price(pay_price);
 		param.setSale_price((10000*totalnum)-pay_price);
-
+		param.setPrice(10000*totalnum);
 
 		//포인트 적립
 		param.setPoint(point+param.getStorepoint()-usePoint);
@@ -60,7 +60,7 @@ public class UTicketService {
 			vo.setMemo("예매 포인트 적립");
 			vo.setAccum(param.getStorepoint());
 			vo.setState(0);
-			vo.setDisplay_pk(param.getNo());
+			vo.setTicket_pk(param.getNo());
 			ticketDao.pointComment(vo);
 					
 			//point table에 포인트 코멘트 넣기(사용 포인트)
@@ -70,7 +70,7 @@ public class UTicketService {
 				vo1.setMemo("예매 포인트 사용");
 				vo1.setAccum(param.getUsepoint());
 				vo1.setState(1);
-				vo1.setDisplay_pk(param.getNo());
+				vo1.setTicket_pk(param.getNo());
 				ticketDao.pointComment(vo1);
 			}
 		}
@@ -94,7 +94,7 @@ public class UTicketService {
 				pointvo.setState(1);
 				pointvo.setAccum(pointList.get(i).getAccum());
 				pointvo.setMember_pk(data.getMember_pk());
-				pointvo.setDisplay_pk(param.getNo());
+				pointvo.setTicket_pk(param.getNo());
 				ticketDao.pointComment(pointvo);
 			} else if(pointList.get(i).getState() == 1){
 				point += pointList.get(i).getAccum();
@@ -102,7 +102,7 @@ public class UTicketService {
 				pointvo1.setState(0);
 				pointvo1.setAccum(pointList.get(i).getAccum());
 				pointvo1.setMember_pk(data.getMember_pk());
-				pointvo1.setDisplay_pk(param.getNo());
+				pointvo1.setTicket_pk(param.getNo());
 				ticketDao.pointComment(pointvo1);
 			}
 		}

@@ -5,16 +5,35 @@
 <%@ page import="util.*" %>
 <%
 UExhibitionVO ticket = (UExhibitionVO)request.getAttribute("ticket");
-MemberVO member = (MemberVO)session.getAttribute("memberInfo");
+MemberVO member = (MemberVO)request.getAttribute("member");
 %>
 <link rel="stylesheet" href="/css/jquery-ui.css">
 <script src="/js/jquery-ui.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
-$(function(){
-	var IMP = window.IMP; // 생략가능
+/* $(function(){
+	var IMP = window.IMP;
 	IMP.init('imp10084821');
-})
+}); */
+
+function setComma(v) {
+	 var rV="";//리턴할 값
+	 var vS=new String(v), leng=vS.length;
+
+	 var remnant = leng%3;
+	 if(remnant==0) remnant=3;
+
+	 while( leng>3 ) {
+	  rV += vS.substr(0,remnant)+",";
+	  vS = vS.substr(remnant);
+
+	  leng = vS.length;
+	  remnant=3;
+	 }
+	 rV += vS;
+
+	 return rV;
+	}
 
 function goSave(){
 	
@@ -26,13 +45,14 @@ function goSave(){
 		alert("결제 수단을 선택해주세요.");
 		return false;
 	}
-	
+	<%-- var IMP = window.IMP;
+	IMP.init('imp10084821');
 	IMP.request_pay({
 	    pg : 'inicis', // version 1.1.0부터 지원.
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
 	    name : '<%=ticket.getTitle()%>',
-	    amount : 14000,
+	    amount : $("#totalPrice").val(),
 	    buyer_email : '<%=member.getEmail()%>',
 	    buyer_name : '<%=member.getName()%>',
 	    buyer_tel : '<%=member.getTel()%>',
@@ -45,6 +65,16 @@ function goSave(){
 	        msg += '상점 거래ID : ' + rsp.merchant_uid;
 	        msg += '결제 금액 : ' + rsp.paid_amount;
 	        msg += '카드 승인번호 : ' + rsp.apply_num;
+	        
+	        $.ajax({
+	        	type: "POST",
+	        	url: "/user/exhibition/process",
+	        	async: false,
+	        	data: $("[name=frm]").serialize(),
+	        	success: function(data){
+	        		
+	        	}
+	        });
 	    } else {
 	        var msg = '결제에 실패하였습니다.';
 	        msg += '에러내용 : ' + rsp.error_msg;
@@ -52,9 +82,10 @@ function goSave(){
 	    alert(msg);
 	});
 	
-	return false;
+	return false; --%>
 	
 }
+
 function sumPrice() {
 	var totalPrice = 0;
 	var num = parseInt($("#old_number").val()) + parseInt($("#adult_number").val()) + parseInt($("#student_number").val());
@@ -64,7 +95,8 @@ function sumPrice() {
 		totalprice = (parseInt($("#old_number").val()) * 5000) + (parseInt($("#adult_number").val()) * 9000) + (parseInt($("#student_number").val()) * 8000);
 	}
 	$("#totnumber").val(num);
-	$("#totalPrice").text(totalprice);
+	$("#totalPrice").text(setComma(totalprice));
+	$("#totalPrice").val(totalprice);
 }
 $(function(){
 	// 대관 시작
@@ -106,7 +138,7 @@ $(function(){
 			</ul>
 			<!-- 예매하기 전송 내용 -->
 			<div class="con3-bot">
-				<form method="POST" action="process" name="frm" id="frm" onsubmit="return goSave(); return false;">
+				<form method="POST" action="process" name="frm" id="frm" onsubmit="return goSave();">
 					<table class="con3-tb">
 						<tr>
 							<th>관람일</th>
