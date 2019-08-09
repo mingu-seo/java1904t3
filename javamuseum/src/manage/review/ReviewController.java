@@ -40,21 +40,11 @@ public class ReviewController {
 	
 	@RequestMapping("/manage/review/read")
 	public String read(Model model, ReviewVO param) throws Exception {
-		ReviewVO data = reviewService.read(param, false);
+		ReviewVO data = reviewService.read(param.getNo(), false);
 		model.addAttribute("data", data);
 		model.addAttribute("vo", param);
 		
 		return "manage/review/read";
-	}
-	
-	@RequestMapping("/manage/review/edit")
-	public String edit(Model model, ReviewVO param) throws Exception {
-		param.setTablename("review");
-		ReviewVO data = reviewService.read(param, false);
-		model.addAttribute("data", data);
-		model.addAttribute("param", param);
-		
-		return "manage/review/edit";
 	}
 	
 	@RequestMapping("/manage/review/write")
@@ -85,12 +75,12 @@ public class ReviewController {
 		model.addAttribute("vo", param);
 		
 		if ("write".equals(param.getCmd())) {
-			int r = reviewService.insert(param);
+			int r = reviewService.insert(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
 			model.addAttribute("url", "index");
 		} else if ("edit".equals(param.getCmd())) {
-			int r = reviewService.update(param);
+			int r = reviewService.update(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
 			model.addAttribute("url", param.getTargetURLParam("index", param, 0));
@@ -111,7 +101,7 @@ public class ReviewController {
 
 	
 	
-	@RequestMapping("/customer/review/review")
+	@RequestMapping("/user/review/review")
 	public String review(Model model, ReviewVO param) throws Exception {
 		param.setTablename("review");
 		int[] rowPageCount = reviewService.count(param);
@@ -123,11 +113,11 @@ public class ReviewController {
 		model.addAttribute("vo", param);
 		
 		
-		return "/customer/review/review";
+		return "/user/review/review";
 	}
 	
 	
-	@RequestMapping("/customer/review/index")
+	@RequestMapping("/user/review/index")
 	public String userindex(Model model, ReviewVO param) throws Exception {
 		param.setTablename("review");
 		int[] rowPageCount = reviewService.count(param);
@@ -139,40 +129,52 @@ public class ReviewController {
 		model.addAttribute("vo", param);
 		
 		
-		return "/customer/review/index";
+		return "/user/review/index";
 	}
 	
-	@RequestMapping("/customer/review/read")
+	@RequestMapping("/user/review/read")
 	public String userread(Model model, ReviewVO param) throws Exception {
-		ReviewVO data = reviewService.read(param, false);
+		ReviewVO data = reviewService.read(param.getNo(), false);
 		model.addAttribute("data", data);
 		model.addAttribute("vo", param);
 		
 		
-		return "/customer/review/read";
+		return "/user/review/read";
 	}
 	
-	@RequestMapping("/customer/review/write")
+	@RequestMapping("/user/review/write")
 	public String userwrite(Model model, ReviewVO param, ExhibitionVO dparam) throws Exception {
 		
 		ArrayList<ExhibitionVO> list = exhibitionService.ingList(dparam);
 		model.addAttribute("vo", param);
 		model.addAttribute("list", list);
 		
-		return "customer/review/write";
+		return "user/review/write";
 	}
-
-	@RequestMapping("/customer/review/process")
+	
+	@RequestMapping("/user/review/edit")
+	public String uesredit(Model model, ReviewVO param, ExhibitionVO dparam) throws Exception {
+		param.setTablename("review");
+		ReviewVO data = reviewService.read(param.getNo(), false);
+		ArrayList<ExhibitionVO> list = exhibitionService.ingList(dparam);
+		model.addAttribute("data", data);
+		model.addAttribute("vo", param);
+		model.addAttribute("list", list);
+		
+		return "user/review/edit";
+	}
+	
+	@RequestMapping("/user/review/process")
 	public String userprocess(Model model, ReviewVO param, HttpServletRequest request) throws Exception {
 		model.addAttribute("vo", param);
 		
 		if ("write".equals(param.getCmd())) {
-			int r = reviewService.insert(param);
+			int r = reviewService.insert(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
 			model.addAttribute("url", "index");
 		} else if ("edit".equals(param.getCmd())) {
-			int r = reviewService.update(param);
+			int r = reviewService.update(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
 			model.addAttribute("url", param.getTargetURLParam("index", param, 0));

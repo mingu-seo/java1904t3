@@ -107,7 +107,10 @@ public class SiteProperty {
 	 * 전시 첨부파일 경로
 	 */
 	public static final String RENTAL_UPLOAD_PATH		= "/upload/rental/";
-	
+	/**
+	 * 리뷰 첨부파일 경로
+	 */
+	public static final String REVIEW_UPLOAD_PATH		= "/upload/review/";
 
 	
 	/**

@@ -100,7 +100,7 @@ public class NoticeController {
 	}
 	
 	
-	@RequestMapping("/customer/notice/notice")
+	@RequestMapping("/user/notice/notice")
 	public String main(Model model, NoticeVO param) throws Exception {
 		param.setTablename("notice");
 		int[] rowPageCount = noticeService.count(param);
@@ -112,16 +112,16 @@ public class NoticeController {
 		model.addAttribute("vo", param);
 		
 		
-		return "/customer/notice/notice";
+		return "/user/notice/notice";
 	}
 	
-	@RequestMapping("/customer/notice/read")
+	@RequestMapping("/user/notice/read")
 	public String userread(Model model, NoticeVO param) throws Exception {
 		NoticeVO data = noticeService.read(param, false);
 		model.addAttribute("data", data);
 		model.addAttribute("vo", param);
 		
-		return "customer/notice/read";
+		return "user/notice/read";
 	}
 	
 	

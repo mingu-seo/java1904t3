@@ -16,11 +16,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/manage/include/headHtml.jsp"%>
 <script type="text/javascript">
-$(function() {
-	$("#").click(function(){
-		goDelete();
-	});
-});
+function goDelete() {
+	var del = confirm ('삭제하시겠습니까?');
+	if (del){
+		document.location.href = "process?no=<%=data.getNo()%>&cmd=delete";
+	} else {
+		return false;
+	}
+}
 
 
 
@@ -106,8 +109,6 @@ $(function() {
 											href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
 									</div>
 									<div class="btnRight">
-										<a class="btns"
-											href="<%=param.getTargetURLParam("edit", param, data.getNo())%>"><strong>수정</strong></a>
 										<a class="btns" href="#" onClick="goDelete();"><strong>삭제</strong></a>
 									</div>
 								</div>
@@ -129,68 +130,7 @@ $(function() {
 	</div>
 	<!--//wrap -->
 
-	<script>
 	
-function getReviewList(){
-		$.ajax({
-			type : "GET",
-			url : "/manage/product/reviewList?no=<%=data.getNo()%>",
-					async : false,
-					success : function(data) {
-						$(".reviewListArea").html(data);
-					}
-				});
-		}
-$(function(){
-	$("#reviewListBtn").click(function(){
-		getReviewList();
-	});
-			$("#reviewInsertBtn").click(function() {
-				
-				if ($("#review_name").val() == "") {
-					alert("작성자를 입력해 주세요");
-					$("#review_name").focus();
-					return;
-				}
-
-				if ($("#review_contents").val() == "") {
-					alert("후기를 입력해 주세요");
-					$("#review_contents").focus(); 
-					return;
-				}
-
-				var data= $("#reviewFrm").serialize();
-		console.log(data);
-		
-				$.ajax({
-					type : "POST",
-					url : "/review/insert.do",
-					data : data ,
-					async : false,
-					success : function(data) {
-						alert("정상적으로 등록되었습니다.");
-						$("#review_name").val("");
-						$("#review_contents").val("");
-						getReviewList();
-					}
-				});
-			});
-			
-		});
-function delReview(no){
-		if (confirm ('삭제하시겠습니까?') == true) {
-		$.ajax({
-			type : "POST",
-			url : "/review/delete.do?no="+no,
-			async : false,
-			success : function(data) {
-				alert("정상적으로 삭제되었습니다.");
-				getReviewList();
-				}
-			});
-		}	
-	}
-	</script>
 
 
 </body>

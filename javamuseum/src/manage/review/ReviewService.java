@@ -1,17 +1,20 @@
 package manage.review;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import manage.exhibition.ExhibitionDAO;
-import manage.exhibition.ExhibitionVO;
-import manage.review.ReviewDAO;
-import manage.review.ReviewVO;
+import property.SiteProperty;
+import util.FileUtil;
+import util.Function;
 import util.Page;
 
 @Service
@@ -36,15 +39,45 @@ public class ReviewService {
 		return list;
 	}
 
-	public int insert(ReviewVO vo) throws SQLException {
+	public int insert(ReviewVO vo, HttpServletRequest request) throws SQLException {
+		FileUtil fu = new FileUtil();
+		Map fileMap = fu.getFileMap(request);
+		MultipartFile file= (MultipartFile)fileMap.get("imagename_tmp");
+		if (!file.isEmpty()) {
+			try {
+				fu.upload(file, SiteProperty.REVIEW_UPLOAD_PATH, SiteProperty.REAL_PATH, "review");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			vo.setImagename(fu.getName());
+		}
+		
 		int no = reviewDao.insert(vo);
 		return no;
 	}
 
-	public int update(ReviewVO vo) throws SQLException {
-		int cnt = reviewDao.update(vo);
-		
-		return cnt;
+	public int update(ReviewVO vo, HttpServletRequest request) throws SQLException {
+		ReviewVO data = reviewDao.read(vo.getNo());
+		FileUtil fu = new FileUtil();
+		Map fileMap = fu.getFileMap(request);
+		MultipartFile file= (MultipartFile)fileMap.get("imagename_tmp");
+		if (!file.isEmpty()) {
+			try {
+				fu.upload(file, SiteProperty.REVIEW_UPLOAD_PATH, SiteProperty.REAL_PATH, "review");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			vo.setImagename(fu.getName());
+		}
+		int r = (Integer)reviewDao.update(vo);
+		if(r > 0) {
+			if("1".equals(vo.getImagename_chk()) || !"".equals(Function.checkNull(vo.getImagename()))) {
+				Function.fileDelete(vo.getUploadPath(), data.getImagename());
+			}
+		}
+		return r;
 	}
 
 	public int delete(int no) throws SQLException {
@@ -52,8 +85,8 @@ public class ReviewService {
 		return cnt;
 	}
 
-	public ReviewVO read(ReviewVO vo, boolean userCon) throws SQLException {
-		ReviewVO data = reviewDao.read(vo);
+	public ReviewVO read(int no, boolean userCon) throws SQLException {
+		ReviewVO data = reviewDao.read(no);
 		return data;
 	}
 
