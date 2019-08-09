@@ -53,7 +53,7 @@ ExhibitionVO data = (ExhibitionVO)request.getAttribute("data");
 								<tbody>
 									<tr style="height:300px">
 										<td colspan="2"height="0" width="0">
-										<div style="height:100%; width:100%"><img src="/upload/exhibition/<%=data.getImagename()%>" width="100%" height="auto" /></div></td>
+										<div style="height:100%; width:100%"><img src="/upload/exhibition/<%=data.getImagename()%>" width="100%" style="max-height:500px;" /></div></td>
 										<th scope="row"><label for="">프리뷰</label></th>
 										<td><%=data.getPreview().replaceAll("\n","<br>")%></td>
 									</tr>

@@ -62,6 +62,7 @@
 .con3-btn{margin-top:16px;}
 .con3-btn input[type="submit"]{width: 100%; height: 50px;background-color: #191919; border: none;color: #fff; font-size: 16px;}
 .con3-btn #submit-btn2{width: 100%; height: 50px;background-color: #191919;color: #fff; font-size: 16px; border: none;}
+.con3-btn #submit-btn1{width: 100%; height: 50px;background-color: #191919;color: #fff; font-size: 16px; border: none;}
 /*작품 후기*/
 /* 작품 소개 시작 */
 .con4-bot {border:2px solid black; margin-top:16px;}
