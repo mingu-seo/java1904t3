@@ -46,18 +46,18 @@
 .con3-top{border: 2px solid #000; width: 100%; height: 270px; padding: 10px 10px;}
 .con3-top li{float: left;}
 /* 상단-이미지 */
-.con3-top-img{width: 250px; height: 250px;}
+.con3-top-img{width: 34%; height: 250px;}
 .con3-top-img > img{ width: 100%; height: 100%;}
 /* 상단-텍스트 */
-.con3-top-text{margin-top: 40px; margin-left: 36px;}
+.con3-top-text{margin-top: 5px; margin-left: 32px; width:60%;}
 .con3-top-text h4{font-size: 14px;}
-.con3-top-text h3{font-size: 22px; margin-top: 18px; margin-bottom: 12px;}
-.con3-top-text p{font-size: 12px;}
+.con3-top-text h3{font-size: 20px; margin-top: 15px; margin-bottom: 12px;}
+.con3-top-text p{font-size: 15px; margin-top: 5px;}
 /* 하단-내용 */
-.con3-tb{margin-top: 16px; width: 100%;border: 2px solid #191919;}
+.con3-tb{margin-top: 30px; width: 100%; border: 1px solid #191919;}
 .con3-tb tr{width: 820px; border-bottom: 1px solid #fff;}
 .con3-tb th{width: 200px; height: 60px; background-color: #191919; color: #fff;}
-.con3-tb td{padding-left: 20px; border-bottom: 1px solid #191919;}
+.con3-tb td{padding-left: 20px; border: 1px solid #191919; width:245px;}
 .con3-tb input[type="text"]{width: 154px; height: 30px; border: 1px solid #191919; padding-left: 10px;}
 .con3-tb select{width: 164px; height: 30px; border: 1px solid #191919; padding-left: 10px;}
 .point-span{position: relative; right: 120px;}

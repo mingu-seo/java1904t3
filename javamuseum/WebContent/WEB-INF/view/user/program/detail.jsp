@@ -28,6 +28,26 @@ $(function(){
 	});
 	
 })
+
+function getProgram(i) {
+	<%if(member != null) {%>
+	$.ajax({
+		type : "GET",
+		url : "/user/program/reserve?no="+i,
+		async : false,
+		success : function(data) {
+			$(".con4-bg").html(data);
+			$(".con4-bg").show();
+			
+		}
+	});
+	<%} else {%>
+		if(confirm("로그인이 필요합니다.\n로그인 하시겠습니까?") == true){
+			location.href="/user";
+		}
+	<%} %>
+};
+
  
 </script>
 <div class="con4-bg">
@@ -58,10 +78,16 @@ $(function(){
 			</div>
 			<div class="con4-btn clear">
 				<ul class="btn-group clear">
-					<li><button id="submit-btn1">신청하기</button></li>
+					<li><button id="submit-btn1" onclick="getProgram(<%=detail.getNo()%>)">신청하기</button></li>
 					<li><button id="submit-btn2">닫기</button></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </div>
+<div class="con3">
+
+</div>
+
+
+	
