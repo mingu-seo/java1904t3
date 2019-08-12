@@ -3,8 +3,10 @@
 <%@ page import="user.exhibition.*" %>
 <%@ page import="manage.member.*" %>
 <%@ page import="util.*" %>
+<%@ page import="manage.review.*" %>
 <%
 UExhibitionVO detail = (UExhibitionVO)request.getAttribute("detail");
+ArrayList<ReviewVO> rList = (ArrayList)request.getAttribute("rList");
 MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 %>
 <link rel="stylesheet" href="/css/jquery-ui.css">
@@ -69,7 +71,13 @@ $(function(){
 					<%=detail.getContents()%>
 				</div>
 				<div class="con5-reviews">
-					ㅇㅇ
+					<% for(int i = 0; i < rList.size(); i++) { %>
+						<ul>
+							<li><%=rList.get(i).getImagename()%></li>
+							<li><%=rList.get(i).getTitle()%></li>
+							<li><%=rList.get(i).getReview_score()%></li>
+						</ul>
+					<% } %>
 				</div>
 			</div>
 			<div class="con4-btn clear">

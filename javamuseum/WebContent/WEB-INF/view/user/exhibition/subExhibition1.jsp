@@ -1,10 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
 <%@ page import="user.exhibition.*" %>
+<%@ page import="manage.review.*" %>
 <%
 MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 ArrayList<UExhibitionVO> list = (ArrayList)request.getAttribute("ingList");
 UExhibitionVO param = (UExhibitionVO)request.getAttribute("param");
+/* ReviewVO rList = (ReviewVO)request.getAttribute("rList"); */
 int totCount = (Integer)request.getAttribute("totCount");
 int totPage = (Integer)request.getAttribute("totPage");
 %>
@@ -115,11 +117,11 @@ int totPage = (Integer)request.getAttribute("totPage");
                             <div class="sub01-text">
                                 <h4>로봇 일러스트레이션을 통해</h4>
                                 <h4>기계적 판타지를 구현하는</h4>
-                                <h3><%=list.get(i).getArtist()%> / Hajime Sorayama</h3>
+                                <h3><%=list.get(i).getArtist()%></h3>
                                 <p><%=list.get(i).getPreview().replaceAll("\n","<br>")%></p>
 								<ul class="sub01-btn clear">
-                                    <li class="li1" onclick="getTicket(<%=list.get(i).getNo() %>)"><a href="javascript:;">예매하기</a></li>
-                                    <li class="li2" onclick="getDetail(<%=list.get(i).getNo() %>)"><a href="javascript:;">작품 상세 보기</a></li>
+                                    <li class="li1" onclick="getTicket(<%=list.get(i).getNo()%>)"><a href="javascript:;">예매하기</a></li>
+                                    <li class="li2" onclick="getDetail(<%=list.get(i).getNo()%>)"><a href="javascript:;">작품 상세 보기</a></li>
                                 </ul>
                             </div>
                             <div class="sub01-close">
