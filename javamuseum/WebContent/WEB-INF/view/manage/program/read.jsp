@@ -161,10 +161,6 @@
 											href="<%=param.getTargetURLParam("edit", param, data.getNo())%>"><strong>수정</strong></a>
 										<a class="btns" href="#" id="delBtn"><strong>삭제</strong></a>
 									</div>
-									<div class="btnRight">
-										<a class="btns" href="#" id="optiondelBtn"><strong>옵션
-												삭제</strong></a>
-									</div>
 								</div>
 								<!--//btn-->
 

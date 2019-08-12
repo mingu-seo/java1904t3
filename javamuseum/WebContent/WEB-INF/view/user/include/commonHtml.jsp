@@ -8,3 +8,5 @@
 
 <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="/js/gnb.js"></script>
+<script type="text/javascript" src="/js/function.js"></script>
+<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>

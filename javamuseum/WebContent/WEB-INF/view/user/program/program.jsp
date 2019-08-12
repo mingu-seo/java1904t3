@@ -32,9 +32,9 @@ function getProgram(i) {
 		type : "GET",
 		url : "/user/program/reserve?no="+i,
 		async : false,
-		success : function (data) {
-			$(".con3").html(data);
-			$(".con3-bg").show();
+		success : function(data) {
+			$(".con4").html(data);
+			$(".con4-bg").show();
 			
 		}
 	});
@@ -134,14 +134,14 @@ $(function(){
 				</div>
 			</div>
 		</div>
-						        <!-- //con2 종료 -->
+       <!-- //con2 종료 -->
 		<div class="con3">
 	
 		</div>
-        <!-- con3 예매 페이지 -->
 		<div class="con4">
-			
-        </div>
+	
+		</div>
+        <!-- con3 예매 페이지 -->
 	</div>
 <%@ include file="/WEB-INF/view/user/include/footer.jsp" %>
 	
