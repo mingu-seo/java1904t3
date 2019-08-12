@@ -5,11 +5,86 @@
 <%@ page import="util.*" %>
 <%
 UExhibitionVO ticket = (UExhibitionVO)request.getAttribute("ticket");
-MemberVO member = (MemberVO)session.getAttribute("memberInfo");
+MemberVO member = (MemberVO)request.getAttribute("member");
 %>
 <link rel="stylesheet" href="/css/jquery-ui.css">
 <script src="/js/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
+/* $(function(){
+	var IMP = window.IMP;
+	IMP.init('imp10084821');
+}); */
+
+function setComma(v) {
+	 var rV="";//리턴할 값
+	 var vS=new String(v), leng=vS.length;
+
+	 var remnant = leng%3;
+	 if(remnant==0) remnant=3;
+
+	 while( leng>3 ) {
+	  rV += vS.substr(0,remnant)+",";
+	  vS = vS.substr(remnant);
+
+	  leng = vS.length;
+	  remnant=3;
+	 }
+	 rV += vS;
+
+	 return rV;
+	}
+
+function goSave(){
+	
+	if ($("#totnumber").val() == 0) {
+		alert("인원을 선택해주세요.");
+		return false;
+	}
+	if (!$("#chk01").prop("checked") && !$("#chk02").prop("checked")) {
+		alert("결제 수단을 선택해주세요.");
+		return false;
+	}
+	<%-- var IMP = window.IMP;
+	IMP.init('imp10084821');
+	IMP.request_pay({
+	    pg : 'inicis', // version 1.1.0부터 지원.
+	    pay_method : 'card',
+	    merchant_uid : 'merchant_' + new Date().getTime(),
+	    name : '<%=ticket.getTitle()%>',
+	    amount : $("#totalPrice").val(),
+	    buyer_email : '<%=member.getEmail()%>',
+	    buyer_name : '<%=member.getName()%>',
+	    buyer_tel : '<%=member.getTel()%>',
+	    buyer_addr : '<%=member.getAddr1()%>',
+	    buyer_postcode : '<%=member.getZipcode()%>',
+	}, function(rsp) {
+	    if ( rsp.success ) {
+	        var msg = '결제가 완료되었습니다.';
+	        msg += '고유ID : ' + rsp.imp_uid;
+	        msg += '상점 거래ID : ' + rsp.merchant_uid;
+	        msg += '결제 금액 : ' + rsp.paid_amount;
+	        msg += '카드 승인번호 : ' + rsp.apply_num;
+	        
+	        $.ajax({
+	        	type: "POST",
+	        	url: "/user/exhibition/process",
+	        	async: false,
+	        	data: $("[name=frm]").serialize(),
+	        	success: function(data){
+	        		
+	        	}
+	        });
+	    } else {
+	        var msg = '결제에 실패하였습니다.';
+	        msg += '에러내용 : ' + rsp.error_msg;
+	    }
+	    alert(msg);
+	});
+	
+	return false; --%>
+	
+}
 
 function sumPrice() {
 	var totalPrice = 0;
@@ -20,7 +95,8 @@ function sumPrice() {
 		totalprice = (parseInt($("#old_number").val()) * 5000) + (parseInt($("#adult_number").val()) * 9000) + (parseInt($("#student_number").val()) * 8000);
 	}
 	$("#totnumber").val(num);
-	$("#totalPrice").text(totalprice);
+	$("#totalPrice").text(setComma(totalprice));
+	$("#totalPrice").val(totalprice);
 }
 $(function(){
 	// 대관 시작
@@ -138,7 +214,7 @@ $(function(){
 					<input type="hidden" name="display_pk" value="<%=ticket.getNo()%>" />
 					<div class="con3-btn clear">
 						<ul class="btn-group">
-							<li><input type="submit" id="submit-btn1" name="submit-btn1" value="예매하기" onclick="javascript:$('#frm').submit();"></li>
+							<li><button id="submit-btn1">예매하기</button></li>
 							<li><button id="submit-btn2">닫기</button></li>
 						</ul>
 					</div>

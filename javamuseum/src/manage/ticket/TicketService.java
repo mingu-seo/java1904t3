@@ -79,7 +79,7 @@ public class TicketService {
 			vo.setMemo("예매 포인트 적립");
 			vo.setAccum(param.getStorepoint());
 			vo.setState(0);
-			vo.setDisplay_pk(param.getNo());
+			vo.setTicket_pk(param.getNo());
 			ticketDao.pointComment(vo);
 			
 			if(param.getUsepoint() != 0) {									//사용 포인트 있을 시 따로 insert도 해준다
@@ -89,7 +89,7 @@ public class TicketService {
 				vo1.setMemo("예매 포인트 사용");
 				vo1.setAccum(param.getUsepoint());
 				vo1.setState(1);
-				vo1.setDisplay_pk(param.getNo());
+				vo1.setTicket_pk(param.getNo());
 				ticketDao.pointComment(vo1);
 			}
 		}
@@ -119,7 +119,7 @@ public class TicketService {
 					pointvo.setState(1);
 					pointvo.setAccum(pointList.get(i).getAccum());
 					pointvo.setMember_pk(param.getMember_pk());
-					pointvo.setDisplay_pk(param.getNo());
+					pointvo.setTicket_pk(param.getNo());
 					ticketDao.pointComment(pointvo);
 				} else if(pointList.get(i).getState() == 1){
 					point += pointList.get(i).getAccum();
@@ -127,7 +127,7 @@ public class TicketService {
 					pointvo1.setState(0);
 					pointvo1.setAccum(pointList.get(i).getAccum());
 					pointvo1.setMember_pk(param.getMember_pk());
-					pointvo1.setDisplay_pk(param.getNo());
+					pointvo1.setTicket_pk(param.getNo());
 					ticketDao.pointComment(pointvo1);
 				}
 			}
@@ -155,7 +155,7 @@ public class TicketService {
 				pointvo.setState(1);
 				pointvo.setAccum(pointList.get(i).getAccum());
 				pointvo.setMember_pk(param.getMember_pk());
-				pointvo.setDisplay_pk(param.getNo());
+				pointvo.setTicket_pk(param.getNo());
 				ticketDao.pointComment(pointvo);
 			} else if(pointList.get(i).getState() == 1){
 				point += pointList.get(i).getAccum();
@@ -163,7 +163,7 @@ public class TicketService {
 				pointvo1.setState(0);
 				pointvo1.setAccum(pointList.get(i).getAccum());
 				pointvo1.setMember_pk(param.getMember_pk());
-				pointvo1.setDisplay_pk(param.getNo());
+				pointvo1.setTicket_pk(param.getNo());
 				ticketDao.pointComment(pointvo1);
 			}
 		}

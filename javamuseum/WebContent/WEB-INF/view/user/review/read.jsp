@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ page import="manage.review.*" %>
 <%@ page import="property.SiteProperty" %>
 <%@ page import="util.*" %>
@@ -31,64 +31,19 @@ ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
 <script type="text/javascript" src="/js/aos.js"></script>
 <script type="text/javascript" src="/js/gnb.js"></script>
 <script type="text/javascript">
-	$(function() {
-
-	})
+function goDelete() {
+	var del = confirm ('삭제하시겠습니까?');
+	if (del){
+		document.location.href = "process?no=<%=data.getNo()%>&cmd=delete";
+	} else {
+		return false;
+	}
+}
 </script>
 </head>
 <body>
-	<!-- 헤더 구역 -->
-	<div id="header">
-		<div class="h-top clear">
-			<ul class="login">
-				<li><a href="login.html">LOGIN</a></li>
-				<li><a href="membership.html">JOIN</a></li>
-				<li><a href="mypage.html">MY PAGE</a></li>
-			</ul>
-		</div>
-		<div class="h-bot">
-			<div class="h-bot-line"></div>
-			<div class="h-bot-in clear">
-				<div class="logo">
-					<a href="index.html">자바미술관</a>
-				</div>
-				<ul class="h-menu">
-					<li><a href="#">VISIT</a>
-						<div class="sub">
-							<ul class="sub-menu">
-								<li><a href="sub-visit1.html">관람안내</a></li>
-								<li><a href="sub-visit2.html">미술관 소개</a></li>
-								<li><a href="sub-visit3.html">오시는길</a></li>
-							</ul>
-						</div></li>
-					<li><a href="#">EXHIBITION</a>
-						<div class="sub">
-							<ul class="sub-menu">
-								<li><a href="sub-exhibition1.html">현재 전시</a></li>
-								<li><a href="sub-exhibition2.html">지난 전시</a></li>
-							</ul>
-						</div></li>
-					<li><a href="#">RENTAL</a>
-						<div class="sub">
-							<ul class="sub-menu">
-								<li><a href="hall.html">대관안내</a></li>
-								<li><a href="hall2.html">대관신청</a></li>
-							</ul>
-						</div></li>
-					<li><a href="#">NEWS</a>
-						<div class="sub">
-							<ul class="sub-menu">
-								<li><a href="news1.html">공지사항</a></li>
-								<li><a href="news2.html">이벤트</a></li>
-								<li><a href="news3.html">FAQ</a></li>
-							</ul>
-						</div></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- 헤더 구역 -->
-	</div>
+<%@ include file="/WEB-INF/view/user/include/topmenu.jsp" %>
+	
 	<div class="con">
 		<!-- 상단 배너 구역 -->
 		<div class="con1">
@@ -119,7 +74,6 @@ ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
 									<col class="w6" />
 									<col class="w5" />
 									<col class="w5" />
-									
 									<col class="w2" />
 								</colgroup>
 								
@@ -128,8 +82,6 @@ ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
 											<th scope="row"><label for="">작성자</label></th>
 											<td><%=data.getName()%></td>
 										</tr>
-										
-										
 										<tr>
 											<th scope="row"><label for="">제목</label></th>
 											<td><%=data.getReviewtitle()%></td>
@@ -147,7 +99,7 @@ ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
 										</tr>
 										<tr>
 											<th scope="row"><label for="">포토 후기</label></th>
-											<td><%=data.getImagename()%></td>
+											<td><img src="/upload/review/<%=data.getImagename()%>" width="10%" height="auto" /></td>
 										</tr>
 										<tr>
 											<th scope="row"><label for="">내용</label></th>
@@ -161,14 +113,16 @@ ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
 									</tbody>
 								</table>
 				</div>
-				<div class="btn">
-									<div class="btnLeft">
-										<a class="btns"
-											href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
-									</div>
-									
-								</div>
 				
+							<div class="btn">
+									<div class="btnLeft">
+										<a class="btns"	href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
+									</div>
+									<div class="btnRight">
+										<a class="btns" href="<%=param.getTargetURLParam("edit", param, data.getNo())%>"><strong>수정</strong></a>
+										<a class="btns" href="#" onclick="goDelete();"><strong>삭제</strong></a>
+									</div>
+							</div>
 			</div>
 		</div>
 	</div>

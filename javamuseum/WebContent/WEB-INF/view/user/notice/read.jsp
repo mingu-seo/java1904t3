@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="manage.review.*" %>
+<%@ page import="board.notice.*" %>
 <%@ page import="property.SiteProperty" %>
 <%@ page import="util.*" %>
 <%@ page import="java.util.*" %>
 <%
-ReviewVO param = (ReviewVO) request.getAttribute("vo");
-ReviewVO data = (ReviewVO) request.getAttribute("data");
-ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
+NoticeVO param = (NoticeVO)request.getAttribute("vo");
+NoticeVO data = (NoticeVO) request.getAttribute("data");
+ArrayList<NoticeVO> list = (ArrayList)request.getAttribute("list");
 
-%>    
+%>	
 	
 	
 	
@@ -19,10 +19,10 @@ ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>모든 리뷰</title>
+<title>공지사항</title>
 <link rel="stylesheet" href="/css/reset.css">
 <link rel="stylesheet" href="/css/header.css">
-<link rel="stylesheet" href="/css/sub-exhibition3.css">
+<link rel="stylesheet" href="/css/news1.css">
 <link rel="stylesheet" href="/css/footer.css">
 <style>
 </style>
@@ -93,25 +93,35 @@ ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
 		<!-- 상단 배너 구역 -->
 		<div class="con1">
 			<div class="con1-box">
-				<h3>EXHIBITION</h3>
-				<P>모든 리뷰</P>
+				<h3>News</h3>
+				<P>공지사항</P>
 			</div>
 		</div>
 		<!-- 상단 배너 구역 -->
 		<div class="con2 clear">
 			<!-- News란 구역 -->
 			<div class="con2-left">
+				<h4>News</h4>
 				<div class="con2-left-text">
+					<p>
+						<a href="news1.html">공지사항</a>
+					</p>
+					<p>
+						<a href="news2.html">이벤트</a>
+					</p>
+					<p>
+						<a href="news3.html">FAQ</a>
+					</p>
 				</div>
 			</div>
 			<!-- News란 구역 -->
 			<!-- 공지사항 구역 -->
 			<div class="con2-right">
-				<h5>전체 리뷰</h5>
-				<p>모든 리뷰를 한곳에!</p>
+				<h5>공지사항</h5>
+				<p>미술관 전체 소식을 알려드립니다.</p>
 				<div class="tbl-box">
 				
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
 									<col class="w1" />
 									<col class="w1" />
@@ -124,30 +134,19 @@ ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
 								</colgroup>
 								
 								<tbody>
-										<tr>
+								<tr>
 											<th scope="row"><label for="">작성자</label></th>
-											<td><%=data.getName()%></td>
+											<td><%=data.getWriter()%></td>
 										</tr>
-										
-										
+										<tr>
+											<th scope="row"><label for="">첨부파일</label></th>
+											<td><img src="/upload/notice/<%=data.getFilename()%>"
+												width="100" height="100"></td>
+
+										</tr>
 										<tr>
 											<th scope="row"><label for="">제목</label></th>
-											<td><%=data.getReviewtitle()%></td>
-											<th scope="row"><label for="">조회수</label></th>
-											<td><%=data.getReadno()%></td>
-										</tr>
-											
-										<tr>
-											<th scope="row"><label for="">전시이름</label></th>
 											<td><%=data.getTitle()%></td>
-											<th scope="row"><label for="">평점</label></th>
-											<td><%=data.getReview_score()%></td>
-											<th scope="row"><label for="">좋아요</label></th>
-											<td><%=data.getLike_cnt()%></td>
-										</tr>
-										<tr>
-											<th scope="row"><label for="">포토 후기</label></th>
-											<td><%=data.getImagename()%></td>
 										</tr>
 										<tr>
 											<th scope="row"><label for="">내용</label></th>
@@ -158,13 +157,13 @@ ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
 											<th scope="row"><label for="">등록일</label></th>
 											<td><%=data.getRegistdate()%></td>
 										</tr>
-									</tbody>
-								</table>
+								</tbody>
+							</table>
 				</div>
 				<div class="btn">
 									<div class="btnLeft">
 										<a class="btns"
-											href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
+											href="<%=param.getTargetURLParam("notice", param, 0)%>"><strong>목록</strong></a>
 									</div>
 									
 								</div>
@@ -177,7 +176,7 @@ ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
 		<div class="foot-in">
 			<div class="foot-top clear">
 				<div class="foot-logo">
-					<img src="/img/logo.png">
+					<img src="img/logo.png">
 				</div>
 				<ul class="foot-menu">
 					<li><a href="#">개인정보 처리방침</a></li>

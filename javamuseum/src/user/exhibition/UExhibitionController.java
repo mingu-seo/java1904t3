@@ -2,18 +2,23 @@ package user.exhibition;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import manage.member.MemberService;
+import manage.member.MemberVO;
 
 @Controller
 public class UExhibitionController {
 
 	@Autowired
 	private UExhibitionService uexhibitionService;
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping("/user/exhibition/subExhibition1")
 	public String index(Model model, UExhibitionVO param) throws Exception {
@@ -29,9 +34,12 @@ public class UExhibitionController {
 	}
 	
 	@RequestMapping("/user/exhibition/ticket")
-	public String ticket(Model model, UExhibitionVO param) throws Exception {
+	public String ticket(Model model, UExhibitionVO param,HttpServletRequest req) throws Exception {
 		UExhibitionVO ticket = uexhibitionService.display(param.getNo());
+		MemberVO member1 = (MemberVO)req.getSession().getAttribute("memberInfo");
+		MemberVO member = memberService.read(member1.getNo());
 		
+		model.addAttribute("member", member);
 		model.addAttribute("ticket", ticket);
 		return "user/exhibition/ticket";
 	}

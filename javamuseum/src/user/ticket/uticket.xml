@@ -12,7 +12,7 @@
     	values
     	(#member_pk#, #display_pk#, #pay_price#, #sale_price#, #displaydate#, #usepoint#, 
     	#storepoint#, #method#, #reservedate#, #canceldate#, #paydate#, #reservestate#, #paystate#, 
-    	#number#, #old_number#, #adult_number#, #student_number#, 10000, #refundstate#)
+    	#number#, #old_number#, #adult_number#, #student_number#, #price#, #refundstate#)
     	<selectKey keyProperty="no" resultClass="Integer">
     		SELECT LAST_INSERT_ID()
     	</selectKey>

@@ -24,22 +24,6 @@ function groupDelete() {
 	}
 }
 
-/* function disState() {
-	var disFrm = document.getElementById('searchForm');
-	disFrm.submit();
-} */
-
-/* $('#dis_state').click(function() {
-    $.ajax({
-        type: "get",
-        url: "/manage/exhibition/index",
-        data: "state" : $('#dis_state').val()
-        success: function() {
-            console.log(3);
-        }
-    });
-}); */
-
 </script>
 </head>
 <body> 
@@ -62,17 +46,17 @@ function groupDelete() {
 					<!-- 검색 조건 -->
 					<div id="con_search">
 						<form name="searchForm" id="searchForm" action="index" method="post">
-								<div class="search" style="padding:0 550px;">
-								<table border="1" cellspacing="0" cellpadding="2px" style="width:280px">
+								<div class="search" style="style=width:100%;padding:0;">
+								<table style="width:380px; border:1px solid #cccdd0; margin:0 auto;">
 									<tr>
-										<th>전시 상태</th>
-										<td>&nbsp;
+										<th style="width:20%; background-color:#eeeff0; border:1px solid #cccdd0;">전시 상태</th>
+										<td style="text-align:center;">&nbsp;
 										<input type="checkbox" name="sstate" value="1" <%=Function.getChecked1(param.getSstate(), 1)%>/>전시 대기
 										<input type="checkbox" name="sstate" value="2" <%=Function.getChecked1(param.getSstate(), 2)%>/>전시 중
 										<input type="checkbox" name="sstate" value="3" <%=Function.getChecked1(param.getSstate(), 3)%>/>전시 종료
 										</td>
 									</tr>
-									<tr>
+									<tr style="text-align:center;">
 										<td colspan="2">
 										<select name="stype" title="검색을 선택해주세요">
 											<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>

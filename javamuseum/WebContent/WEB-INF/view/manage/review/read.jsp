@@ -16,11 +16,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/manage/include/headHtml.jsp"%>
 <script type="text/javascript">
-$(function() {
-	$("#").click(function(){
-		goDelete();
-	});
-});
 function goDelete() {
 	var del = confirm ('삭제하시겠습니까?');
 	if (del){
@@ -30,15 +25,8 @@ function goDelete() {
 	}
 }
 
-function groupDelete() {	
-	if ( isSeleted(document.frm.no) ){
-		if (confirm ('삭제하시겠습니까?')) {
-			document.frm.submit();
-		}
-	} else {
-		alert("삭제할 항목을 하나 이상 선택해 주세요.");
-	}
-}
+
+
 </script>
 </head>
 <body>
@@ -77,7 +65,7 @@ function groupDelete() {
 										<tr>
 											<th scope="row"><label for="">원본사진</label></th>
 											<td><img src="/upload/notice/<%=data.getImagename()%>"
-												width="100" height="100"></td>
+												width="100" height="100"/></td>
 
 										</tr>
 										<tr>
@@ -111,7 +99,6 @@ function groupDelete() {
 										</tr>
 									</tbody>
 								</table>
-								<input type="hidden" name="cmd" id="cmd" value="groupDelete" />
 								<input type="hidden" name="stype" id="stype"
 									value="<%=param.getStype()%>" /> <input type="hidden"
 									name="sval" id="sval" value="<%=param.getSval()%>" />
@@ -122,8 +109,6 @@ function groupDelete() {
 											href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
 									</div>
 									<div class="btnRight">
-										<a class="btns"
-											href="<%=param.getTargetURLParam("edit", param, data.getNo())%>"><strong>수정</strong></a>
 										<a class="btns" href="#" onClick="goDelete();"><strong>삭제</strong></a>
 									</div>
 								</div>
@@ -145,68 +130,7 @@ function groupDelete() {
 	</div>
 	<!--//wrap -->
 
-	<script>
 	
-function getReviewList(){
-		$.ajax({
-			type : "GET",
-			url : "/manage/product/reviewList?no=<%=data.getNo()%>",
-					async : false,
-					success : function(data) {
-						$(".reviewListArea").html(data);
-					}
-				});
-		}
-$(function(){
-	$("#reviewListBtn").click(function(){
-		getReviewList();
-	});
-			$("#reviewInsertBtn").click(function() {
-				
-				if ($("#review_name").val() == "") {
-					alert("작성자를 입력해 주세요");
-					$("#review_name").focus();
-					return;
-				}
-
-				if ($("#review_contents").val() == "") {
-					alert("후기를 입력해 주세요");
-					$("#review_contents").focus(); 
-					return;
-				}
-
-				var data= $("#reviewFrm").serialize();
-		console.log(data);
-		
-				$.ajax({
-					type : "POST",
-					url : "/review/insert.do",
-					data : data ,
-					async : false,
-					success : function(data) {
-						alert("정상적으로 등록되었습니다.");
-						$("#review_name").val("");
-						$("#review_contents").val("");
-						getReviewList();
-					}
-				});
-			});
-			
-		});
-function delReview(no){
-		if (confirm ('삭제하시겠습니까?') == true) {
-		$.ajax({
-			type : "POST",
-			url : "/review/delete.do?no="+no,
-			async : false,
-			success : function(data) {
-				alert("정상적으로 삭제되었습니다.");
-				getReviewList();
-				}
-			});
-		}	
-	}
-	</script>
 
 
 </body>

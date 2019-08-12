@@ -12,7 +12,7 @@ public class PointVO extends Parameter {
 	private String memo;			// 적립 및 사용 출처
 	private int state;				// 구분 (적립: 0, 사용: 1)
 	private Timestamp registdate;	// 등록일
-	private int display_pk;			//예매 번호
+	private int ticket_pk;			//예매 번호
 	
 	public PointVO() {
 		super.setPageRows(10);
@@ -23,12 +23,12 @@ public class PointVO extends Parameter {
 		super.setPageRows(pageRows);
 	}
 	
-	public int getDisplay_pk() {
-		return display_pk;
+	public int getTicket_pk() {
+		return ticket_pk;
 	}
 	
-	public void setDisplay_pk(int display_pk) {
-		this.display_pk = display_pk;
+	public void setTicket_pk(int ticket_pk) {
+		this.ticket_pk = ticket_pk;
 	}
 	
 	public int getNo() {

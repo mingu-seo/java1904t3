@@ -32,8 +32,8 @@ public class ReviewDAO extends SqlMapClientDAOSupport {
 		return getSqlMapClient().delete("review.delete", no);
 	}
 
-	public ReviewVO read(ReviewVO vo) throws SQLException {
-		return (ReviewVO)getSqlMapClient().queryForObject("review.read", vo);
+	public ReviewVO read(int no) throws SQLException {
+		return (ReviewVO)getSqlMapClient().queryForObject("review.read", no);
 	}
 
 	public int loginCheck(ReviewVO param) throws SQLException {
