@@ -73,7 +73,6 @@ function goSearch() {
 									<col class="" />
 									<col class="" />
 									<col class="" />
-									<col class="" />
 									<col class="w10" />
 									<col class="w5" />
 								</colgroup>
@@ -81,14 +80,13 @@ function goSearch() {
 									<tr>
 										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check(this, document.frm.no)"/></th>
 										<th scope="col">번호</th>
-										<th scope="col">아이디</th>
+										<th scope="col">작성자</th>
 										<th scope="col">전시이름</th>
 										<th scope="col">이미지</th>
 										<th scope="col">제목</th> 
 										<th scope="col">내용</th>
 										<th scope="col">평점</th>
-										<th scope="col">조회수</th>
-										<th scope="col">좋아요수</th> 
+										<th scope="col">조회수</th> 
 										<th scope="col">작성일</th> 
 										<th scope="col" class="last">삭제</th>
 									</tr>
@@ -112,13 +110,16 @@ function goSearch() {
 										<td <%=targetUrl%>><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%></td>
 										<td <%=targetUrl%> class="member"><%=data.getName()%></td>
 										<td <%=targetUrl%> class="display"><%=data.getTitle()%></td>
-										<td <%=targetUrl%> class="imagename"><%=data.getImagename()%></td>
+										<td <%=targetUrl%>>
+										<% if (data.getImagename() == null){ %>
+										<img src="/upload/review/noimage.png" width="20%" height="auto" />
+										<%} else{ %>
+										<img src="/upload/review/<%=data.getImagename()%>" width="20%" height="auto" /></td>
+										<%} %>
 										<td <%=targetUrl%> class="title"><%=data.getReviewtitle()%></td>
 										<td <%=targetUrl%> class="contents"><%=data.getContents()%></td>
 										<td <%=targetUrl%> class="score"><%=data.getReview_score()%></td>
 										<td <%=targetUrl%> class="readno"><%=data.getReadno()%></td>
-										<td <%=targetUrl%> class="like_cnt"><%=data.getLike_cnt()%></td>
-										
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getRegistdate())%></td>
 										
 										<td class="last"><input type="button" value="삭제" onclick="goDelete(<%=data.getNo()%>);"/></td>
@@ -142,6 +143,7 @@ function goSearch() {
 								</div>
 							</div>
 							<!--//btn-->
+							
 							<!-- 페이징 처리 -->
 							<%=Page.indexList(param.getReqPageNo(), totPage, request)%>
 							<!-- //페이징 처리 -->
@@ -150,10 +152,10 @@ function goSearch() {
 									
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>
-										<option value="id" <%=Function.getSelected(param.getStype(), "member") %>>아이디</option>
-										<option value="display_pk" <%=Function.getSelected(param.getStype(), "display") %>>전시회</option>
-										<option value="title" <%=Function.getSelected(param.getStype(), "title") %>>제목</option>
-										<option value="contents" <%=Function.getSelected(param.getStype(), "contents") %>>내용</option>
+										<option value="member.name" <%=Function.getSelected(param.getStype(), "member.name") %>>작성자</option>
+										<option value="display.title" <%=Function.getSelected(param.getStype(), "display.title") %>>전시아름</option>
+										<option value="review.reviewtitle" <%=Function.getSelected(param.getStype(), "review.reviewtitle") %>>제목</option>
+										<option value="review.contents" <%=Function.getSelected(param.getStype(), "review.contents") %>>내용</option>
 										
 									</select>
 									<input type="text" name="sval" value="<%=param.getSval()%>" title="검색할 내용을 입력해주세요" />

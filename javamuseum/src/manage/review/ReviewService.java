@@ -58,7 +58,7 @@ public class ReviewService {
 	}
 
 	public int update(ReviewVO vo, HttpServletRequest request) throws SQLException {
-		ReviewVO data = reviewDao.read(vo.getNo());
+		ReviewVO data = reviewDao.read(vo);
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
 		MultipartFile file= (MultipartFile)fileMap.get("imagename_tmp");
@@ -85,8 +85,11 @@ public class ReviewService {
 		return cnt;
 	}
 
-	public ReviewVO read(int no, boolean userCon) throws SQLException {
-		ReviewVO data = reviewDao.read(no);
+	public ReviewVO read(ReviewVO vo, boolean userCon) throws SQLException {
+		ReviewVO data = reviewDao.read(vo);
+		if (userCon) {	// 사용자쪽 조회시만 update
+			reviewDao.updateReadno(vo);
+		}
 		return data;
 	}
 
