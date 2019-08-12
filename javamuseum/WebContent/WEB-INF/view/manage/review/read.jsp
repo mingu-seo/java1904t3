@@ -62,11 +62,17 @@ function goDelete() {
 									</colgroup>
 									<tbody>
 										
+										
+										
+										
+										
 										<tr>
-											<th scope="row"><label for="">원본사진</label></th>
-											<td><img src="/upload/notice/<%=data.getImagename()%>"
-												width="100" height="100"/></td>
-
+											<th scope="row"><label for="">포토 후기</label></th>
+											<td><% if (data.getImagename() == null){ %>
+										<img src="/upload/review/noimage.png" width="20%" height="auto" />
+										<%} else{ %>
+										<img src="/upload/review/<%=data.getImagename()%>" width="20%" height="auto" /></td>
+										<%} %>
 										</tr>
 										<tr>
 											<th scope="row"><label for="">전시이름</label></th>
@@ -89,8 +95,6 @@ function goDelete() {
 										<tr>
 											<th scope="row"><label for="">평점</label></th>
 											<td><%=data.getReview_score()%></td>
-											<th scope="row"><label for="">좋아요</label></th>
-											<td><%=data.getLike_cnt()%></td>
 										</tr>
 										
 										<tr>

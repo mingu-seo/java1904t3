@@ -44,6 +44,7 @@ MemberVO umembervo = (MemberVO)session.getAttribute("memberInfo");
                             <ul class="sub-menu">
                                 <li><a href="/user/exhibition/subExhibition1">현재 전시</a></li>
                                 <li><a href="/user/exhibition/subExhibition2">지난 전시</a></li>
+                                <li><a href="/user/review/index">모든 리뷰</a></li>
                             </ul>
                         </div>
                     </li>
@@ -61,9 +62,9 @@ MemberVO umembervo = (MemberVO)session.getAttribute("memberInfo");
                         <div class="sub">
                             <ul class="sub-menu">
                                 <li><a href="/user/program/program">프로그램</a></li>
-                                <li><a href="news1.html">공지사항</a></li>
+                                <li><a href="/user/notice/notice">공지사항</a></li>
                                 <li><a href="news2.html">이벤트</a></li>
-                                <li><a href="news3.html">FAQ</a></li>
+                                <li><a href="/user/faq/index">FAQ</a></li>
                             </ul>
                         </div>
                     </li>
