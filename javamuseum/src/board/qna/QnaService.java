@@ -118,7 +118,7 @@ public class QnaService {
 		}
 		return delCount;
 	}
-
+	
 	/*
 	public ArrayList mainList(NoticeVO vo) throws Exception {
 		// TODO Auto-generated method stub

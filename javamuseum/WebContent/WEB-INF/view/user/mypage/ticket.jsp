@@ -39,7 +39,7 @@ int restotPage = (Integer)request.getAttribute("restotPage");
 					<p>매수 : <%=myResList.get(i).getNumber()%></p>
 				</div>
 				<div class="con6-right-text">
-					<p class="disdate">관람일시 : <%=myResList.get(i).getDisplaydate()%></p>
+					<p class="disdate">관람일 : <%=myResList.get(i).getDisplaydate()%></p>
 					<p>결제금액 : <%=myResList.get(i).getPay_price()%></p>
 					<p>결제상태 : <%=CodeUtil.getPayStateSave(myResList.get(i).getPaystate())%></p>
 				</div>

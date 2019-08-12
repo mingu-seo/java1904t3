@@ -9,6 +9,10 @@
 		<!-- WHERE 절 검색 -->
 		<dynamic prepend="where">
 		1=1
+			<!-- mypage -->
+			<isNotNull property="memberid">
+				and memberid=#memberid#
+			</isNotNull>
 			<!-- 검색어 검색 -->
 			<isNotEqual property="sval" compareValue="">
 				<!-- 검색 타입이 all일 때 -->
@@ -142,8 +146,4 @@
     <delete id="delete" parameterClass="qna_vo">
         DELETE FROM qna WHERE no=#no#
     </delete>
-    
-   
-
-    
 </sqlMap>
