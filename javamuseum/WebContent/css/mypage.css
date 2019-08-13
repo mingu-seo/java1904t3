@@ -53,22 +53,24 @@
 .con4-okbtn a{color: #fff; text-align: center; line-height: 38px; display: block;}
 .con4-closebtn{width: 180px; height: 38px; float: left; border: 1px solid #191919;}
 .con4-closebtn a{color: #191919; line-height: 38px; text-align:  center; display: block;}
-/* con5 내가 본 작품 */
+/* con6 예매 내역 */
 .con5{margin-top: 74px; position: relative; display: none; }
-.con5-center{width: 1200px; margin: 0 auto; border: 2px solid #191919; height: 940px; background-color: #fff; }
+.con5-center{width: 1200px; margin: 0 auto; border: 2px solid #191919; height: auto; background-color: #fff; }
 .con5-text{text-align: center;}
 .con5-text h2{font-size: 48px; margin-top: 60px; margin-bottom: 16px;}
 .con5-text h4{font-size: 20px; font-weight: normal;}
 /* 하단 작품 내용 */
-.con5-exhibition{width: 1020px; margin: 0 auto; margin-top: 54px; border-top: 3px solid #191919; border-bottom: 3px solid #191919;}
+.con5-exhibition{width: 1020px; margin: 0 auto; margin-top: 54px; margin-bottom: 54px; border-top: 3px solid #191919; border-bottom: 3px solid #191919;}
 .con5-gr{border-bottom: 1px solid #191919;}
-.con5-gr:nth-child(3){border: none;}
-.con5-left{ float: left; width: 370px; height: 218px;}
+.con5-gr:last-child{border: none;}
+.con5-left{ float: left; width: 250px; height: 218px;}
 .con5-left img{width: 100%; height: 100%;} 
-.con5-right{ float: left; padding-left: 50px; padding-top: 50px;}
-.con5-right h3{ font-size: 30px;}
-.con5-right h5{ font-size: 22px; font-weight: normal; margin-top: 20px; margin-bottom: 20px;}
-.con5-right p{ font-size: 18px; }
+.con5-right{ float: left; padding-left: 50px; padding-top: 20px;}
+.con5-right h2 { font-size: 20px;}
+.con5-left-text{ float: left; margin-top: 20px;}
+.con5-right-text{ float: left; margin-left: 120px; margin-top: 20px;}
+.con5-right-btn{ float: left; padding:5px; background-color: #e7eaed; margin-left: 120px;}
+.con5-right p{ font-size: 18px; line-height: 40px;}
 /* con6 예매 내역 */
 .con6{margin-top: 74px; position: relative; display: none; }
 .con6-center{width: 1200px; margin: 0 auto; border: 2px solid #191919; height: auto; background-color: #fff; }

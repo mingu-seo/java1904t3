@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import board.qna.QnaService;
 import board.qna.QnaVO;
 import manage.member.MemberVO;
+import manage.program.ProgramService;
+import manage.reservation.ReservationVO;
 import manage.ticket.TicketVO;
 import user.ticket.UTicketService;
 import user.ticket.UTicketVO;
@@ -26,6 +28,8 @@ public class MypageController {
 	private UTicketService uticketService;
 	@Autowired
 	private QnaService qnaService;
+	@Autowired
+	private ProgramService programService;
 
 	@RequestMapping("/user/mypage/mypage")
 	public String mypage(Model model, UTicketVO param, HttpServletRequest request) throws Exception {
@@ -47,7 +51,14 @@ public class MypageController {
 		return "user/mypage/ticket";
 	}
 
+	@RequestMapping("/user/mypage/program")
+	public String program(Model model, ReservationVO param) throws Exception {
+		ArrayList<ReservationVO> list = mypageService.myProList(param.getMember_pk());
 
+		model.addAttribute("list", list);
+		return "user/mypage/program";
+	}
+	
 	@RequestMapping("/user/mypage/cancel") 
 	public String ticketCancel(Model model, UTicketVO param) throws Exception { 
 		uticketService.cancel(param);

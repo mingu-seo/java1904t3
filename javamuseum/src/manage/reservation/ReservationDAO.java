@@ -41,11 +41,12 @@ public class ReservationDAO extends SqlMapClientDAOSupport {
       ReservationDAO pd = new ReservationDAO();
       ReservationVO pv = new ReservationVO();
       	
-      	pv.setMember_pk(1);
-      	pv.setProgram_pk(174);
-      	pv.setDate("2017-07-31");
-      	pv.setTime(6);
-        pd.insert(pv);
+      	pd.list(pv);
+//      	pv.setMember_pk(1);
+//      	pv.setProgram_pk(174);
+//      	pv.setDate("2017-07-31");
+//      	pv.setTime(6);
+//        pd.insert(pv);
       	
 //      pv.setMember_pk(1);
 //      av.setName("dayeong");

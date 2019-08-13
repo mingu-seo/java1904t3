@@ -49,6 +49,20 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 		});
 	}
 	
+	function program(member_pk) {
+		$(".members-wrap > div").hide();
+		$.ajax({
+			type: "GET",
+			url: "/user/mypage/program",
+			data: { "member_pk" : member_pk},
+			async: false,
+			success: function(data){
+				$(".con5").html(data);
+				$(".con5").show();
+			}
+		});
+	}
+	
 	//예매 내역 클릭시
 	function ticketShow(member_pk) {
 		$(".members-wrap > div").hide();
@@ -163,10 +177,10 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 					<h3>회원정보</h3>
 					<p>개인정보 변경 및 회원<br>탈퇴를 하고싶다면?</p>
 				</li>
-				<li class="con2-gr">
+				<li class="con2-gr" onclick="program(<%=member.getNo()%>)">
 					<img src="/img/mypage-con1-2.png">
-					<h3>내가 본 작품</h3>
-					<p>관람한 작품들을 한번에<br>모아 보고 싶다면?</p>
+					<h3>나의 프로그램</h3>
+					<p>신청한 프로그램들을 한번에<br>모아 보고 싶다면?</p>
 				</li>
 				<li class="con2-gr" onclick="ticketShow(<%=member.getNo()%>)">
 					<img src="/img/mypage-con1-3.png">
@@ -236,46 +250,9 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
                         </div>
                 </div>
             </div>    
-            <!-- 내가 본 작품 -->
+            <!-- 내가 신청한 프로그램 -->
             <div class="con5">
-                <div class="con5-center">
-                    <div class="con5-text">
-                        <h2>내가 본 작품</h2>
-                        <h4>감상한 작품을 한곳에 모아서 볼 수 있는 나만의 갤러리입니다.</h4>
-                    </div>
-                    <div class="con5-exhibition">
-                        <div class="con5-gr clear">
-                            <div class="con5-left">
-                                <img src="/img/mypage-con3-1.jpg">
-                            </div>
-                            <div class="con5-right">
-                                <h3>WEATHER</h3>
-                                <h5>WEATHER: 오늘, 당신의 날씨는 어떤가요?</h5>
-                                <p>2018.05.03 - 2018.11.25</p>
-                            </div>
-                        </div>
-                        <div class="con5-gr clear">
-                            <div class="con5-left">
-                                <img src="/img/mypage-con3-2.png">
-                            </div>
-                            <div class="con5-right">
-                                <h3>WANDERLAND</h3>
-                                <h5>WANDERLAND: 파리지앵의 산책</h5>
-                                <p>2016.11.19 - 2016.12.11</p>
-                            </div>
-                        </div>
-                        <div class="con5-gr clear">
-                            <div class="con5-left">
-                                <img src="/img/mypage-con3-3.jpg">
-                            </div>
-                            <div class="con5-right">
-                                <h3>YOUTH</h3>
-                                <h5>YOUTH: 청춘의 열병, 그 못다 한 이야기</h5>
-                                <p>2015.02.09 - 2016.05.28</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <!-- 예매 내역 -->
             <div class="con6">

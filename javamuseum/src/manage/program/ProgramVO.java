@@ -24,6 +24,8 @@ public class ProgramVO extends Parameter {
 	private String date;		//날짜
 	private String time;		//시간
 	
+	
+	
 	private String imagename_chk;	//임시 보관 이미지
 	
 	private int opt_no;

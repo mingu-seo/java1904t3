@@ -34,7 +34,6 @@ public class ProgramController {
 		for (int i=0; i<list.size(); i++) {
 		ArrayList<HashMap> ohmlist = programService.listOption(list.get(i).getNo());
 		ArrayList<HashMap> optlist = new ArrayList<HashMap>();
-		System.out.println(ohmlist.size());
 			for (int j=0; j<ohmlist.size(); j++) {
 				System.out.println(ohmlist.get(j).get("no"));
 				optlist.add(ohmlist.get(j));
