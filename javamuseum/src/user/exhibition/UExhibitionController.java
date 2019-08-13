@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import manage.member.MemberService;
 import manage.member.MemberVO;
+import manage.review.ReviewService;
+import manage.review.ReviewVO;
 
 @Controller
 public class UExhibitionController {
@@ -19,12 +21,16 @@ public class UExhibitionController {
 	private UExhibitionService uexhibitionService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private ReviewService reviewService;
 	
 	@RequestMapping("/user/exhibition/subExhibition1")
-	public String index(Model model, UExhibitionVO param) throws Exception {
+	public String index(Model model, UExhibitionVO param, ReviewVO review) throws Exception {
 		int[] rowPageCount = uexhibitionService.count(param);
 		ArrayList<UExhibitionVO> ingList = uexhibitionService.ingList(param);
+		ArrayList<ReviewVO> reviewList = reviewService.list(review);
 		
+		model.addAttribute("rList", reviewList);
 		model.addAttribute("totCount", rowPageCount[0]);
 		model.addAttribute("totPage", rowPageCount[1]);
 		model.addAttribute("param", param);

@@ -40,7 +40,7 @@ public class ReviewController {
 	
 	@RequestMapping("/manage/review/read")
 	public String read(Model model, ReviewVO param) throws Exception {
-		ReviewVO data = reviewService.read(param.getNo(), false);
+		ReviewVO data = reviewService.read(param, false);
 		model.addAttribute("data", data);
 		model.addAttribute("vo", param);
 		
@@ -134,7 +134,7 @@ public class ReviewController {
 	
 	@RequestMapping("/user/review/read")
 	public String userread(Model model, ReviewVO param) throws Exception {
-		ReviewVO data = reviewService.read(param.getNo(), false);
+		ReviewVO data = reviewService.read(param, true);
 		model.addAttribute("data", data);
 		model.addAttribute("vo", param);
 		
@@ -155,7 +155,7 @@ public class ReviewController {
 	@RequestMapping("/user/review/edit")
 	public String uesredit(Model model, ReviewVO param, ExhibitionVO dparam) throws Exception {
 		param.setTablename("review");
-		ReviewVO data = reviewService.read(param.getNo(), false);
+		ReviewVO data = reviewService.read(param, false);
 		ArrayList<ExhibitionVO> list = exhibitionService.ingList(dparam);
 		model.addAttribute("data", data);
 		model.addAttribute("vo", param);

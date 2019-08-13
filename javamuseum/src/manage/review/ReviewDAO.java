@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
 
+import board.notice.NoticeVO;
 import db.SqlMapClientDAOSupport;
 import manage.review.ReviewVO;
 
@@ -32,9 +33,14 @@ public class ReviewDAO extends SqlMapClientDAOSupport {
 		return getSqlMapClient().delete("review.delete", no);
 	}
 
-	public ReviewVO read(int no) throws SQLException {
-		return (ReviewVO)getSqlMapClient().queryForObject("review.read", no);
+	public ReviewVO read(ReviewVO vo) throws SQLException {
+		return (ReviewVO)getSqlMapClient().queryForObject("review.read", vo);
 	}
+	
+	public int updateReadno(ReviewVO vo) throws SQLException {
+		return getSqlMapClient().update("review.updateReadno", vo);
+	}
+
 
 	public int loginCheck(ReviewVO param) throws SQLException {
 		return (Integer) getSqlMapClient().queryForObject("review.loginCheck", param);
