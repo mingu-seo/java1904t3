@@ -16,6 +16,7 @@ $(function() {
 	$("#idCheckBtn").click(function(){
 		if($("#id").val() == "") {
 			alert("아이디를 입력하세요.");
+		} else if(!validId($("#id"))) {
 		} else {
 		$.ajax ({
 			type:'POST',
@@ -40,7 +41,6 @@ $(function() {
 		}
 	});
 	$("#id").keyup(function(){
-		console.log($("#id").val())
 		$.ajax ({
 			type:'POST',
 			url:"/manage/member/idcheck",
@@ -48,15 +48,15 @@ $(function() {
 			async:false,
 			success:function(data) {
 				var val = data.trim();
-				if (val == "0" && $("#id").val() != "") {
+				if (val == "0" && $("#id").val() != "" && possibleId($("#id")) == true) {
 					$("#idText").show();
-					$("#idText").text("사용가능");
+					$("#idText").text("6자리~10자리 사이의 영문,숫자");
 					$("#idText").css("color", "#0000FF");
 				} else if ($("#id").val() == "") {
 					$("#idText").hider();
 				} else {
 					$("#idText").show();
-					$("#idText").text("사용불가능");
+					$("#idText").text("6자리~10자리 사이의 영문,숫자");
 					$("#idText").css("color", "red");
 				}
 			}
@@ -66,7 +66,6 @@ $(function() {
 	$("input").keyup(function(){
             var pwd1=$("#password").val();
             var pwd2=$("#pwdconfirm").val();
-            console.log(pwd1);
             if(pwd1 != "" || pwd2 != ""){
                 if(pwd1 == pwd2){
                 	$("#pwdconfirmText").text("비밀번호가 일치합니다");
@@ -128,7 +127,7 @@ function goSave() {
 		$("#fTel").focus();
 		return false;
 	}
-	
+	if(!validId($("#id"))) {
 	$.ajax ({
 		type:'POST',
 		url:"/manage/member/idcheck",
@@ -145,14 +144,17 @@ function goSave() {
 			}
 		}
 	});
-	if ($("#idcheck").val() == "0") {
-		return false;
 	}
 	
 	if ($("#day").val() < 10 && $("#day").val().length == 1) {
 		$("#day").val("0" + $("#day").val());
 	}
-	
+	if ($("#password").val() != $("#pwdconfirm").val()) {
+		alert("비밀번호가 일치하지 않습니다.");
+		return false;
+	}
+	// 아이디 유효성체크
+	if(!validId($("#id"))) return false;
 	// 비밀번호 유효성체크
 	if(!validPassword($("#password"))) return false;
 	// 생년월일 유효성체크
@@ -298,7 +300,7 @@ function goSave() {
 									<a class="btns" href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" href="#" onclick="goSave();"><strong>저장</strong></a>
+									<a class="btns" onclick="goSave();"><strong>저장</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

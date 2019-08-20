@@ -3,6 +3,7 @@ package user.mypage;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import board.qna.QnaService;
 import board.qna.QnaVO;
 import manage.member.MemberVO;
+import manage.program.ProgramService;
+import manage.reservation.ReservationVO;
 import manage.ticket.TicketVO;
+import user.member.UmemberService;
 import user.ticket.UTicketService;
 import user.ticket.UTicketVO;
 import util.Function;
@@ -25,7 +29,11 @@ public class MypageController {
 	@Autowired
 	private UTicketService uticketService;
 	@Autowired
+	private UmemberService umemberService;
+	@Autowired
 	private QnaService qnaService;
+	@Autowired
+	private ProgramService programService;
 
 	@RequestMapping("/user/mypage/mypage")
 	public String mypage(Model model, UTicketVO param, HttpServletRequest request) throws Exception {
@@ -47,7 +55,14 @@ public class MypageController {
 		return "user/mypage/ticket";
 	}
 
+	@RequestMapping("/user/mypage/program")
+	public String program(Model model, ReservationVO param) throws Exception {
+		ArrayList<ReservationVO> list = mypageService.myProList(param.getMember_pk());
 
+		model.addAttribute("list", list);
+		return "user/mypage/program";
+	}
+	
 	@RequestMapping("/user/mypage/cancel") 
 	public String ticketCancel(Model model, UTicketVO param) throws Exception { 
 		uticketService.cancel(param);
@@ -55,11 +70,16 @@ public class MypageController {
 		return "include/return"; 
 	}
 	
+	@RequestMapping("/user/mypage/memberInfo")
+	public String memberInfo(HttpSession session, Model model, HttpServletRequest request, MemberVO param) throws Exception {
+		
+		return "user/mypage/memberInfo";
+	}
+	
 	@RequestMapping("/user/mypage/qna")
 	public String qna(Model model, QnaVO param) throws Exception {
 		ArrayList<QnaVO> qnaList = (ArrayList)qnaService.list(param);
 		int[] qnaRowPageCount = qnaService.count(param);
-
 		model.addAttribute("param", param);
 		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("qnatotCount", qnaRowPageCount[0]);

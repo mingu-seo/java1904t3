@@ -18,9 +18,27 @@ public class ReservationVO extends Parameter {
 	private String title;
 	private String name;
 	private String id;
+	private int category;
+	private String imagename;
 	
 	
 	
+
+	public int getCategory() {
+		return category;
+	}
+
+	public void setCategory(int category) {
+		this.category = category;
+	}
+
+	public String getImagename() {
+		return imagename;
+	}
+
+	public void setImagename(String imagename) {
+		this.imagename = imagename;
+	}
 
 	public String getId() {
 		return id;

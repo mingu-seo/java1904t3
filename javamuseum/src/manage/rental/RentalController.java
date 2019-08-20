@@ -44,7 +44,7 @@ public class RentalController {
 		return "manage/rental/read";
 	}
 	
-	@RequestMapping("/user/hall2")	// 사용자 페이지 - 대관 신청
+	@RequestMapping("/user/rental/hall2")	// 사용자 페이지 - 대관 신청
 	public String write(Model model, RentalVO param) throws Exception {
 		model.addAttribute("vo", param);
 		return "user/rental/hall2";
@@ -59,7 +59,7 @@ public class RentalController {
 			int r = rentalService.insert(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
-			model.addAttribute("url", "/user/hall2");
+			model.addAttribute("url", "/user/rental/hall2");
 		}
 		if ("sendMail".equals(param.getCmd())) {
 			int r = rentalService.update(param);
@@ -71,7 +71,7 @@ public class RentalController {
 		return "include/alert";
 	}
 	
-	@RequestMapping("/user/hall")	// 사용자 페이지 - 대관 안내
+	@RequestMapping("/user/rental/hall")	// 사용자 페이지 - 대관 안내
 	public String hall() {
 		return "user/rental/hall";
 	}

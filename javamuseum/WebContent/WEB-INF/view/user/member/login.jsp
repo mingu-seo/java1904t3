@@ -20,18 +20,19 @@
     </script>
     <script>
 function loginCheck(){
-	if ( getObject("id").value.length < 1 ) {
+	if ( $("#id").val() == "" ) {
 		alert("아이디를 입력해주세요.");
-		getObject("id").focus();
+		$("#id").focus();
 		return false;
 	}
-	if ( getObject("password").value.length < 1 ) {
+	if ( $("#password").val() == "" ) {
 		alert("비밀번호를 입력해주세요.");
-		getObject("password").focus();
+		$("#password").focus();
 		return false;
 	}
 	var f = document.board;
 	if (f.reg.checked==true) {
+		console.log('1');
 	   document.cookie = "cookie_userid=" + f.id.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
@@ -43,7 +44,7 @@ function loginCheck(){
 function userid_chk() {
 	var f=document.board;
 	var useridname = CookieVal("cookie_userid");
-	
+	console.log(useridname);
 	if (useridname=="null"){	
 		f.id.focus();
 		f.id.value="";
@@ -65,7 +66,7 @@ function CookieVal(cookieName) {
 }
 </script>
 </head>
-<body>
+<body onload="$('#id').focus();userid_chk();">
 <%@ include file="/WEB-INF/view/user/include/topmenu.jsp" %>
     <div id="container">
         <!-- 메인배너 시작 -->
@@ -83,8 +84,7 @@ function CookieVal(cookieName) {
                         <input type="text" id="id" name="id" maxlength="20" placeholder="아이디를 입력하세요.">
                         <input type="password" id="password" name="password" maxlength="20" placeholder="비밀번호를 입력하세요.">
                         <div class="chk-box"> 
-                            <input type="checkbox" id="chk01" name="chk01">
-                            <label for="chk01">아이디(이메일) 저장</label>
+                            <input type="checkbox" name="reg" id="reg"/> <label for="reg">아이디 저장</label>
                         </div>
                         <input type="submit" value="로그인" id="submit01">
                         <ul class="login-sc">

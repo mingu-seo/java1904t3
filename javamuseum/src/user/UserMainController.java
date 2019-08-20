@@ -36,7 +36,8 @@ public class UserMainController {
 			MemberVO memberInfo = umemberService.getLoginSessionInfo(vo);
 			session.setAttribute("memberInfo", memberInfo);
 			String redirectUrl = SiteProperty.UserINDEX_PAGE;
-
+			String pw = memberInfo.getPassword();
+			System.out.println(pw);
 			// 로그인 이전페이지 존재하는 경우
 			if (login_url != null && !"".equals(login_url)) {
 				redirectUrl = login_url;
@@ -61,5 +62,10 @@ public class UserMainController {
 		model.addAttribute("url", "/user/index");
 		
 		return "include/alert";
+	}
+	
+	@RequestMapping("/user/test")
+	public String test(Model model) {
+		return "/user/mypage/test";
 	}
 }

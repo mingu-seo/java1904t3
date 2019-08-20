@@ -28,4 +28,4 @@
 /* 인증번호 전송버튼 */
 #submit02{position: relative; right: 20px; background-color: #191919; border: 1px solid transparent; height: 30px; color: #fff; width: 104px;}
 /* 비밀번호 찾기 버튼 */
-.con2-loginbox input[type="submit"]{width: 100%;height: 60px; background-color: #191919; color: #fff;padding-left: 0px; border: transparent;}
+.con2-loginbox input[type="button"]{width: 100%;height: 60px; background-color: #191919; color: #fff;padding-left: 0px; border: transparent;}

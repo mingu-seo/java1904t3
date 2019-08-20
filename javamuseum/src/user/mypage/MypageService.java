@@ -28,5 +28,11 @@ public class MypageService {
 		rowPageCount[1] = pageCount;
 		return rowPageCount;
 	}
+	
+	public ArrayList myProList(int member_pk) throws Exception {
+		ArrayList list = mypageDao.myProList(member_pk);
+
+		return list;
+	}
 
 }
