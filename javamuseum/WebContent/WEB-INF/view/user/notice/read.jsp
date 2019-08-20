@@ -19,11 +19,9 @@ ArrayList<NoticeVO> list = (ArrayList)request.getAttribute("list");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<%@ include file="/WEB-INF/view/user/include/commonHtml.jsp" %>
 <title>공지사항</title>
-<link rel="stylesheet" href="/css/reset.css">
-<link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/news1.css">
-<link rel="stylesheet" href="/css/footer.css">
 <style>
 </style>
 <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
@@ -78,9 +76,12 @@ ArrayList<NoticeVO> list = (ArrayList)request.getAttribute("list");
 										</tr>
 										<tr>
 											<th scope="row"><label for="">첨부파일</label></th>
-											<td><img src="/upload/notice/<%=data.getFilename()%>"
-												width="100" height="100"></td>
-
+												<%if(data.getFilename() != null){ %>
+												<td><a href="<%= Function.downloadUrl(SiteProperty.NOTICE_UPLOAD_PATH, java.net.URLEncoder.encode(data.getFilename_org(), "UTF-8"), 
+														data.getFilename()) %>" target="_blank"><%= Function.checkNull(data.getFilename_org()) %> </a></td>
+												<%}else{ %>
+												<td>파일없음</td>
+												<%} %>
 										</tr>
 										<tr>
 											<th scope="row"><label for="">제목</label></th>

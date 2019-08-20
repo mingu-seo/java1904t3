@@ -9,7 +9,6 @@ ReviewVO param = (ReviewVO)request.getAttribute("vo");
 ReviewVO data = (ReviewVO)request.getAttribute("data");
 ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
 MemberVO member = (MemberVO)request.getAttribute("mvo");
-ArrayList<MemberVO> mlist = (ArrayList)request.getAttribute("mlist");
 int totCount = (Integer)request.getAttribute("totCount");
 int totPage = (Integer)request.getAttribute("totPage");
 %>	
@@ -22,12 +21,11 @@ int totPage = (Integer)request.getAttribute("totPage");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<%@ include file="/WEB-INF/view/user/include/commonHtml.jsp" %>
 <title>전체 리뷰</title>
-<link rel="stylesheet" href="/css/reset.css">
-<link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/sub-exhibition3.css">
-<link rel="stylesheet" href="/css/footer.css">
 <style>
+
 </style>
 <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="/js/slick.js"></script>
@@ -51,14 +49,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 			</div>
 		</div>
 		<!-- 상단 배너 구역 -->
-		<div class="con2 clear">
-			<div class="con2-left">
-				<div class="con2-left-text">
-				</div>
-			</div>
-			
-			
-			
+		<div class="con2 clear">	
 			<!-- 공지사항 구역 -->
 			<div class="con2-right">
 				<h5>전체 리뷰</h5>
@@ -66,19 +57,9 @@ int totPage = (Integer)request.getAttribute("totPage");
 				<div class="tbl-box">
 				<p><span><strong>총 <%=totCount%>개</strong>  |  <%=param.getReqPageNo()%>/<%=totPage%>페이지</span></p>
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="리뷰입니다.">
-								<colgroup>
-									<col class="w4" />
-									<col class="w4" />
-									<col class="w4" />
-									<col class="w1" />
-									<col class="w5" />
-									<col class="w5" />
-									<col class="w5" />
-									<col class="w2" />
-								</colgroup>
+								
 								<thead>
 									<tr>
-										
 										<th scope="col">번호</th>
 										<th scope="col">작성자</th>
 										<th scope="col">전시이름</th>
@@ -87,8 +68,6 @@ int totPage = (Integer)request.getAttribute("totPage");
 										<th scope="col">평점</th>
 										<th scope="col">조회수</th>
 										<th scope="col">작성일</th> 
-										
-										
 									</tr>
 								</thead>
 								<tbody>
@@ -108,17 +87,17 @@ int totPage = (Integer)request.getAttribute("totPage");
 									<tr <%=topClass%>>
 										
 										<td <%=targetUrl%>><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%></td>
-										<td <%=targetUrl%> class="title"><%=data.getName()%></td>
-										<td <%=targetUrl%> class="title"><%=data.getTitle()%></td>
+										<td <%=targetUrl%>><%=data.getName()%></td>
+										<td <%=targetUrl%>><%=data.getTitle()%></td>
 										<td <%=targetUrl%>>
 										<% if (data.getImagename() == null){ %>
-										<img src="/upload/review/noimage.png" width="20%" height="auto" />
+										<img src="/upload/review/noimage.png" width="100px" height="100px" />
 										<%} else{ %>
-										<img src="/upload/review/<%=data.getImagename()%>" width="20%" height="auto" /></td>
+										<img src="/upload/review/<%=data.getImagename()%>" width="100px" height="100px" /></td>
 										<%} %>
-										<td <%=targetUrl%> class="title"><%=data.getReviewtitle()%></td>
-										<td <%=targetUrl%> class="title"><%=data.getReview_score()%></td>
-										<td <%=targetUrl%> class="title"><%=data.getReadno()%></td>
+										<td <%=targetUrl%>><%=data.getReviewtitle()%></td>
+										<td <%=targetUrl%>><%=data.getReview_score()%></td>
+										<td <%=targetUrl%>><%=data.getReadno()%></td>
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getRegistdate())%></td>
 										
 										
@@ -130,13 +109,14 @@ int totPage = (Integer)request.getAttribute("totPage");
 								</tbody>
 							</table>
 				</div>
-				<div class="btn">
+				<div class="btn" >
 						<div class="btnRight">
+							<input type="button" value="리뷰쓰기" onclick="location.href='http://localhost:8080/user/review/writes'">
 							<a class="wbtn" href="write"><strong>리뷰쓰기</strong> </a>
 						</div>
 				</div>
 				<!-- 페이징 처리 -->
-				<%=Page.indexList(param.getReqPageNo(), totPage, request)%>
+				<%=UserPage.indexList(param.getReqPageNo(), totPage, request)%>
 				<!-- //페이징 처리 -->
 				<div class="form-box">
 					<form name="searchForm" id="searchForm" action="index" method="post">

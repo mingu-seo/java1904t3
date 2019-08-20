@@ -79,9 +79,12 @@
 										</tr>
 										<tr>
 											<th scope="row"><label for="">첨부파일</label></th>
-											<td><img src="/upload/notice/<%=data.getFilename()%>"
-												width="100" height="100"></td>
-
+												<%if(data.getFilename() != null){ %>
+												<td><a href="<%= Function.downloadUrl(SiteProperty.NOTICE_UPLOAD_PATH, java.net.URLEncoder.encode(data.getFilename_org(), "UTF-8"), 
+														data.getFilename()) %>" target="_blank"><%= Function.checkNull(data.getFilename_org()) %> </a></td>
+												<%}else{ %>
+												<td>파일없음</td>
+												<%} %>
 										</tr>
 										<tr>
 											<th scope="row"><label for="">제목</label></th>

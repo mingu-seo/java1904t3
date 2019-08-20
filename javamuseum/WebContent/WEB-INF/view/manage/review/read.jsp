@@ -54,30 +54,12 @@ function goDelete() {
 								<table width="100%" border="0" cellspacing="0" cellpadding="0"
 									summary="리뷰 관리 기본내용입니다.">
 									<colgroup>
-										<col width="15%" />
-										<col width="35%" />
-										<col width="15%" />
-										<col width="35%" />
-										<col width="35%" />
+										<col width="10%" />
+										<col width="40%" />
+										<col width="10%" />
+										<col width="40%" />
 									</colgroup>
 									<tbody>
-										
-										
-										
-										
-										
-										<tr>
-											<th scope="row"><label for="">포토 후기</label></th>
-											<td><% if (data.getImagename() == null){ %>
-										<img src="/upload/review/noimage.png" width="20%" height="auto" />
-										<%} else{ %>
-										<img src="/upload/review/<%=data.getImagename()%>" width="20%" height="auto" /></td>
-										<%} %>
-										</tr>
-										<tr>
-											<th scope="row"><label for="">전시이름</label></th>
-											<td><%=data.getTitle()%></td>
-										</tr>
 										<tr>
 											<th scope="row"><label for="">제목</label></th>
 											<td><%=data.getReviewtitle()%></td>
@@ -85,21 +67,32 @@ function goDelete() {
 											<td><%=data.getReadno()%></td>
 										</tr>
 										<tr>
+											<th scope="row"><label for="">전시이름</label></th>
+											<td colspan="3"><%=data.getTitle()%></td>
+										</tr>						
+										<tr>
+											<th scope="row"><label for="">포토 후기</label></th>
+											<td colspan="3"><% if (data.getImagename() == null){ %>
+											<img src="/upload/review/noimage.png" width="20%" height="auto" />
+											<%} else{ %>
+											<img src="/upload/review/<%=data.getImagename()%>" width="20%" height="auto" /></td>
+											<%} %>
+										</tr>
+										<tr>
 											<th scope="row"><label for="">내용</label></th>
-											<td><%=data.getContents()%></td>
+											<td colspan="3"><%=data.getContents()%></td>
 										</tr>
 										<tr>
 											<th scope="row"><label for="">이름</label></th>
-											<td><%=data.getName()%></td>
+											<td colspan="3"><%=data.getName()%></td>
 										</tr>
 										<tr>
 											<th scope="row"><label for="">평점</label></th>
-											<td><%=data.getReview_score()%></td>
+											<td colspan="3"><%=data.getReview_score()%></td>
 										</tr>
-										
 										<tr>
 											<th scope="row"><label for="">등록일</label></th>
-											<td><%=data.getRegistdate()%></td>
+											<td colspan="3"><%=data.getRegistdate()%></td>
 										</tr>
 									</tbody>
 								</table>

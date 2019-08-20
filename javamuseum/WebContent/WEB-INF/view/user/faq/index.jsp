@@ -16,11 +16,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>이벤트</title>
-<link rel="stylesheet" href="/css/reset.css">
-<link rel="stylesheet" href="/css/header.css">
+<%@ include file="/WEB-INF/view/user/include/commonHtml.jsp" %>
+<title>FAQ</title>
 <link rel="stylesheet" href="/css/news3.css">
-<link rel="stylesheet" href="/css/footer.css">
 <style>
 </style>
 <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
@@ -45,7 +43,7 @@
 				});
 			});
 		});
-		//Q&A 접었다가 펼치는 기능 
+		//FAQ 접었다가 펼치는 기능 
 		$(".con7-left").click(function() {
 
 			var onCheck = $(this).children(".con7-leftbg").hasClass("on"); // true or false 의 값을 oncheck에 담아줌 
@@ -101,36 +99,20 @@
 						<h4>방문하시는 고객님들이 자주하시는 질문</h4>
 					</div>
 					<div class="con7-qabox">
-						<div class="con7-qa">
-
-
-
-								<div>
 								<%
 									if (totCount == 0) {
 								%>
-								
 									<p class="first">등록된 글이 없습니다.</p>
-								
 								<%
 									} else {
-
 										FaqVO data;
 										for (int i = 0; i < list.size(); i++) {
 											data = list.get(i);
 								%>
-								
+					
+						<div class="con7-qa">
 
-
-
-
-
-
-
-
-
-
-								
+								<div>
 									<ul class="con7-left clear">
 										<li><img src="/img/mypage-Q.png"></li>
 										<li><p class="title">
@@ -139,7 +121,6 @@
 											</li>
 										<li class="con7-leftbg"></li>
 									</ul>
-								
 									<div class="con7-cont">
 										<ul class="con7-sub">
 											<li><img src="/img/mypage-A.png"></li>
@@ -149,33 +130,26 @@
 												</li>
 										</ul>
 									</div>
-								
+								</div>
+						</div>
 									<%
-										}
+											}
 										}
 									%>
-
-								</div>
-								
-
-							
-
-
-
-
-
-
-
-						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<!-- faq 끝 -->
 	
 
+	<!-- faq 끝 -->
+	<!-- 풋터 구역 -->
 	<%@ include file="/WEB-INF/view/user/include/footer.jsp" %>
+	<!-- 풋터 구역 -->
+	
+
+	
 </body>
+
 </html>
