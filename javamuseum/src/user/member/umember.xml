@@ -16,10 +16,29 @@
         select count(*) as cnt from member where name=#name# and email=#email#
     </select>
     
+    <select id="confirmPassword" parameterClass="umembervo" resultClass="Integer">
+        select count(*) as cnt from member where no=#no# and password=md5(#password#)
+    </select>
+    
     <select id="findId" parameterClass="umembervo" resultClass="umembervo">
         select * from member where name=#name# and email=#email#
     </select>
 
-	
+	<select id="pwCheck" parameterClass="umembervo" resultClass="Integer">
+        select count(*) as cnt from member where name=#name# and email=#email# and id=#id#
+    </select>	
 
+	<select id="findPw" parameterClass="umembervo" resultClass="umembervo">
+        select * from member where name=#name# and email=#email# and id=#id#
+    </select>
+    
+    <update id="tempPw" parameterClass="umembervo">
+        update member set
+        	password = md5(#password#)
+        where name=#name# and email=#email# and id=#id#
+    </update>
+    
+    <delete id="delete" parameterClass="Integer">
+        delete from member where no=#no#
+    </delete>
 </sqlMap>

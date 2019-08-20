@@ -18,7 +18,7 @@ public class MemberLoginInterceptor extends HandlerInterceptorAdapter {
 				out.print("<script>");
 				out.print("alert('로그인이 필요한 페이지입니다.');");
 				out.print("location.href='/user';");
-				out.print("<script>");
+				out.print("</script>");
 				out.print("");
 				out.flush();
 				return false;

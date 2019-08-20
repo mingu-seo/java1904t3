@@ -19,11 +19,9 @@ int totPage = (Integer)request.getAttribute("totPage");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<%@ include file="/WEB-INF/view/user/include/commonHtml.jsp" %>
 <title>공지사항</title>
-<link rel="stylesheet" href="/css/reset.css">
-<link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/news1.css">
-<link rel="stylesheet" href="/css/footer.css">
 <style>
 </style>
 <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
@@ -74,7 +72,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 										
 										<th scope="col">번호</th>
 										<th scope="col">작성자</th>
-										<th scope="col">파일첨부</th>
+										
 										<th scope="col">제목</th> 
 										
 										<th scope="col">작성일</th> 
@@ -100,7 +98,6 @@ int totPage = (Integer)request.getAttribute("totPage");
 										
 										<td <%=targetUrl%>><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%></td>
 										<td <%=targetUrl%> class="writer"><%=data.getWriter()%></td>
-										<td><img src="/upload/notice/<%=data.getFilename()%>"  width="50" height="50"></td>
 										<td <%=targetUrl%> class="title"><%=data.getTitle()%></td>
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getRegistdate())%></td>
 										
@@ -115,7 +112,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 				</div>
 				<div>
 				<!-- 페이징 처리 -->
-					<%=Page.indexList(param.getReqPageNo(), totPage, request)%>
+					<%=UserPage.indexList(param.getReqPageNo(), totPage, request)%>
 				<!-- //페이징 처리 -->
 				</div>
 				<div class="form-box">

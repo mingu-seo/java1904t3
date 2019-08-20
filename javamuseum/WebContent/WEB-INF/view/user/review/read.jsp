@@ -19,11 +19,9 @@ ArrayList<ReviewVO> list = (ArrayList)request.getAttribute("list");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<%@ include file="/WEB-INF/view/user/include/commonHtml.jsp" %>
 <title>모든 리뷰</title>
-<link rel="stylesheet" href="/css/reset.css">
-<link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/sub-exhibition3.css">
-<link rel="stylesheet" href="/css/footer.css">
 <style>
 </style>
 <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
@@ -54,37 +52,27 @@ function goDelete() {
 		</div>
 		<!-- 상단 배너 구역 -->
 		<div class="con2 clear">
-			<!-- News란 구역 -->
-			<div class="con2-left">
-				<div class="con2-left-text">
-				</div>
-			</div>
-			<!-- News란 구역 -->
 			<!-- 공지사항 구역 -->
 			<div class="con2-right">
 				<h5>전체 리뷰</h5>
 				<p>모든 리뷰를 한곳에!</p>
 				<div class="tbl-box">
-				
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
-									<col class="w1" />
-									<col class="w1" />
-									<col class="w4" />
-									<col class="w6" />
-									<col class="w5" />
-									<col class="w5" />
-									<col class="w2" />
+									<col width="10%" />
+									<col width="40%" />
+									<col width="10%" />
+									<col width="40%" />
 								</colgroup>
 								
 								<tbody>
 										<tr>
-											<th scope="row"><label for="">작성자</label></th>
-											<td><%=data.getName()%></td>
+											<th scope="row"><label for="">제목</label></th>
+											<td colspan="3"><%=data.getReviewtitle()%></td>
 										</tr>
 										<tr>
-											<th scope="row"><label for="">제목</label></th>
-											<td><%=data.getReviewtitle()%></td>
+											<th scope="row"><label for="">작성자</label></th>
+											<td><%=data.getName()%></td>
 											<th scope="row"><label for="">조회수</label></th>
 											<td><%=data.getReadno()%></td>
 										</tr>
@@ -98,7 +86,7 @@ function goDelete() {
 										</tr>
 										<tr>
 											<th scope="row"><label for="">포토 후기</label></th>
-											<td><% if (data.getImagename() == null){ %>
+											<td colspan="3"><% if (data.getImagename() == null){ %>
 										<img src="/upload/review/noimage.png" width="20%" height="auto" />
 										<%} else{ %>
 										<img src="/upload/review/<%=data.getImagename()%>" width="20%" height="auto" /></td>
@@ -106,7 +94,7 @@ function goDelete() {
 										</tr>
 										<tr>
 											<th scope="row"><label for="">내용</label></th>
-											<td><%=data.getContents()%></td>
+											<td colspan="3"><%=data.getContents()%></td>
 										</tr>
 										<tr>
 										

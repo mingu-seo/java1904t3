@@ -307,14 +307,51 @@ function validEnterDateFormat(date) {
 
 function validId(id) {
 	var jQuerypass = id.val();
-	var jQuerystr = /^[a-zA-Z0-9@]{6,12}$/;
+	var jQuerystr = /^[a-zA-Z0-9@]{6,10}$/;
 	var check = false;
 	if (jQuerypass == "") {
 		alert("아이디를 입력해 주세요.");
 		id.focus();
 	}else if(!jQuerystr.test(jQuerypass) || jQuerypass.indexOf(' ') > -1){
-		alert("아이디는 영문 또는 숫자 6~12자리를 입력해 주세요.");
+		alert("아이디는 영문 또는 숫자 6~10자리를 입력해 주세요.");
+		id.val("");
 		id.focus();
+	} else {
+		check = true;
 	}
+	 return check;
+}
+function possibleId(id) {
+	var jQuerypass = id.val();
+	var jQuerystr = /^[a-zA-Z0-9@]{6,10}$/;
+	var check = false;
+	if (jQuerypass == "") {
+	}else if(!jQuerystr.test(jQuerypass) || jQuerypass.indexOf(' ') > -1){
+	} else {
+		check = true;
+	}
+	 return check;
+}
+
+function validModPassword(password) {
+	var jQuerypass = password.val();
+	var jQuerystr = /^[a-zA-Z0-9@]{6,12}$/;
+	var jQuerystr2 = /(\w)\1\1\1/;
+	var jQuerychk_num = jQuerypass.search(/[0-9]/g);
+	var jQuerychk_eng = jQuerypass.search(/[a-z]/ig);
+	var check = false;
+	if((!jQuerystr.test(jQuerypass) || jQuerypass.indexOf(' ') > -1) && jQuerypass != ""){
+		alert("비밀번호는 영문+숫자 6~12자리를 입력해 주세요.");
+		password.focus();
+	}else if(jQuerystr2.test(jQuerypass) && jQuerypass != ""){
+		alert("비밀번호에 반복되는 문자 및 숫자가 있습니다.");
+		password.focus();
+	}else if((jQuerychk_num < 0 || jQuerychk_eng < 0) && jQuerypass != "") {
+		alert("비밀번호는 숫자와 영문자를 혼용하여야 합니다.");
+		password.focus();
+	}else{
+		check = true;
+	}
+	return check;
 	
 }

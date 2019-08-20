@@ -17,15 +17,28 @@
 	
 	
 	<mvc:annotation-driven/>
-<!-- 
+
 	<mvc:interceptors>
+	<!-- 
 		<mvc:interceptor>
 			<mvc:mapping path="/*Employee.do" />
 			<mvc:mapping path="/employeeList.do" />
 			<bean class="com.easycompany.cmm.interceptor.AuthenticInterceptor" />
 		</mvc:interceptor>
+	-->
+		<mvc:interceptor>
+			<mvc:mapping path="/user/**" />
+			<mvc:exclude-mapping path="/user/index"/>
+			<mvc:exclude-mapping path="/user"/>
+			<mvc:exclude-mapping path="/user/login.do"/>
+			<mvc:exclude-mapping path="/user/membership"/>
+			
+			<mvc:exclude-mapping path="/user/hall"/>
+			<bean class="interceptors.MemberLoginInterceptor"/>
+		</mvc:interceptor>
 	</mvc:interceptors>
-
+	
+<!--
 	<mvc:view-controller path="/login.do"/>
 	<mvc:view-controller path="/validator.do"/>
  -->
