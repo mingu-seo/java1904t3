@@ -4,6 +4,7 @@ String code = (String)request.getAttribute("code");
 String message = (String)request.getAttribute("message");
 String url = (String)request.getAttribute("url");
 String target = (String)request.getAttribute("target");
+int mno = (Integer)request.getAttribute("mno");
 %>
 
 <% if ("alertMessageBack".equals(code)) { %>

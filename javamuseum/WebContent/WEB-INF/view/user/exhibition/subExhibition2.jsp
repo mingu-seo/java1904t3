@@ -31,6 +31,27 @@ UExhibitionVO param = (UExhibitionVO)request.getAttribute("param");
 			}
 		});
 	}
+	
+	function reviewView(no) {
+		$.ajax({
+			type: "POST",
+			url: "/user/exhibition/reviewView?no="+no,
+			async: false,
+			success: function(data) {
+				$(".con5-reviews").hide();
+				$(".con6-reviewView").html(data);
+				$(".con6-reviewView").show();
+			}
+		});
+	};
+	
+	function goIndex() {
+		$(this).addClass("on");
+		$(".detail").removeClass("on");
+		$(".con6-reviewView").hide();
+		$(".con5-contents").hide();
+		$(".con5-reviews").show();
+	}
 		
 	$(function() {
 		hei = $(".con2-box-wrap").children(".con2-box").height();

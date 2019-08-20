@@ -7,8 +7,6 @@
 <%
 ArrayList<UTicketVO> myResList = (ArrayList)request.getAttribute("myResList");
 TicketVO tparam = (TicketVO)request.getAttribute("tparam");
-int restotCount = (Integer)request.getAttribute("restotCount");
-int restotPage = (Integer)request.getAttribute("restotPage");
 %>
 <link rel="stylesheet" href="/css/jquery-ui.css">
 <script>
@@ -21,7 +19,13 @@ int restotPage = (Integer)request.getAttribute("restotPage");
 	</div>
 	<!-- 예매 내역 내용 -->
 	<div class="con6-exhibition">
-		<%for(int i = 0; i < myResList.size(); i++){ %>
+		<% if (myResList.size() == 0) { %>
+		<div style="text-align:center; font-size:30px; padding:20px;">
+			예매하신 내역이 없습니다.
+		</div>
+		<% } else {
+				for(int i = 0; i < myResList.size(); i++){ 
+		%>
 		<div class="con6-gr clear">
 			<div class="con6-left">
 				<img src="/upload/exhibition/<%=myResList.get(i).getImagename()%>">
@@ -50,6 +54,9 @@ int restotPage = (Integer)request.getAttribute("restotPage");
 				<%} %>
 			</div>
 		</div>
-		<%} %>
+		<%
+				}
+			}
+		%>
 	</div>
 </div> 

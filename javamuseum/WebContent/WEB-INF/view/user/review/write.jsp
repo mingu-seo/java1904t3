@@ -22,11 +22,9 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<%@ include file="/WEB-INF/view/user/include/commonHtml.jsp" %>
 <title>공지사항</title>
-<link rel="stylesheet" href="/css/reset.css">
-<link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/sub-exhibition3.css">
-<link rel="stylesheet" href="/css/footer.css">
 <style>
 </style>
 <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
@@ -35,7 +33,11 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 <script type="text/javascript" src="/js/gnb.js"></script>
 <script>
 	
-
+var oEditors; // 에디터 객체 담을 곳
+jQuery(window).load(function(){
+	oEditors = setEditor("contents"); // 에디터 셋팅
+	initCal({id:"registdate",type:"day",today:"y",timeYN:"y"});
+});
 	
 function goSave() {
 	if ($("#title").val() == "") {
@@ -48,6 +50,15 @@ function goSave() {
 		$("#contents").focus();
 		return false;
 	}
+	var sHTML = oEditors.getById["contents"].getIR();
+	if (sHTML == "" || sHTML == "<p><br></p>") {
+		alert('내용을 입력하세요.');
+		$("#contents").focus();
+		return false;
+	} else {
+		oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
+	}
+	return true;
 	
 
 }
@@ -99,7 +110,7 @@ function goSave() {
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
+										<th scope="row"><label for="">포토후기</label></th>
 										<td colspan="3">
 											<input type="file" id="imagename_tmp" name="imagename_tmp" class="w50" title="첨부파일을 업로드 해주세요." />	
 										</td>

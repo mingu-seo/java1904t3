@@ -101,7 +101,13 @@ function goSearch() {
 										<td class="first"><input type="checkbox" name="no" id="no" value="<%=data.getNo()%>"/></td>
 										<td <%=targetUrl%>><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%></td>
 										<td <%=targetUrl%> class="writer"><%=data.getWriter()%></td>
-										<td><img src="/upload/notice/<%=list.get(i).getFilename()%>"  width="50" height="50"></td>
+										<td <%=targetUrl%>>
+										<% if(data.getFilename() != null){ %>
+										O
+										<%}else{ %>
+										X</td>
+										
+										<%} %>
 										<td <%=targetUrl%> class="title"><%=data.getTitle()%></td>
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getRegistdate())%></td>
 										

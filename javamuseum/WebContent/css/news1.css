@@ -36,11 +36,11 @@
 .th3 {width:100px;}
 
 /* 공지사항 페이지 넘기는 번호구역 */
-.number-box {width:205px; margin:30px auto;}
+.number-box {width:350px; margin:30px auto; text-align:center; }
 .number-box div a {display:block; color:black;}
 .number-box div {float:left; width:25px; height:25px; text-align:center; border:1px solid black; line-height:25px; margin-right:5px;}
 .number-box div:last-child {margin-right:0;}
-.number-box div:nth-child(2) a {background-color:black; color:white;}
+.number-box div a.cur {background-color:black; color:white;}
 .number-box .img-box {position:relative;}
 .number-box .img-box img {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);}
 

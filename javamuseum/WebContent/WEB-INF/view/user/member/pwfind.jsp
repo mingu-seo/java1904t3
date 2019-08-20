@@ -1,6 +1,9 @@
-<%@ page import="util.*" %>
-<%@ page import="java.util.*" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page import="manage.member.*" %>
+<%@ page import="java.util.*" %>
+<%
+MemberVO param = (MemberVO)request.getAttribute("vo");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,35 +12,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>자바미술관 ID/PW 찾기</title>
     <%@ include file="/WEB-INF/view/user/include/commonHtml.jsp" %>
-    <link rel="stylesheet" href="/css/idfind.css">
-    <style>
-        
-    </style>
+    <link rel="stylesheet" href="/css/pwfind.css">
     <script type="text/javascript">
-        $(function(){
-        	    
-        })
-        
-        function findId() {
-        	$("#email2").attr("disabled",false);
-        	var name = $("#name").val();
-        	var email = $("#email").val() + "@" + $("#email2").val();
-        	var popUrl = "http://localhost:8080/user/searchId?name=" + name + "&email=" + email;	//팝업창에 출력될 페이지 URL
-       		var popOption = "width=400px, height=220px, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
-       		
-        	if($("#name").val() == "") {
-        		alert("이름을 입력해주세요.");
-        		$("#name").focus();
-        		$("#email2").attr("disabled",true);
-        	} else if ($("#email").val() == "" || $("#email2").val() == "") {
-        		alert("이메일을 입력해주세요.");
-        		$("#email").focus();
-        		$("#email2").attr("disabled",true);
-        	}
-        	
-
-   			window.open(popUrl,"",popOption);
-        }
+    function goSave() {
+    	if ($("#name").val() == "") {
+    		alert("이름을 입력해주세요.");
+    		$("#name").focus();
+    		return false;
+    	}
+    	if ($("#id").val() == "") {
+    		alert("아이디를 입력해주세요.");
+    		$("#id").focus();
+    		return false;
+    	}
+    	if ($("#email").val() == "" || $("#email2").val() == "") {
+    		alert("이메일을 입력해주세요.");
+    		$("#email").focus();
+    		return false;
+    	}
+    	$("#email2").attr("disabled",false);
+    	$("#frm").submit();
+    }
     </script>
 </head>
 <body>
@@ -57,11 +52,15 @@
                     </div>
 					<form name="frm" id="frm" action="/user/member/process.do" method="post">
                     	<table class="con2-date">
-                        
                                 <tr class="con2-tb1">
                                     <td class="con2-tb-id">이름</td>
                                     <td colspan="4"><input type="text" id="name" name="name"></td>
                                 </tr>
+                                <tr class="con2-tb1">
+                                    <td class="con2-tb-id">아이디</td>
+                                    <td colspan="4"><input type="text" id="id" name="id"></td>
+                                </tr>
+
                                 <tr class="con2-tb2">
                                     <td class="con2-tb-pw">이메일</td>
                                     <td><input type="text" id="email" name="email"></td>
@@ -79,32 +78,17 @@
                                     </td>
                                 </tr>
                                 <tr class="con2-tb3">
-                                    <td colspan="5"><input type="button" value="아이디 찾기" id="findBtn" onclick="findId()"></td>
+                                    <td colspan="5"><input type="button" value="비밀번호 찾기" onclick="goSave();"></td>
                                 </tr>
                             <!-- 아이디찾기 버튼 -->
-                   
                     	</table>
+                    	<input type="hidden" id="cmd" name="cmd" value="pwfind">
                     </form>
                 </div>
             </div>
         </div>
-    
     </div>
     <%@ include file="/WEB-INF/view/user/include/footer.jsp" %>
+    
 </body>
-
-<script> 
-//이메일 입력방식 선택
-$('#selectEmail').change(function(){ 
-	$("#selectEmail option:selected").each(function () { 
-		if($(this).val()== '1'){ //직접입력일 경우
-			$("#email2").val(''); //값 초기화
-			$("#email2").attr("disabled",false); //활성화
-			}else{ //직접입력이 아닐경우
-				$("#email2").val($(this).text()); //선택값 입력
-				$("#email2").attr("disabled",true); //비활성화
-				} 
-		}); 
-	}); 
-</script>
 </html>
