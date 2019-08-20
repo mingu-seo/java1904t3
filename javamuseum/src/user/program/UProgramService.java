@@ -29,7 +29,11 @@ public class UProgramService {
 		int countMem = uprogramDao.countMem(vo);
 		return countMem;
 	}
-		
+
+	public int resnum(ReservationVO vo) throws Exception {
+		int countMem = uprogramDao.resnum(vo);
+		return countMem;
+	}
 
 	public ArrayList list(ProgramVO vo) throws Exception {
 		ArrayList list = uprogramDao.list(vo);

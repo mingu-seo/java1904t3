@@ -46,5 +46,9 @@
 		WHERE program_pk = #no# and date = #date#
 	</select>
 	
+	<select id = "resnum" parameterClass="ureservationvo" resultClass="Integer">
+	SELECT count(*) FROM program_res where program_pk=#program_pk# and member_pk=#member_pk# and time=#time# and date=#date#
+	</select>
+	
 	
 </sqlMap>

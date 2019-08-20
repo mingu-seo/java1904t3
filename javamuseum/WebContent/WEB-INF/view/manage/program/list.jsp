@@ -127,7 +127,7 @@ function goSearch() {
 	
 										
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=data.getPrice()%></td>
-										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=data.getState()%></td>
+										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=CodeUtil.getDisplayName(Integer.parseInt(data.getState()))%></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=DateUtil.getDateTimeFormat(data.getRegistdate())%></td>
 										<td rowspan="<%=olist.get(i).size()%>"><input type = "button" value="삭제" onclick="goDelete(<%=list.get(i).getNo()%>);"/></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=data.getP_time()%></td>

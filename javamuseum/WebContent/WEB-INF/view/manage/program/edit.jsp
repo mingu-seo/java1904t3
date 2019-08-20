@@ -146,7 +146,7 @@
 												<th scope="row"><label for="">대상</label></th>
 												<td><input type="text" id="target" name="target" class="w50" title="프로그램 대상을 입력해주세요" value="<%=data.getTarget()%>"/></td>
 												<th scope="row"><label for="">노출여부</label></th>
-												<td><select name="display">
+												<td><select name="state">
 													<%=CodeUtil.getDisplayOp(data.getDisplay())%>
 												</select></td>
 												<th scope="row"><label for="">카테고리</label></th>

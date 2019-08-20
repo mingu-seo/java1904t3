@@ -12,11 +12,16 @@ ArrayList<HashMap> list = (ArrayList<HashMap>) request.getAttribute("list");
 <link rel="stylesheet" href="/css/program.css">
 <script src="/js/jquery-ui.js"></script>
 <script>
-
-$("#submit-btn2").click(function(event){
+$(function() {
+	$("#submit-btn2").click(function(event){
+		event.preventDefault();
+		$(".con3-bg").hide();
+	});
+})
+/* $("#submit-btn2").click(function(event){
 	event.preventDefault();
 	$(".con3-bg").hide();
-});
+}); */
 
 
 function getProgramTime(){

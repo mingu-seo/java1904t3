@@ -3,9 +3,12 @@
 <%@ page import="manage.reservation.*" %>
 <%@ page import="manage.program.*" %>
 
+<%@page import="com.sun.org.apache.bcel.internal.classfile.Code"%>
+<%@ page import="property.SiteProperty" %>
+<%@ page import="util.*" %>
 <%
 MemberVO member = (MemberVO)session.getAttribute("memberInfo");
-ReservationVO param = (ReservationVO)request.getAttribute("vo");
+ProgramVO param = (ProgramVO)request.getAttribute("param");
 ArrayList<ReservationVO> plist = (ArrayList)request.getAttribute("plist");
 ArrayList<ProgramVO> list = (ArrayList)request.getAttribute("list");
 
@@ -33,8 +36,10 @@ function getProgram(i) {
 		url : "/user/program/reserve?no="+i,
 		async : false,
 		success : function(data) {
-			$(".con4").html(data);
-			$(".con4-bg").show();
+			console.log(3);
+			$(".con4").hide();
+			$(".con3").html(data);
+			$(".con3-bg").show();
 			
 		}
 	});
@@ -59,7 +64,7 @@ function getDetail(i) {
 
 $(function(){
             
-            $(".con2-bggroup > li > a").click(function(event){ // a링크 정지
+            /* $(".con2-bggroup > li > a").click(function(event){ // a링크 정지
                 event.preventDefault(); // a링크 정지
                 $(this).siblings(".con2-sub01").stop().fadeIn(); 
             });
@@ -70,7 +75,7 @@ $(function(){
             });
        		$("#submit-btn2").click(function(){
                 $(".con3-bg").hide();
-            });
+            }); */
             $(".con4-epilogue").click(function(event){
                 event.preventDefault();
                 var list=$(this).hasClass("on") //클릭한 자기자신에게 on이 붙어있는지 없는지 확인
@@ -141,6 +146,7 @@ $(function(){
 		<div class="con4">
 	
 		</div>
+<div class="page"><a><%=Page.indexList(param.getReqPageNo(), totPage, request)%></a></div>
         <!-- con3 예매 페이지 -->
 	</div>
 <%@ include file="/WEB-INF/view/user/include/footer.jsp" %>

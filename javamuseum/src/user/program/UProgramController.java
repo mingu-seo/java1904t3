@@ -47,6 +47,7 @@ public class UProgramController {
 		model.addAttribute("totPage", rowPageCount[1]);
 		model.addAttribute("list", list);
 		model.addAttribute("param", param);
+		model.addAttribute("vo", vo);
 		
 		model.addAttribute("olist", olist);
 		
@@ -100,13 +101,18 @@ public class UProgramController {
 	
 	   @RequestMapping("/user/program/process")
 	   public String process(Model model, ReservationVO param,  HttpServletRequest request) throws Exception {
-	      model.addAttribute("vo", param);
 	      
+	      int e = uprogramService.resnum(param);
+	      String msg = "";
+	      if(e >= 1) {
+	    	  msg = "이미 신청하였습니다.";
+	      }else {
 	          int r = reservationService.insert(param);
-	          model.addAttribute("code", "alertMessageUrl");
-	          model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
-	          model.addAttribute("url", param.getTargetURLParam("program", param, 0));
-	      
+	          if (r>0) msg = "신청이 완료되었습니다."; else msg = "등록실패";
+	      }
+	      model.addAttribute("code", "alertMessageUrl");
+	      model.addAttribute("message", msg);
+	      model.addAttribute("url", param.getTargetURLParam("program", param, 0));
 	      return "include/alert";
 	   }
 

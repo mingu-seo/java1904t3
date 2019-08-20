@@ -22,21 +22,17 @@ $(function(){
 		$(".con4-bg").hide();
 	});
 	
-	$(".detail").click(function(event){
-		event.preventDefault();
-		$(this).addClass("on");
-	});
 	
 })
 
-function getProgram(i) {
+<%-- function getProgram(i) {
 	<%if(member != null) {%>
-	$.ajax({
+	$.ajax({ 
 		type : "GET",
 		url : "/user/program/reserve?no="+i,
 		async : false,
 		success : function(data) {
-			$(".con4-bg").html(data);
+			$(".con4").html(data);
 			$(".con4-bg").show();
 			
 		}
@@ -47,6 +43,7 @@ function getProgram(i) {
 		}
 	<%} %>
 };
+ --%>
 
  
 </script>
@@ -78,7 +75,7 @@ function getProgram(i) {
 			</div>
 			<div class="con4-btn clear">
 				<ul class="btn-group clear">
-					<li><button id="submit-btn1" onclick="getProgram(<%=detail.getNo()%>)">신청하기</button></li>
+					<li><button id="submit-btn1" onclick="getProgram(<%=detail.getNo()%>);">신청하기</button></li>
 					<li><button id="submit-btn2">닫기</button></li>
 				</ul>
 			</div>
