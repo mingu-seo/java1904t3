@@ -7,8 +7,6 @@
 <%
 ArrayList<UTicketVO> myResList = (ArrayList)request.getAttribute("myResList");
 TicketVO tparam = (TicketVO)request.getAttribute("tparam");
-int restotCount = (Integer)request.getAttribute("restotCount");
-int restotPage = (Integer)request.getAttribute("restotPage");
 %>
 <link rel="stylesheet" href="/css/jquery-ui.css">
 <script>

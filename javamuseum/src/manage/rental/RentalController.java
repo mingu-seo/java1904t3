@@ -44,7 +44,7 @@ public class RentalController {
 		return "manage/rental/read";
 	}
 	
-	@RequestMapping("/user/hall2")	// 사용자 페이지 - 대관 신청
+	@RequestMapping("/user/rental/hall2")	// 사용자 페이지 - 대관 신청
 	public String write(Model model, RentalVO param) throws Exception {
 		model.addAttribute("vo", param);
 		return "user/rental/hall2";
@@ -71,7 +71,7 @@ public class RentalController {
 		return "include/alert";
 	}
 	
-	@RequestMapping("/user/hall")	// 사용자 페이지 - 대관 안내
+	@RequestMapping("/user/rental/hall")	// 사용자 페이지 - 대관 안내
 	public String hall() {
 		return "user/rental/hall";
 	}

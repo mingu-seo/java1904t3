@@ -43,9 +43,14 @@ public class ExhibitionDAO extends SqlMapClientDAOSupport {
 		return (ArrayList)getSqlMapClient().queryForList("exhibition.exList", param);
 	}
 	
+	public void reviewScore(ExhibitionVO param) throws SQLException {
+		getSqlMapClient().update("exhibition.reviewScore", param);
+	}
+	
 	public static void main(String[] args) throws Exception {
 		ExhibitionDAO dao = new ExhibitionDAO();
 		ExhibitionVO vo = new ExhibitionVO();
+		ExhibitionVO data = dao.read(29);
 		
 	}
 }

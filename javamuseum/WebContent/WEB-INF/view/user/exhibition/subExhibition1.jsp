@@ -1,12 +1,10 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
 <%@ page import="user.exhibition.*" %>
-<%@ page import="manage.review.*" %>
 <%
 MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 ArrayList<UExhibitionVO> list = (ArrayList)request.getAttribute("ingList");
 UExhibitionVO param = (UExhibitionVO)request.getAttribute("param");
-/* ReviewVO rList = (ReviewVO)request.getAttribute("rList"); */
 int totCount = (Integer)request.getAttribute("totCount");
 int totPage = (Integer)request.getAttribute("totPage");
 %>
@@ -50,11 +48,33 @@ int totPage = (Integer)request.getAttribute("totPage");
 			url : "/user/exhibition/detail?no="+i,
 			async : false,
 			success : function(data) {
-				$(".con3").html(data);
-				$(".con4-bg").show();
+					$(".con3").html(data);
+					$(".con4-bg").show();
+			}
+		
+		});
+	};
+	
+	function reviewView(no) {
+		$.ajax({
+			type: "POST",
+			url: "/user/exhibition/reviewView?no="+no,
+			async: false,
+			success: function(data) {
+				$(".con5-reviews").hide();
+				$(".con6-reviewView").html(data);
+				$(".con6-reviewView").show();
 			}
 		});
 	};
+	
+	function goIndex() {
+		$(this).addClass("on");
+		$(".detail").removeClass("on");
+		$(".con6-reviewView").hide();
+		$(".con5-contents").hide();
+		$(".con5-reviews").show();
+	}
 	
 	$(function(){
 		$(".con2-bggroup > li > a").click(function(event){ // a링크 정지

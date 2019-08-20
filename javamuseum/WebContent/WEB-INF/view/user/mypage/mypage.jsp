@@ -35,16 +35,17 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 	});
 	
 	//대관 & QnA 클릭시
-	function qnaShow() {
+	function qnaShow(reqPageNo) {
 		$(".members-wrap > div").hide();
 		$.ajax({
 			type: "POST",
 			url: "/user/mypage/qna",
-			data: {"memberid" : "<%=member.getId()%>" },
+			data: {"memberid" : "<%=member.getId()%>", "reqPageNo":reqPageNo },
 			async: false,
 			success: function(data) {
 				$(".con7").html(data);
 				$(".con7").show();
+				$(".con77-center").hide();
 			}
 		});
 	}
@@ -132,7 +133,7 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 			success: function() {
 				alert("답변 등록에 성공하셨습니다.");
 				$(".members-wrap > div").hide();
-				qnaShow();
+				qnaShow(1);
 				$(".members-wrap > div").hide();
 				$(".members-wrap > div").eq(3).show();
 			}
@@ -142,6 +143,17 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 	function goIndex() {
 		$(".members-wrap > div").hide();
 		$(".con7").show();
+		$(".con77-center").hide();
+	}
+	
+	function pageIndex(curpage) {
+		$.ajax({
+			
+		})
+	}
+	
+	function getAjaxPage(reqPage) {
+		qnaShow(reqPage);
 	}
 </script>
 </head>
@@ -173,10 +185,10 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 					<h3>예매내역</h3>
 					<p>최근 예매한 작품이<br>궁금하다면?</p>
 				</li>
-				<li class="con2-gr" onclick="qnaShow()">
+				<li class="con2-gr" onclick="qnaShow(1)">
 					<img src="/img/mypage-con1-4.png">
 					<h3>대관문의 & QnA</h3>
-					<p>고객님의 문의한 대관내역이<br>궁금하다면?</p>
+					<p>고객님의 문의한 내역이<br>궁금하다면?</p>
 				</li>
 			</ul>
 		</div>
@@ -209,32 +221,34 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
                     </div>
                 </div>
                 <div class="con4-center clear">
-                        <div class="con4-text">
-                            <h2>회원정보</h2>
-                            <h4>회원님의 소중한 정보를 안전하게 관리하세요.</h4>
-                        </div>
-                        <div class="con4-pwbox">
-                            <div class="con4-pwbox-text">
-                                <h3>회원정보를 수정하시려면 비밀번호를 입력하셔야 합니다.</h3>
-                                <p>회원님의 개인정보 보호를 위한 본인 확인 절차이오니,</p>
-                                <p>자바미술관 회원 로그인 시 사용하시는 비밀번호를 입력해주세요.</p>
-                            </div>
-                            <form method="GET" action="insert.php">
-                                <div class="con4-btnbox">
-                                        <div class="con4-pw"><input type="password" id="con4-pw" name="con4-pw" placeholder="비밀번호를 입력해주세요." ></div>
-                                        <div class="con4-btn clear">
+					<div class="con4-text">
+						<h2>회원정보</h2>
+						<h4>회원님의 소중한 정보를 안전하게 관리하세요.</h4>
+					</div>
+					<div class="con4-pwbox">
+						<div class="con4-pwbox-text">
+							<h3>회원정보를 수정하시려면 비밀번호를 입력하셔야 합니다.</h3>
+							<p>회원님의 개인정보 보호를 위한 본인 확인 절차이오니,</p>
+							<p>자바미술관 회원 로그인 시 사용하시는 비밀번호를 입력해주세요.</p>
+						</div>
+						<form method="GET" action="insert.php">
+							<div class="con4-btnbox">
+								<div class="con4-pw">
+									<input type="password" id="con4-pw" name="con4-pw" placeholder="비밀번호를 입력해주세요.">
+								</div>
+								<div class="con4-btn clear">
 
-                                            <div class="con4-okbtn">
-                                                <a href="#">확인</a>
-                                            </div>
-                                            <div class="con4-closebtn">
-                                                <a href="#">닫기</a>
-                                            </div>
-                                        </div>
-                                </div>
-                            </form>
-                        </div>
-                </div>
+									<div class="con4-okbtn">
+										<a href="#">확인</a>
+									</div>
+									<div class="con4-closebtn">
+										<a href="#">닫기</a>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
             </div>    
             <!-- 내가 본 작품 -->
             <div class="con5">

@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import manage.exhibition.ExhibitionDAO;
+import manage.exhibition.ExhibitionVO;
 import property.SiteProperty;
+import util.CodeUtil;
 import util.FileUtil;
 import util.Function;
 import util.Page;
@@ -40,6 +42,8 @@ public class ReviewService {
 	}
 
 	public int insert(ReviewVO vo, HttpServletRequest request) throws SQLException {
+		ExhibitionVO data = exhibitionDao.read(vo.getDisplay_pk());		//작품 평점을 위해 전시 VO를 가져온다.
+		int count = reviewDao.reviewCount(vo.getDisplay_pk());
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
 		MultipartFile file= (MultipartFile)fileMap.get("imagename_tmp");
@@ -54,6 +58,13 @@ public class ReviewService {
 		}
 		
 		int no = reviewDao.insert(vo);
+		
+		// 리뷰 작성시 평점 부여
+		double score = data.getScore();									// 해당 작품 점수를 가져온다.
+		data.setScore(Math.round((((score * count) + vo.getReview_score()) / (count+1))*10)/10.0);
+		exhibitionDao.reviewScore(data);
+		
+		
 		return no;
 	}
 
@@ -93,6 +104,12 @@ public class ReviewService {
 		return data;
 	}
 
+	public ArrayList displayReview(int display_pk) throws Exception {
+		ArrayList list = reviewDao.displayReview(display_pk);
+		
+		return list;
+	}
+	
 //	public boolean loginCheck(ReviewVO param) throws SQLException {
 //		int cnt = reviewDao.loginCheck(param);
 //		boolean result = false;

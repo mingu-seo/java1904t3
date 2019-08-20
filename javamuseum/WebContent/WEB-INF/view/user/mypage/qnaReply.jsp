@@ -34,7 +34,7 @@ QnaVO data = (QnaVO)request.getAttribute("data");
 						<td colspan="2">
 							<textarea id="contents" name="contents" style="width: 100%;">
 								<br><br>
-								============================================= (작성자: <%=data.getMemberid()%>)
+								==================================================
 								<br>
 								<%=Function.checkNull(data.getContents())%>
 							</textarea>

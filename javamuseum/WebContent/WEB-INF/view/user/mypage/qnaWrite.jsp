@@ -24,6 +24,7 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 	var oEditors; // 에디터 객체 담을 곳
 	$(function(){
 		oEditors = setEditor("contents"); // 에디터 셋팅
+		
 		window.onbeforeunload = function(e) {
 		    var dialogText = 'Dialog text here';
 		    e.returnValue = dialogText;
@@ -49,6 +50,22 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 		});
 	});
 	
+	function goSave() {
+		if ($("#title").val() == "") {
+			alert('제목을 입력하세요.');
+			$("#title").focus();
+			return false;
+		}
+		var sHTML = oEditors.getById["contents"].getIR();
+		if (sHTML == "" || sHTML == "<p><br></p>") {
+			alert('내용을 입력하세요.');
+			$("#contents").focus();
+			return false;
+		} else {
+			oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
+		}
+		return true;
+	}
 </script>
 </head>
 <body>
@@ -123,7 +140,7 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
                         	<!-- 버튼 -->
                         	<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="#" onclick="location.href='/user/mypage/mypage'"><strong>목록</strong> </a>
+									<a class="btns" href="javascript:;" onclick="location.href='/user/mypage/mypage'"><strong>목록</strong> </a>
 								</div>
 								<div class="btnRight">
 									<a class="btns" href="javascript:$('#frm').submit();"><strong>문의하기</strong> </a>

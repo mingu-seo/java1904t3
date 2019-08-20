@@ -99,7 +99,6 @@ function groupDelete() {
 										<th scope="col">전시관</th>
 										<th scope="col">제목</th>
 										<th scope="col">작가</th>
-										<th scope="col">좋아요</th>
 										<th scope="col">평점</th>
 										<th scope="col">전시 상태</th>
 										<th scope="col" class="last">시작일</th>
@@ -124,7 +123,6 @@ function groupDelete() {
 										<td <%=targetUrl%>><%=list.get(i).getHallnumber()%></td>
 										<td <%=targetUrl%>><%=list.get(i).getTitle()%></td>
 										<td <%=targetUrl%>><%=list.get(i).getArtist()%></td>
-										<td <%=targetUrl%>><%=list.get(i).getLike_cnt()%></td>
 										<td <%=targetUrl%>><%=list.get(i).getScore()%></td>
 										<td <%=targetUrl%>><%=CodeUtil.getStrDisState(list.get(i).getState())%></td>
 										<td <%=targetUrl%>><%=list.get(i).getStartdate()%></td>

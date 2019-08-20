@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-
+<%@ page import="java.util.*" %>
+<%@ page import="manage.exhibition.*" %>
+<%
+ArrayList<ExhibitionVO> list = (ArrayList)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 
 <html lang="ko">
@@ -78,56 +82,34 @@
                 <h2>Exhibitions</h2>
                 <div class="con2-box">
                     <div class="slider">
-                        <div class="slider-thum">
-                            <a href="#">
-                                <img src="/img/con2-1.jpg">
+                    <% 
+                    if(list.size() == 0) {
+                    %>
+                    	<div class="slider-thum">
+                            <a href="javascript:;">
                                 <div class="slider-list-text">
-                                        <h2>피에르 르탕</h2>
-                                        <p>[pierre Le-Tan]</p>
-                                        <p>2019.04.20 - 2019.08.10</p>
+									<h1 style="font-size:36px;">현재 진행 중인 전시가 없습니다.</h1>
                                 </div>
                             </a>
                         </div>
+                    <%
+                    } else {
+                    	for(int i = 0; i < list.size(); i++) { 
+                    %>
                         <div class="slider-thum">
-                            <a href="#">
-                                <img src="/img/con2-2.jpg">
+                            <a href="javascript:;">
+                                <img src="/upload/exhibition/<%=list.get(i).getImagename()%>">
                                 <div class="slider-list-text">
-                                        <h2>언스킬드 워커</h2>
-                                        <p>[Unskiled Worker]</p>
-                                        <p>2019.03.11 - 2019.07.10</p>
+									<h2><%=list.get(i).getTitle()%></h2>
+									<p>[<%=list.get(i).getArtist()%>]</p>
+									<p><%=list.get(i).getStartdate()%> - <%=list.get(i).getEnddate()%></p>
                                 </div>
                             </a>
                         </div>
-                        <div class="slider-thum">
-                            <a href="#">
-                                <img src="/img/con2-3.jpg">
-                                <div class="slider-list-text">
-                                        <h2>케이티 스콧</h2>
-                                        <p>[Katie Scott]</p>
-                                        <p>2019.05.21 - 2019.08.20</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="slider-thum">
-                            <a href="#">
-                                <img src="/img/con2-4.jpg">
-                                <div class="slider-list-text">
-                                        <h2>오아물 루</h2>
-                                        <p>[Oamul Lu]</p>
-                                        <p>2019.06.13 - 2019.09.17</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="slider-thum">
-                            <a href="#">
-                                <img src="/img/con2-5.jpg">
-                                <div class="slider-list-text">
-                                        <h2>페이 투굿</h2>
-                                        <p>[Faye Toogood]</p>
-                                        <p>2019.07.13 - 2019.08.19</p>
-                                </div>
-                            </a>
-                        </div>
+					<%
+                    	}
+					}
+					%>
                     </div>
                 </div>
             </div>

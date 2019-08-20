@@ -124,6 +124,58 @@ public class Page {
 		return strList.toString();
 	}
 	
+	public static String indexListAjax(int reqPageNo, int pageCount, HttpServletRequest req) {
+		int pagenumber = 10;								// 화면에 보여질 페이지 인덱스 수
+		int startpage;											// 화면에 보여질 시작페이지 번호
+		int endpage;												// 화면에 보여질 마지막페이지 번호
+		int curpage;												// 이동하고자 하는 페이지 번호
+		StringBuffer strList= new StringBuffer();	// 리턴될 페이지 인덱스 리스트
+		String listUrl = getPageURL(req);				// 현재 url 구하기
+
+		// 시작 페이지번호 구하기
+		startpage = ((reqPageNo - 1) / pagenumber) * pagenumber + 1;
+		// 마지막 페이지번호 구하기
+		endpage = (((startpage - 1) +  pagenumber) / pagenumber) * pagenumber;
+
+		// 총 페이지 수가 계산된 마지막페이지 번호보다 작을경우 
+		// 총 페이지 수가 마지막페이지 번호가 됨
+		if (pageCount <= endpage){
+		    endpage = pageCount;
+		}
+		strList.append("<div class='page'>");
+		// 첫번째 페이지 인덱스 화면이 아닌경우
+		if ( reqPageNo > pagenumber) {
+			curpage = startpage - 1;    // 시작페이지 번호보다 1 적은 페이지로 이동
+			strList.append("<a href='javascript:getAjaxPage("+curpage+")' class='next'><img src='/img/list_prev.gif' alt='' />이전</a> ");
+//			strList.append("<a href='"+listUrl+"reqPageNo=1' CLASS='b_num'>[1]</a> ");
+		}else{
+			strList.append(" ");
+		}
+
+		// 시작페이지 번호부터 마지막페이지 번호까지 화면에 표시
+		curpage = startpage;
+		while (curpage <= endpage){
+			if (curpage == reqPageNo) {
+			  strList.append("<strong>"+reqPageNo+"</strong>");
+			} else {
+			  strList.append("<a href='javascript:getAjaxPage("+curpage+")' class='b_num'>"+curpage+"</a>");
+			}
+			curpage++;
+		}
+
+		// 뒤에 페이지가 더 있는경우
+		if ( pageCount > endpage) {
+			curpage = endpage + 1;  
+			strList.append(" <a href='javascript:getAjaxPage("+curpage+")' class='next'>다음<img src='/img/list_next.gif' alt='' /></a>");
+//			strList.append(" <a href='"+listUrl+"reqPageNo="+pageCount+"' CLASS='b_num'>["+pageCount+"]</a>");
+		}else{
+			strList.append(" ");
+		}
+		strList.append("</div> ");
+
+		return strList.toString();
+	}
+	
 	public static String indexShopList(int reqPageNo, int pageCount, HttpServletRequest req) {
 		int pagenumber = 5;								// 화면에 보여질 페이지 인덱스 수
 		int startpage;											// 화면에 보여질 시작페이지 번호

@@ -32,9 +32,9 @@ MemberVO umembervo = (MemberVO)session.getAttribute("memberInfo");
                         <a href="#">VISIT</a>
                         <div class="sub">
                             <ul class="sub-menu">
-                                <li><a href="sub-visit1.html">관람안내</a></li>
-                                <li><a href="sub-visit2.html">미술관 소개</a></li>
-                                <li><a href="sub-visit3.html">오시는길</a></li>
+                                <li><a href="/user/visit/visit1">관람안내</a></li>
+                                <li><a href="/user/visit/visit2">미술관 소개</a></li>
+                                <li><a href="/user/visit/visit3">오시는길</a></li>
                             </ul>
                         </div>
                     </li>
@@ -52,8 +52,8 @@ MemberVO umembervo = (MemberVO)session.getAttribute("memberInfo");
                         <a href="#">RENTAL</a>
                         <div class="sub">
                             <ul class="sub-menu">
-                                <li><a href="hall">대관안내</a></li>
-                                <li><a href="hall2">대관신청</a></li>
+                                <li><a href="/user/rental/hall">대관안내</a></li>
+                                <li><a href="/user/rental/hall2">대관신청</a></li>
                             </ul>
                         </div>
                     </li>
