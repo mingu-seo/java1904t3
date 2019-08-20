@@ -19,6 +19,7 @@
 /* 텝메뉴-회원정보 */
 .con3{margin-top: 74px; position: relative;}
 .con3-center{width: 1200px; margin: 0 auto; border: 2px solid #191919; height: 680px; background-color: #fff; position: absolute;}
+
 /* 회원정보 내용 */
 .con3-text{text-align: center;}
 .con3-text h2{font-size: 48px; margin-top: 60px; margin-bottom: 16px;}
@@ -28,7 +29,9 @@
 .con3-gr{border: 1px solid #191919; width: 480px; height: 260px; float: left; margin-top: 66px; margin-right: 20px; padding-left: 30px; padding-top: 28px;}
 .con3-gr:nth-child(2){margin-right: 0px;}
 .con3-gr-btn{width: 126px; height: 38px; background-color: #191919;text-align: center; margin-top: 34px;}
-.con3-gr-btn a{color: #fff; display: block; line-height: 38px;}
+.con3-gr-delBtn{width: 126px; height: 38px; background-color: #191919;text-align: center; margin-top: 34px;}
+.con3-gr-btn {color: #fff; display: block; line-height: 38px; cursor:pointer;}
+.con3-gr-delBtn {color: #fff; display: block; line-height: 38px; cursor:pointer;}
 .con3-gr h3{font-size: 22px;}
 .con3-gr p{font-size: 14px;}
 .con3-gr span{font-weight: bold;}
@@ -49,8 +52,9 @@
 .con4-btnbox{width: 380px; margin: 0 auto;}
 .con4-pw{margin-top: 60px;}
 .con4-pw input[type="password"]{width: 378px; height: 38px; margin-bottom: 10px; border: 1px solid #191919;}
-.con4-okbtn{width: 180px; background-color: #191919; height: 38px; float: left; margin-right: 20px;}
-.con4-okbtn a{color: #fff; text-align: center; line-height: 38px; display: block;}
+.con4-modBtn, .con4-delBtn {width: 180px; background-color: #191919; height: 38px; float: left; margin-right: 20px;}
+.con4-modBtn a, .con4-delBtn a {color: #fff; text-align: center; line-height: 38px; display: block;}
+.con4-modBtn p, .con4-delBtn p {color: #fff; text-align: center; line-height: 38px; display: block;}
 .con4-closebtn{width: 180px; height: 38px; float: left; border: 1px solid #191919;}
 .con4-closebtn a{color: #191919; line-height: 38px; text-align:  center; display: block;}
 /* con5 내가 본 작품 */
@@ -98,5 +102,8 @@
 .con7-table tr{height: 50px; border-bottom: 1px solid #ccc;}
 .con7-table th{background-color: #ccc;}
 .con7-table td{text-align: center;}
+/* 회원정보 수정 */
+.conInfoMod{margin-top: 90px;}
+.conInfoMod-center{width: 1200px; margin: 0 auto; border: 2px solid  #191919;}
 /* 풋터 */
 #footer{margin-top: 330px;}

@@ -52,6 +52,7 @@ MemberVO param = (MemberVO)request.getAttribute("vo");
     	$("#idCheckBtn").click(function(){
     		if($("#id").val() == "") {
     			alert("아이디를 입력하세요.");
+    		} else if(!validId($("#id"))) {
     		} else {
     		$.ajax ({
     			type:'POST',
@@ -282,7 +283,7 @@ MemberVO param = (MemberVO)request.getAttribute("vo");
                                     <td class="td-bg">
                                         <input type="text" id="id" name="id" maxlength="20">
                                         <input type="button" value="중복확인" id="idCheckBtn">
-                                        <span>(6자리~12자리 사이의 영문,숫자)</span>
+                                        <span>(6자리~10자리 사이의 영문,숫자)</span>
                                     </td>
                                 </tr>
                                 <tr class="tr-under">

@@ -3,6 +3,7 @@ package user.mypage;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import manage.member.MemberVO;
 import manage.ticket.TicketVO;
+import user.member.UmemberService;
 import user.ticket.UTicketService;
 import user.ticket.UTicketVO;
 
@@ -21,6 +23,8 @@ public class MypageController {
 	private MypageService mypageService;
 	@Autowired
 	private UTicketService uticketService;
+	@Autowired
+	private UmemberService umemberService;
 
 	@RequestMapping("/user/mypage/mypage")
 	public String mypage(Model model, UTicketVO param, HttpServletRequest request) throws Exception {
@@ -50,4 +54,9 @@ public class MypageController {
 		return "include/return"; 
 	}
 
+	@RequestMapping("/user/mypage/memberInfo")
+	public String memberInfo(HttpSession session, Model model, HttpServletRequest request, MemberVO param) throws Exception {
+		
+		return "user/mypage/memberInfo";
+	}
 } 

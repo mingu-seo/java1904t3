@@ -51,8 +51,8 @@ MemberVO umembervo = (MemberVO)session.getAttribute("memberInfo");
                         <a href="#">RENTAL</a>
                         <div class="sub">
                             <ul class="sub-menu">
-                                <li><a href="hall">대관안내</a></li>
-                                <li><a href="hall2">대관신청</a></li>
+                                <li><a href="/user/rental/hall">대관안내</a></li>
+                                <li><a href="/user/rental/hall2">대관신청</a></li>
                             </ul>
                         </div>
                     </li>

@@ -16,4 +16,6 @@
     	SELECT COUNT(*) FROM ticket
     	WHERE member_pk=#member_pk#
     </select>
+    
+
 </sqlMap> 

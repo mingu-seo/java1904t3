@@ -1,0 +1,20 @@
+@charset "utf-8";
+.conInfoMod-box-top {margin: 0 auto; width:740px; margin-top:30px;}
+.th-bg {background-color:#ccc; width:190px; text-align:left; height:60px; padding-left:10px;}
+.td-bg {background-color:white; padding-left:10px;}
+.tr-under {border-bottom:1px solid black;}
+#nameFrame {border-top:1px solid black;}
+.conInfoMod-box-top input[type="submit"]{width:80px; height:36px; background-color: #191919; color: #fff; margin-left:10px; padding-left:0; border: transparent; font-size:14px; position:relative; top:2px;}
+.conInfoMod-box-top input[type="text"]{height: 30px;}
+.conInfoMod-box-top input[type="button"]{height: 30px;}
+.conInfoMod-box-top #id {width:220px; height:30px;}
+.conInfoMod-box-top #month {width:100px; height:35px;}
+.conInfoMod-box-top span {font-size:14px;}
+.conInfoMod-box-top #password {width:220px; height:30px;}
+.conInfoMod-box-top #pwdconfirm {width:220px; height:30px;}
+.conInfoMod-box-top #gender2 {margin-left:90px;}
+.conInfoMod-box-top #selectEmail {width:120px; height:36px;}
+.conInfoMod-center {width: 1200px; margin: 0 auto; border: 2px solid #191919; height: 880px; background-color: #fff; position: absolute;}
+.submit-box {text-align:center; margin-top:30px;}
+.submit-box input[type="button"] {width:180px; height:40px; background-color:#191919; color:white; border:transparent; font-size:18px; }
+#cancelBtn {background-color:#ccc; width:180px; height:40px; color:black; border:1px solid black; font-size:18px;}
