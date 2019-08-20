@@ -101,7 +101,7 @@ public class FaqController {
 	}
 	
 	
-	@RequestMapping("/customer/faq/index")
+	@RequestMapping("/user/faq/index")
 	public String main(Model model, FaqVO param) throws Exception {
 		param.setTablename("notice");
 		int[] rowPageCount = faqService.count(param);
@@ -113,7 +113,7 @@ public class FaqController {
 		model.addAttribute("vo", param);
 		
 		
-		return "/customer/faq/index";
+		return "/user/faq/index";
 	}
 	
 }

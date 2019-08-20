@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="uprogram">
+    
+    <typeAlias alias="uprogramvo" type="manage.program.ProgramVO"/>
+    <typeAlias alias="ureservationvo" type="manage.reservation.ReservationVO"/>
+    
+    
+   	<select id="count" parameterClass="uprogramvo" resultClass="Integer">
+		SELECT COUNT(*) FROM program
+	</select>
+	
+	<select id="countMem" parameterClass="ureservationvo" resultClass="Integer">
+		SELECT COUNT(*) FROM program_res
+		where program_pk=#program_pk# and date=#date# and time=#time#
+		
+	</select>
+
+	<select id="list" parameterClass="uprogramvo" resultClass="uprogramvo">
+		SELECT *
+		FROM program
+		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$
+	</select>
+	
+	<select id="listOption" parameterClass="Integer" resultClass="java.util.HashMap">
+		SELECT *, (select count(*) from program_res where program_pk=po.program_pk and date=po.date and time=po.time) as member_cnt
+		FROM program_option as po
+		WHERE program_pk=#program_pk#
+	</select>
+	
+	<select id="detail" parameterClass="Integer" resultClass="uprogramvo">
+		SELECT *
+		FROM program
+		WHERE no=#no#
+	</select>
+	
+	<select id="listOption_user" parameterClass="Integer" resultClass="java.util.HashMap">
+		SELECT *
+		FROM program_option 
+		WHERE program_pk=#program_pk#
+		group by date
+	</select>
+	
+ 	<select id="list_time" parameterClass="uprogramvo" resultClass="uprogramvo">
+		SELECT time FROM program_option 
+		WHERE program_pk = #no# and date = #date#
+	</select>
+	
+	
+</sqlMap>

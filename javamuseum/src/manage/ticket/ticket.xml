@@ -127,18 +127,18 @@
     
     <!-- 포인트 테이블에 포인트 내역 저장 -->
     <insert id="pointcomment" parameterClass="manage.member.PointVO">
-    	INSERT INTO point (member_pk, state, accum, memo, registdate, display_pk)
-    	VALUES (#member_pk#, #state#, #accum#, #memo#, now(), #display_pk#)
+    	INSERT INTO point (member_pk, state, accum, memo, registdate, ticket_pk)
+    	VALUES (#member_pk#, #state#, #accum#, #memo#, now(), #ticket_pk#)
     </insert>
     
     <!-- 예매 수정할 시 내역 변경 -->
     <update id="commentupdate" parameterClass="manage.member.PointVO">
     	UPDATE point SET
     	state=#state#, memo=#memo#, accum=#accum#
-    	WHERE member_pk=#member_pk# AND display_pk=#display_pk#
+    	WHERE member_pk=#member_pk# AND ticket_pk=#ticket_pk#
     </update>
     
     <select id="pointread" parameterClass="Integer" resultClass="manage.member.PointVO">
-    	SELECT * FROM point WHERE display_pk=#display_pk#
+    	SELECT * FROM point WHERE ticket_pk=#ticket_pk#
     </select>
 </sqlMap>

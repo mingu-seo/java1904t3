@@ -21,11 +21,34 @@ public class ProgramVO extends Parameter {
 	private String location;		//장소
 	private int display;			//노출 미노출
 	
+	private String date;		//날짜
+	private String time;		//시간
+	
+	
 	
 	private String imagename_chk;	//임시 보관 이미지
 	
 	private int opt_no;
 	
+	
+	
+	
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	public void setOpt_no(int opt_no) {
 		this.opt_no = opt_no;
 	}
@@ -102,7 +125,7 @@ public class ProgramVO extends Parameter {
 	public void setImagename(String imagename) {
 		this.imagename = imagename;
 	}
-
+	
 	public Timestamp getRegistdate() {
 		return registdate;
 	}

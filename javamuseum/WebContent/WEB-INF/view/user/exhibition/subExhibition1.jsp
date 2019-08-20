@@ -1,10 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
 <%@ page import="user.exhibition.*" %>
+<%@ page import="manage.review.*" %>
 <%
 MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 ArrayList<UExhibitionVO> list = (ArrayList)request.getAttribute("ingList");
 UExhibitionVO param = (UExhibitionVO)request.getAttribute("param");
+/* ReviewVO rList = (ReviewVO)request.getAttribute("rList"); */
 int totCount = (Integer)request.getAttribute("totCount");
 int totPage = (Integer)request.getAttribute("totPage");
 %>
@@ -100,8 +102,13 @@ int totPage = (Integer)request.getAttribute("totPage");
                 <div class="con2-text">
                     <h3>CURRENT EXHIBITION</h3>
                 </div>
+                <%
+                for(int i = 0; i < list.size(); i++){ 
+                	if(list.get(i).getTitle() != null){
+                %>
+                <% if (i%3 == 0) { %>
                 <ul class="con2-bggroup clear">
-                    <%for(int i = 0; i < 3; i++){ %>
+                <% } %>
                     <li>
                     	<input type="hidden" id="no<%=i%>" value="<%=list.get(i).getNo()%>"/>
                         <a href="#"><img src="/upload/exhibition/<%=list.get(i).getImagename()%>"/></a>
@@ -110,57 +117,11 @@ int totPage = (Integer)request.getAttribute("totPage");
                             <div class="sub01-text">
                                 <h4>로봇 일러스트레이션을 통해</h4>
                                 <h4>기계적 판타지를 구현하는</h4>
-                                <h3><%=list.get(i).getArtist()%> / Hajime Sorayama</h3>
+                                <h3><%=list.get(i).getArtist()%></h3>
                                 <p><%=list.get(i).getPreview().replaceAll("\n","<br>")%></p>
-                                <ul class="sub01-btn clear">
-                                    <li class="li1" onclick="getTicket(<%=list.get(i).getNo() %>)"><a href="javascript:;">예매하기</a></li>
-                                    <li class="li2" onclick="getDetail(<%=list.get(i).getNo() %>)"><a href="javascript:;">작품 상세 보기</a></li>
-                                </ul>
-                            </div>
-                            <div class="sub01-close">
-                                 <a href="#"><img src="/img/sub-exhibition-close.png"></a>
-                            </div>
-                        </div>
-                    </li>
-                    <%} %>
-                </ul>
-                <ul class="con2-bggroup clear">
-                	<%for(int i = 3; i < 6; i++){ %>
-					<li>
-						<a href="#"><img src="/upload/exhibition/<%=list.get(i).getImagename()%>"/></a>
-						<div class="con2-sub01 clear">
-							<img src="/upload/exhibition/<%=list.get(i).getImagename()%>"/>
-							<div class="sub01-text">
-								<h4>서정적이고 환상적인 이야기를</h4>
-								<h4>정재된 텍스처로 풀어내는</h4>
-								<h3><%=list.get(i).getArtist()%> / Juliette Binet</h3>
-								<p><%=list.get(i).getPreview().replaceAll("\n","<br>")%></p>
 								<ul class="sub01-btn clear">
-									<li class="li1" onclick="getTicket(<%=list.get(i).getNo() %>)"><a href="javascript:;">예매하기</a></li>
-									<li class="li2" onclick="getDetail(<%=list.get(i).getNo() %>)"><a href="javascript:;">작품 상세 보기</a></li>
-								</ul>
-							</div>
-							<div class="sub01-close">
-								<a href="#"><img src="/img/sub-exhibition-close.png"></a>
-							</div>
-						</div>
-					</li>
-					<%} %>
-				</ul>
-                <ul class="con2-bggroup clear">
-                	<%for(int i = 6; i < 9; i++){ %>
-                    <li>
-                        <a href="#"><img src="/upload/exhibition/<%=list.get(i).getImagename()%>"/></a>
-                        <div class="con2-sub01 clear">
-                            <img src="/upload/exhibition/<%=list.get(i).getImagename()%>"/>
-                            <div class="sub01-text">
-                                <h4>자연과 인물에 대한 따뜻한 시선을</h4>
-                                <h4>다채로운 색으로 전달하는</h4>
-                                <h3><%=list.get(i).getArtist()%> / Oamul Lu</h3>
-                                <p><%=list.get(i).getPreview().replaceAll("\n","<br>")%></p>
-                                <ul class="sub01-btn clear">
                                     <li class="li1" onclick="getTicket(<%=list.get(i).getNo()%>)"><a href="javascript:;">예매하기</a></li>
-                                    <li class="li2" onclick="getDetail(<%=list.get(i).getNo() %>)"><a href="javascript:;">작품 상세 보기</a></li>
+                                    <li class="li2" onclick="getDetail(<%=list.get(i).getNo()%>)"><a href="javascript:;">작품 상세 보기</a></li>
                                 </ul>
                             </div>
                             <div class="sub01-close">
@@ -168,9 +129,25 @@ int totPage = (Integer)request.getAttribute("totPage");
                             </div>
                         </div>
                     </li>
-                    <%} %>
+                <% if (i%3==2 || i==list.size()-1) { %>
                 </ul>
-                
+                <%
+                 }
+                	} else {
+                %>
+                <% if (i%3 == 0) { %>
+                <ul class="con2-bggroup clear">
+                <% } %>
+                    <li>
+                        <a href="#"><img src="/img/nopage.gif"/></a>
+                    </li>
+                <% if (i%3==2 || i==list.size()-1) { %>
+                </ul>	
+                <%
+                }
+                	}
+                 } 
+                 %>
             </div>
         </div>
         <!-- //con2 종료 -->

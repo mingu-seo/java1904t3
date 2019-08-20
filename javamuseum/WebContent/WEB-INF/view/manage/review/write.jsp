@@ -1,9 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
 <%@ page import="manage.review.*" %>
+<%@ page import="manage.exhibition.*" %>
 <%@ page import="util.*" %>
 <%
 ReviewVO param = (ReviewVO)request.getAttribute("vo");
+ExhibitionVO data = (ExhibitionVO)request.getAttribute("data");
+ArrayList<ExhibitionVO> list = (ArrayList)request.getAttribute("list");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
@@ -83,9 +86,27 @@ ReviewVO param = (ReviewVO)request.getAttribute("vo");
 										</td>
 									</tr>
 									<tr>
+										<th scope="row"><label for="">*전시이름</label></th>
+										<td colspan="3">
+											<select name="display_pk">
+												<%for(int i = 0; i < list.size(); i++){ %>
+												<option value='<%=list.get(i).getNo()%>'>[<%=i+1%>관] <%=list.get(i).getTitle()%></option>
+											<%} %>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">*평점</label></th>
+										<td colspan="3">
+											<select name="reviewscore">
+												<%=CodeUtil.getReviewScore(0) %>
+											</select>
+										</td>
+									</tr>
+									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="3">
-											<input type="text" id="title" name="title" class="w50" title="제목을 입력해주세요" />	
+											<input type="text" id="reviewtitle" name="reviewtitle" class="w50" title="제목을 입력해주세요" />	
 										</td>
 									</tr>
 									<tr>
@@ -97,6 +118,8 @@ ReviewVO param = (ReviewVO)request.getAttribute("vo");
 								</tbody>
 							</table>
 							<input type="hidden" name="cmd" value="write" />
+							<input type="hidden" name="member_pk" id="member_pk"/>
+							<input type="hidden" name="display_pk" id="diplay_pk"/>
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

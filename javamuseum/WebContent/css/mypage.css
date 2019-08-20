@@ -57,22 +57,24 @@
 .con4-modBtn p, .con4-delBtn p {color: #fff; text-align: center; line-height: 38px; display: block;}
 .con4-closebtn{width: 180px; height: 38px; float: left; border: 1px solid #191919;}
 .con4-closebtn a{color: #191919; line-height: 38px; text-align:  center; display: block;}
-/* con5 내가 본 작품 */
+/* con6 예매 내역 */
 .con5{margin-top: 74px; position: relative; display: none; }
-.con5-center{width: 1200px; margin: 0 auto; border: 2px solid #191919; height: 940px; background-color: #fff; }
+.con5-center{width: 1200px; margin: 0 auto; border: 2px solid #191919; height: auto; background-color: #fff; }
 .con5-text{text-align: center;}
 .con5-text h2{font-size: 48px; margin-top: 60px; margin-bottom: 16px;}
 .con5-text h4{font-size: 20px; font-weight: normal;}
 /* 하단 작품 내용 */
-.con5-exhibition{width: 1020px; margin: 0 auto; margin-top: 54px; border-top: 3px solid #191919; border-bottom: 3px solid #191919;}
+.con5-exhibition{width: 1020px; margin: 0 auto; margin-top: 54px; margin-bottom: 54px; border-top: 3px solid #191919; border-bottom: 3px solid #191919;}
 .con5-gr{border-bottom: 1px solid #191919;}
-.con5-gr:nth-child(3){border: none;}
-.con5-left{ float: left; width: 370px; height: 218px;}
+.con5-gr:last-child{border: none;}
+.con5-left{ float: left; width: 250px; height: 218px;}
 .con5-left img{width: 100%; height: 100%;} 
-.con5-right{ float: left; padding-left: 50px; padding-top: 50px;}
-.con5-right h3{ font-size: 30px;}
-.con5-right h5{ font-size: 22px; font-weight: normal; margin-top: 20px; margin-bottom: 20px;}
-.con5-right p{ font-size: 18px; }
+.con5-right{ float: left; padding-left: 50px; padding-top: 20px;}
+.con5-right h2 { font-size: 20px;}
+.con5-left-text{ float: left; margin-top: 20px;}
+.con5-right-text{ float: left; margin-left: 120px; margin-top: 20px;}
+.con5-right-btn{ float: left; padding:5px; background-color: #e7eaed; margin-left: 120px;}
+.con5-right p{ font-size: 18px; line-height: 40px;}
 /* con6 예매 내역 */
 .con6{margin-top: 74px; position: relative; display: none; }
 .con6-center{width: 1200px; margin: 0 auto; border: 2px solid #191919; height: auto; background-color: #fff; }
@@ -94,6 +96,7 @@
 /* con7 대관내역 */
 .con7{margin-top: 74px; position: relative;  display: none; }
 .con7-center{width: 1200px; margin: 0 auto; border: 2px solid #191919; background-color: #fff; padding-bottom: 80px; }
+.con7-center #qnaTitle{text-align:left;}
 .con7-text{text-align: center;}
 .con7-text h2{font-size: 48px; margin-top: 60px; margin-bottom: 16px;}
 .con7-text h4{font-size: 20px; font-weight: normal;}
@@ -105,5 +108,82 @@
 /* 회원정보 수정 */
 .conInfoMod{margin-top: 90px;}
 .conInfoMod-center{width: 1200px; margin: 0 auto; border: 2px solid  #191919;}
+.con7-table td a:hover{text-decoration:underline;}
+.con7 .btn{width: 980px; margin: 0 auto;}
+.con7 .btn .btnLeft{position:relative; color:#797979 !important; float:left; padding:10px 0 0 0; overflow:hidden; font-size:11px; text-align:left; /*width:40%;*/ height:40px;}
+.con7 .btn .btnLeft a.btns{display:inline-block; padding-right:4px; background:url(/manage/img/btn_bg.gif) no-repeat 100% 0; font-size:11px;color:#797979;line-height:26px;word-spacing:-1px;text-decoration:none !important;white-space:nowrap; color:#797979 !important;}  
+.con7 .btn .btnLeft a.btns strong{display:block; padding:1px 8px 0 12px; background:url(/manage/img/btn_bg.gif) no-repeat; color:#797979 !important;}
+
+.con7 .btn .btnRight{position:relative; color:#797979 !important; float:right; padding:10px 0 0 0; overflow:hidden; font-size:11px; text-align:right; /*width:40%;*/ height:40px;}
+.con7 .btn .btnRight a.btns{display:inline-block; padding-right:4px; background:url(/manage/img/btn_bg.gif) no-repeat 100% 0; font-size:11px;color:#797979;line-height:26px;word-spacing:-1px;text-decoration:none !important;white-space:nowrap; color:#797979 !important;}  
+.con7 .btn .btnRight a.btns strong{display:block; padding:1px 8px 0 25px; background:url(/manage/img/btn_write.gif) no-repeat; color:#797979 !important;}
+/*page*/
+.con7 .page{position:relative; width:100%; display:block; margin:0 0 0 0px; padding:20px 0 0 0; text-align:center; clear:both; color:#656668; font-size:12px;}
+.con7 .page a{position:relative; display:inline-block; padding:5px 6px;  text-decoration: none; color:#656668;}
+.con7 .page strong{position:relative; display:inline-block; padding:5px 6px;  text-decoration:underline; color:#f60029;}
+.con7 .page .next{position:relative; display:inline-block; padding:7px 3px; margin:0 10px; vertical-align:top; color:#797979; font-size:11px;}
+.con7 .page .next img{padding:3px 6px; *padding:4px 6px; margin:0; vertical-align: top;}
+.con7 .page a:hover{color:#2e2e2e; text-decoration:underline;}
+.con7 .page .page_prev{padding:0 0 0 2px; background:url(/manage/img/page_prev_bg.gif) no-repeat left 5px;}
+.con7 .page .page_next{padding:0 2px 0 0; background:url(/manage/img/page_next_bg.gif) no-repeat right 5px;}
+/* con8 qna 글쓰기 */
+.con8{margin-top: 74px; position: relative;  display: none; }
+.con8-center{width: 1200px; margin: 0 auto; border: 2px solid #191919; background-color: #fff; padding-bottom: 80px; }
+.con8-text{text-align: center;}
+.con8-text h2{font-size: 48px; margin-top: 60px; margin-bottom: 16px;}
+.con8-text h4{font-size: 20px; font-weight: normal;}
+/* 테이블내용 */
+.con8-table{width: 980px; margin: 0 auto; border-top: 2px solid #191919; border-bottom: 2px solid #191919; margin-top: 50px;}
+.con8-table tr{width: 20%; height: 50px; border-bottom: 1px solid #ccc;}
+.con8-table th{background-color: #ccc; padding:0 5px;}
+.con8-table input[type="text"]{width:98%;}
+.con8 .btn{width: 980px; margin: 0 auto;}
+.con8 .btn .btnLeft{position:relative; color:#797979 !important; float:left; padding:10px 0 0 0; overflow:hidden; font-size:11px; text-align:left; /*width:40%;*/ height:40px;}
+.con8 .btn .btnLeft a.btns{display:inline-block; padding-right:4px; background:url(/manage/img/btn_bg.gif) no-repeat 100% 0; font-size:11px;color:#797979;line-height:26px;word-spacing:-1px;text-decoration:none !important;white-space:nowrap; color:#797979 !important;}  
+.con8 .btn .btnLeft a.btns strong{display:block; padding:1px 8px 0 12px; background:url(/manage/img/btn_bg.gif) no-repeat; color:#797979 !important;}
+
+.con8 .btn .btnRight{position:relative; color:#797979 !important; float:right; padding:10px 0 0 0; overflow:hidden; font-size:11px; text-align:right; /*width:40%;*/ height:40px;}
+.con8 .btn .btnRight a.btns{display:inline-block; padding-right:4px; background:url(/manage/img/btn_bg.gif) no-repeat 100% 0; font-size:11px;color:#797979;line-height:26px;word-spacing:-1px;text-decoration:none !important;white-space:nowrap; color:#797979 !important;}  
+.con8 .btn .btnRight a.btns strong{display:block; padding:1px 8px 0 25px; background:url(/manage/img/btn_write.gif) no-repeat; color:#797979 !important;}
+/* con9 qna reply */
+.con9{margin-top: 74px; position: relative;  display: none; }
+.con9-center{width: 1200px; margin: 0 auto; border: 2px solid #191919; background-color: #fff; padding-bottom: 80px; }
+.con9-text{text-align: center;}
+.con9-text h2{font-size: 48px; margin-top: 60px; margin-bottom: 16px;}
+.con9-text h4{font-size: 20px; font-weight: normal;}
+/* 테이블내용 */
+.con9-table{width: 980px; margin: 0 auto; border-top: 2px solid #191919; border-bottom: 2px solid #191919; margin-top: 50px;}
+.con9-table tr{width: 20%; height: 50px; border-bottom: 1px solid #ccc;}
+.con9-table th{background-color: #ccc; padding:0 5px;}
+.con9-table input[type="text"]{width:98%;}
+.con9 .btn{width: 980px; margin: 0 auto;}
+.con9 .btn .btnLeft{position:relative; color:#797979 !important; float:left; padding:10px 0 0 0; overflow:hidden; font-size:11px; text-align:left; /*width:40%;*/ height:40px;}
+.con9 .btn .btnLeft a.btns{display:inline-block; padding-right:4px; background:url(/manage/img/btn_bg.gif) no-repeat 100% 0; font-size:11px;color:#797979;line-height:26px;word-spacing:-1px;text-decoration:none !important;white-space:nowrap; color:#797979 !important;}  
+.con9 .btn .btnLeft a.btns strong{display:block; padding:1px 8px 0 12px; background:url(/manage/img/btn_bg.gif) no-repeat; color:#797979 !important;}
+
+.con9 .btn .btnRight{position:relative; color:#797979 !important; float:right; padding:10px 0 0 0; overflow:hidden; font-size:11px; text-align:right; /*width:40%;*/ height:40px;}
+.con9 .btn .btnRight a.btns{display:inline-block; padding-right:4px; background:url(/manage/img/btn_bg.gif) no-repeat 100% 0; font-size:11px;color:#797979;line-height:26px;word-spacing:-1px;text-decoration:none !important;white-space:nowrap; color:#797979 !important;}  
+.con9 .btn .btnRight a.btns strong{display:block; padding:1px 8px 0 25px; background:url(/manage/img/btn_write.gif) no-repeat; color:#797979 !important;}
+/* con10 qna 상세*/
+.con10{margin-top: 74px; position: relative;  display: none; }
+.con10-center{width: 1200px; margin: 0 auto; border: 2px solid #191919; background-color: #fff; padding-bottom: 80px; }
+.con10-text{text-align: center;}
+.con10-text h2{font-size: 48px; margin-top: 60px; margin-bottom: 16px;}
+.con10-text h4{font-size: 20px; font-weight: normal;}
+/* 테이블내용 */
+.con10-table{width: 980px; margin: 0 auto; border-top: 2px solid #191919; border-bottom: 2px solid #191919; margin-top: 50px;}
+.con10-table tr{height: 50px; border-bottom: 1px solid #ccc;}
+.con10-table th{background-color: #ccc; padding:0 5px; width:25%;}
+.con10-table td p{margin:10px 10px;}
+.con10-table input[type="text"]{width:98%;}
+.con10 .btn{width: 980px; margin: 0 auto;}
+.con10 .btn .btnLeft{position:relative; color:#797979 !important; float:left; padding:10px 0 0 0; overflow:hidden; font-size:11px; text-align:left; /*width:40%;*/ height:40px;}
+.con10 .btn .btnLeft a.btns{display:inline-block; padding-right:4px; background:url(/manage/img/btn_bg.gif) no-repeat 100% 0; font-size:11px;color:#797979;line-height:26px;word-spacing:-1px;text-decoration:none !important;white-space:nowrap; color:#797979 !important;}  
+.con10 .btn .btnLeft a.btns strong{display:block; padding:1px 8px 0 12px; background:url(/manage/img/btn_bg.gif) no-repeat; color:#797979 !important;}
+
+.con10 .btn .btnRight{position:relative; color:#797979 !important; float:right; padding:10px 0 0 0; overflow:hidden; font-size:11px; text-align:right; /*width:40%;*/ height:40px;}
+.con10 .btn .btnRight a.btns{display:inline-block; padding-right:4px; background:url(/manage/img/btn_bg.gif) no-repeat 100% 0; font-size:11px;color:#797979;line-height:26px;word-spacing:-1px;text-decoration:none !important;white-space:nowrap; color:#797979 !important;}  
+.con10 .btn .btnRight a.btns strong{display:block; padding:1px 8px 0 25px; background:url(/manage/img/btn_write.gif) no-repeat; color:#797979 !important;}
+
 /* 풋터 */
-#footer{margin-top: 330px;}
+#footer{margin-top: 100px;}

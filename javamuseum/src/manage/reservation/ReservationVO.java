@@ -13,15 +13,17 @@ public class ReservationVO extends Parameter {
 	
 	private int time;				// 프로그램 시간
 	private String date;			// 프로그램 날짜 
-	private String state;			// 신청 상태
 	private Timestamp registdate;	// 신청 일자
-	private Timestamp modifydate;	// 수정 일자
 	
 	private String title;
 	private String name;
+	private String id;
 	private int category;
+	private String imagename;
 	
 	
+	
+
 	public int getCategory() {
 		return category;
 	}
@@ -29,6 +31,23 @@ public class ReservationVO extends Parameter {
 	public void setCategory(int category) {
 		this.category = category;
 	}
+
+	public String getImagename() {
+		return imagename;
+	}
+
+	public void setImagename(String imagename) {
+		this.imagename = imagename;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 
 	public String getName() {
 		return name;
@@ -80,28 +99,12 @@ public class ReservationVO extends Parameter {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
 	public Timestamp getRegistdate() {
 		return registdate;
 	}
 	public void setRegistdate(Timestamp registdate) {
 		this.registdate = registdate;
 	}
-
-	public Timestamp getModifydate() {
-		return modifydate;
-	}
-
-	public void setModifydate(Timestamp modifydate) {
-		this.modifydate = modifydate;
-	}
-	
-	
 
 
 }

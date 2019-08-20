@@ -151,3 +151,40 @@ CREATE TABLE `admin_login_history` (
   `logindate` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `program` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `category` int(11) DEFAULT '0',
+  `title` varchar(45) DEFAULT NULL,
+  `contents` text,
+  `instructor` varchar(45) DEFAULT NULL,
+  `max_mem` int(11) DEFAULT '0',
+  `imagename` varchar(45) DEFAULT NULL,
+  `registdate` timestamp NULL DEFAULT NULL,
+  `state` varchar(45) DEFAULT NULL,
+  `target` varchar(45) DEFAULT NULL,
+  `price` varchar(11) DEFAULT '무료',
+  `p_time` varchar(45) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `display` int(11) DEFAULT '0',
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB AUTO_INCREMENT=192 DEFAULT CHARSET=utf8
+
+CREATE TABLE `program_option` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `program_pk` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  `date` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  `time` int(11) DEFAULT '0',
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB AUTO_INCREMENT=166 DEFAULT CHARSET=utf8 COLLATE=utf8_bin
+
+CREATE TABLE `program_res` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `program_pk` int(11) DEFAULT NULL,
+  `member_pk` int(11) DEFAULT NULL,
+  `time` int(11) DEFAULT NULL,
+  `date` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  `registdate` timestamp NULL DEFAULT NULL,
+  `modifydate` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_bin

@@ -39,7 +39,37 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 		
 	});
 	
-	function ticketShow(member_pk){
+	//대관 & QnA 클릭시
+	function qnaShow() {
+		$(".members-wrap > div").hide();
+		$.ajax({
+			type: "POST",
+			url: "/user/mypage/qna",
+			data: {"memberid" : "<%=member.getId()%>" },
+			async: false,
+			success: function(data) {
+				$(".con7").html(data);
+				$(".con7").show();
+			}
+		});
+	}
+	
+	function program(member_pk) {
+		$(".members-wrap > div").hide();
+		$.ajax({
+			type: "GET",
+			url: "/user/mypage/program",
+			data: { "member_pk" : member_pk},
+			async: false,
+			success: function(data){
+				$(".con5").html(data);
+				$(".con5").show();
+			}
+		});
+	}
+	
+	//예매 내역 클릭시
+	function ticketShow(member_pk) {
 		$(".members-wrap > div").hide();
 		$.ajax({
 			type: "GET",
@@ -48,13 +78,90 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 			async: false,
 			success: function(data){
 				$(".con6").html(data);
-				$(".con6-center").show();
+				$(".con6").show();
 			}
 		});
 	}
 	
+	//예매 내역에서 예매 취소 클릭시
+	function cancelBtn(no, i){
+		var idx = i;
+		if(confirm("예매를 취소하시겠습니까?") == true) {
+			$.ajax({
+				type: "POST",
+				url: "/user/mypage/cancel?no="+no,
+				data: {
+					canceldate : "<%=DateUtil.getToday()%>"
+				},
+				async: false,
+				success: function(data){
+					alert("예매를 취소하였습니다.");
+					ticketShow(<%=member.getNo()%>);
+					$(".members-wrap > div").hide();
+					$(".members-wrap > div").eq(2).show();
+				}
+			}); 
+		}
+	}
 	
+	// qna 답변형 쓰기 
+	function replyBtn(no) {
+		$(".members-wrap > div").hide();
+		$.ajax({
+			type: "GET",
+			url: "/user/mypage/qnaReply?no="+no,
+			data: { "memberid" : "<%=member.getId()%>"},
+			async: false,
+			success: function(data){
+				$(".con9").html(data);
+				$(".con9").show();
+			}
+		});
+	}
 	
+	// qna 상세페이지
+	function qnaRead(no) {
+		$(".members-wrap > div").hide();
+		$.ajax({
+			type: "POST",
+			url: "/user/mypage/qnaRead?no="+no,
+			async: false,
+			success: function(data) {
+				$(".con10").html(data);
+				$(".con10").show();
+			}
+		});
+	}
+	
+	// qna 답변 달기
+	function qnaReply() {
+		var sHTML = oEditors.getById["contents"].getIR();
+		if (sHTML == "" || sHTML == "<p><br></p>") {
+			alert('내용을 입력하세요.');
+			$("#contents").focus();
+			return false;
+		} else {
+			oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
+		}
+		$.ajax({
+			type: "POST",
+			url: "/user/mypage/process",
+			data: $("[name=frm]").serialize(),
+			async:false,
+			success: function() {
+				alert("답변 등록에 성공하셨습니다.");
+				$(".members-wrap > div").hide();
+				qnaShow();
+				$(".members-wrap > div").hide();
+				$(".members-wrap > div").eq(3).show();
+			}
+		});
+	}
+	//qna 목록 클릭시 index 페이지로
+	function goIndex() {
+		$(".members-wrap > div").hide();
+		$(".con7").show();
+	}
 </script>
 </head>
 <body>
@@ -75,19 +182,19 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 					<h3>회원정보</h3>
 					<p>개인정보 변경 및 회원<br>탈퇴를 하고싶다면?</p>
 				</li>
-				<li class="con2-gr">
+				<li class="con2-gr" onclick="program(<%=member.getNo()%>)">
 					<img src="/img/mypage-con1-2.png">
-					<h3>내가 본 작품</h3>
-					<p>관람한 작품들을 한번에<br>모아 보고 싶다면?</p>
+					<h3>나의 프로그램</h3>
+					<p>신청한 프로그램들을 한번에<br>모아 보고 싶다면?</p>
 				</li>
 				<li class="con2-gr" onclick="ticketShow(<%=member.getNo()%>)">
 					<img src="/img/mypage-con1-3.png">
 					<h3>예매내역</h3>
 					<p>최근 예매한 작품이<br>궁금하다면?</p>
 				</li>
-				<li class="con2-gr">
+				<li class="con2-gr" onclick="qnaShow()">
 					<img src="/img/mypage-con1-4.png">
-					<h3>대관안내</h3>
+					<h3>대관문의 & QnA</h3>
 					<p>고객님의 문의한 대관내역이<br>궁금하다면?</p>
 				</li>
 			</ul>
@@ -101,97 +208,25 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
             </div>   
             <!-- 내가 본 작품 -->
             <div class="con5">
-                <div class="con5-center">
-                    <div class="con5-text">
-                        <h2>내가 본 작품</h2>
-                        <h4>감상한 작품을 한곳에 모아서 볼 수 있는 나만의 갤러리입니다.</h4>
-                    </div>
-                    <div class="con5-exhibition">
-                        <div class="con5-gr clear">
-                            <div class="con5-left">
-                                <img src="/img/mypage-con3-1.jpg">
-                            </div>
-                            <div class="con5-right">
-                                <h3>WEATHER</h3>
-                                <h5>WEATHER: 오늘, 당신의 날씨는 어떤가요?</h5>
-                                <p>2018.05.03 - 2018.11.25</p>
-                            </div>
-                        </div>
-                        <div class="con5-gr clear">
-                            <div class="con5-left">
-                                <img src="/img/mypage-con3-2.png">
-                            </div>
-                            <div class="con5-right">
-                                <h3>WANDERLAND</h3>
-                                <h5>WANDERLAND: 파리지앵의 산책</h5>
-                                <p>2016.11.19 - 2016.12.11</p>
-                            </div>
-                        </div>
-                        <div class="con5-gr clear">
-                            <div class="con5-left">
-                                <img src="/img/mypage-con3-3.jpg">
-                            </div>
-                            <div class="con5-right">
-                                <h3>YOUTH</h3>
-                                <h5>YOUTH: 청춘의 열병, 그 못다 한 이야기</h5>
-                                <p>2015.02.09 - 2016.05.28</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <!-- 예매 내역 -->
             <div class="con6">
         
             </div>
-            <!-- 대관내역 -->
+            <!-- 대관내역 & QnA-->
             <div class="con7">
-				<div class="con7-center">
-					<div class="con7-text">
-						<h2>대관내역</h2>
-						<h4>고객님이 예약하신 대관장소입니다.</h4>
-					</div>
-					<table class="con7-table">
-						<tr>
-							<th>대관장소</th>
-							<th>대관일시</th>
-							<th>대관료</th>
-							<th>비고</th>
-						</tr>
-						<tr>
-							<td>제1 전시실</td>
-							<td>2019.07.04</td>
-							<td>1,010,000원</td>
-							<td>대관중</td>
-						</tr>
-						<tr>
-							<td>제2 전시실</td>
-							<td>2019.02.01</td>
-							<td>680,000원</td>
-							<td>대관종료</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-                    </table>
-            		</div>
-				</div>    
+            
 			</div>
+			<!-- QnA 답변-->
+            <div class="con9">
+            
+			</div>
+			<!-- QnA 상세 -->
+			<div class="con10">
+			
+			</div>
+		</div>
 	</div>
 <%@ include file="/WEB-INF/view/user/include/footer.jsp" %>
 </body>

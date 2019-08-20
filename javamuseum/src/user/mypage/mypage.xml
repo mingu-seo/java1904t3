@@ -3,6 +3,7 @@
 <sqlMap namespace="mypage">
 
     <typeAlias alias="uexhibitionvo" type="user.exhibition.UExhibitionVO"/>
+    <typeAlias alias="ureservationvo" type="manage.reservation.ReservationVO"/>
 
     <select id="myResList" parameterClass="Integer" resultClass="user.ticket.UTicketVO">
 		SELECT *, 
@@ -17,5 +18,16 @@
     	WHERE member_pk=#member_pk#
     </select>
     
-
+    <select id="myProList" parameterClass="Integer" resultClass="ureservationvo">
+		SELECT *, 
+		(SELECT title FROM program WHERE no= program_res.program_pk) title ,
+		(SELECT category FROM program WHERE no= program_res.program_pk ) category , 
+		(SELECT imagename FROM program WHERE no= program_res.program_pk ) imagename  
+		FROM program_res
+		WHERE member_pk=#member_pk#
+		ORDER BY no DESC
+		
+    </select>
+    
+    
 </sqlMap> 
