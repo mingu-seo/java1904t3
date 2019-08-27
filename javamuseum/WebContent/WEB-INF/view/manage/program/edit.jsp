@@ -14,7 +14,6 @@
 <%@ include file="/WEB-INF/view/manage/include/headHtml.jsp"%>
 <script>
 	var oEditors; // 에디터 객체 담을 곳
-	
 	jQuery(window).load(function() {
 		oEditors = setEditor("contents"); // 에디터 셋팅
 		for(var i=0; i<<%=olist.size()%>; i++){
@@ -57,8 +56,6 @@
 		} else {
 			oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
 		}
-
-
 
 		return true;
 	}
@@ -146,7 +143,7 @@
 												<th scope="row"><label for="">대상</label></th>
 												<td><input type="text" id="target" name="target" class="w50" title="프로그램 대상을 입력해주세요" value="<%=data.getTarget()%>"/></td>
 												<th scope="row"><label for="">노출여부</label></th>
-												<td><select name="display">
+												<td><select name="state">
 													<%=CodeUtil.getDisplayOp(data.getDisplay())%>
 												</select></td>
 												<th scope="row"><label for="">카테고리</label></th>
@@ -163,42 +160,39 @@
 													value="<%=data.getP_time()%>" /></td>
 											</tr>
 											<tr>
-											
 											</tr>
 											<tr>
-											<th scope="row"><label for="">*프로그램 기간</label>
-												<input type="button" value="추가" class="addBtn"/>
-											</th>
-											<td>
-												<table id="optionTable">
-													<tr>
-														<td>프로그램 날짜</td>
-														<td>프로그램 시간</td>
-														<%
-															for (int i = 0; i < olist.size(); i++) {
-														%>
-														<tr class="addTr<%=i%>">
-															<td>
-																<input type='text' id='date<%=i%>' name="date" class='inputDate' value='<%=olist.get(i).get("date")%>'/>
-																<span id='Caldate<%=i%>Icon' name='Caldate<%=i%>Icon'><img src='/manage/img/calendar_icon.png' id='Caldate<%=i%>IconImg' style='cursor:pointer;'/></span></td>
-															<td>
-																<select name="time" >
-																	<%=CodeUtil.getP_timeType((Integer)olist.get(i).get("time"))%>
-																</select>
-															</td>
-															<td>
-																<input type="button" value="삭제" onclick="delBtn('addTr<%=i%>')" />
-															</td>
+												<th scope="row"><label for="">*프로그램 기간</label>
+													<input type="button" value="추가" class="addBtn"/>
+												</th>
+												<td>
+													<table id="optionTable">
+														<tr>
+															<td>프로그램 날짜</td>
+															<td>프로그램 시간</td>
+															<%
+																for (int i = 0; i < olist.size(); i++) {
+															%>
+															<tr class="addTr<%=i%>">
+																<td>
+																	<input type='text' id='date<%=i%>' name="date" class='inputDate' value='<%=olist.get(i).get("date")%>'/>
+																	<span id='Caldate<%=i%>Icon' name='Caldate<%=i%>Icon'><img src='/manage/img/calendar_icon.png' id='Caldate<%=i%>IconImg' style='cursor:pointer;'/></span></td>
+																<td>
+																	<select name="time" >
+																		<%=CodeUtil.getP_timeType((Integer)olist.get(i).get("time"))%>
+																	</select>
+																</td>
+																<td>
+																	<input type="button" value="삭제" onclick="delBtn('addTr<%=i%>')" />
+																</td>
+															</tr>
+															<%
+																}
+															%>
 														</tr>
-														<%
-															}
-														%>
-													</tr>
-												</table>
-											</td>
-
+													</table>
+												</td>
 											</tr>
-
 											<tr>
 												<th scope="row"><label for="">첨부파일</label></th>
 												<td colspan="5">
@@ -228,25 +222,20 @@
 												</td>
 											</tr>
 											<tr>
-												 <th scope="row"><label for="">내용</label></th>
+												<th scope="row"><label for="">내용</label></th>
 												<td colspan="5">
-												<textarea id="contents" name="contents"
+													<textarea id="contents" name="contents"
 														  title="내용을 입력해주세요" style="width: 100%;"><%=Function.checkNull(data.getContents())%></textarea>
 												</td>
 											</tr>
-
-
 										</tbody>
 									</table>
-									</tr>
-									<input type="hidden" name="cmd" id="cmd" value="edit" /> <input
-										type="hidden" name="no" id="no" value="<%=data.getNo()%>" />
+									<input type="hidden" name="cmd" id="cmd" value="edit" />
+									<input type="hidden" name="no" id="no" value="<%=data.getNo()%>" />
 								</form>
 								<div class="btn">
-
 									<div class="btnRight">
-										<a class="btns" style="cursor: pointer;"
-											onclick="$('#frm').submit();"><strong>저장</strong></a>
+										<a class="btns" style="cursor: pointer;" onclick="$('#frm').submit();"><strong>저장</strong></a>
 									</div>
 								</div>
 								<!--//btn-->

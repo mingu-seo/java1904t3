@@ -28,9 +28,7 @@ public class UExhibitionController {
 	public String index(Model model, UExhibitionVO param, ReviewVO review) throws Exception {
 		int[] rowPageCount = uexhibitionService.count(param);
 		ArrayList<UExhibitionVO> ingList = uexhibitionService.ingList(param);
-		ArrayList<ReviewVO> reviewList = reviewService.list(review);
 		
-		model.addAttribute("rList", reviewList);
 		model.addAttribute("totCount", rowPageCount[0]);
 		model.addAttribute("totPage", rowPageCount[1]);
 		model.addAttribute("param", param);
@@ -51,11 +49,21 @@ public class UExhibitionController {
 	}
 	
 	@RequestMapping("/user/exhibition/detail")
-	public String detail(Model model, UExhibitionVO param) throws Exception {
+	public String detail(Model model, UExhibitionVO param, ReviewVO review) throws Exception {
 		UExhibitionVO detail = uexhibitionService.display(param.getNo());
+		ArrayList<ReviewVO> reviewList = reviewService.displayReview(param.getNo());
 		
+		model.addAttribute("rList", reviewList);
 		model.addAttribute("detail", detail);
 		return "user/exhibition/detail";
+	}
+	
+	@RequestMapping("/user/exhibition/reviewView")
+	public String reviewView(Model model, ReviewVO param) throws Exception {
+		ReviewVO data = reviewService.read(param, true);
+		
+		model.addAttribute("data", data);
+		return "user/exhibition/reviewView";
 	}
 	
 	@RequestMapping("/user/exhibition/subExhibition2")
@@ -74,7 +82,9 @@ public class UExhibitionController {
 	@RequestMapping("/user/exhibition/pastDetail")
 	public String pastDetail(Model model, UExhibitionVO param) throws Exception {
 		UExhibitionVO detail = uexhibitionService.pastReview(param.getNo());
+		ArrayList<ReviewVO> reviewList = reviewService.displayReview(param.getNo());
 		
+		model.addAttribute("rList", reviewList);
 		model.addAttribute("detail", detail);
 		return "user/exhibition/pastDetail";
 	}

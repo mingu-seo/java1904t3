@@ -6,6 +6,7 @@
 .con1-box h3{font-size: 60px; margin-bottom: 10px;}
 .con1-box p{font-size: 20px;}
 /* 현재전시 */
+.con2 {margin-bottom:100px;}
 .con2-center{width: 1200px; margin: 0 auto; position: relative;}
 .con2-text h3{font-size: 40px; font-weight: normal; margin-top :136px; margin-bottom: 80px;}
 .con2-bggroup{position: relative;}
@@ -15,14 +16,15 @@
 .con2-sub01{width: 1200px;height: 400px; background-color: #fff; position: absolute; top:0; right: 0; display: none;}
 .con2-sub01 img{float: left;width: 400px;}
 .sub01-text{float: left; margin-left: 30px;margin-top: 30px; width: 700px;}
-.sub01-text h4{ font-size: 18px; line-height: 30px; font-weight: bold;}
+.sub01-text h4{ font-size: 40px; line-height: 30px; font-weight: bold;}
 .sub01-text h3{font-size: 28px; margin-top: 20px; margin-bottom: 20px;}
 .sub01-text p{font-size: 16px; line-height: 30px;}
 /* 예매 버튼 */
-.sub01-btn{  margin-top: 20px; width:320px;}
+.sub01-btn{  margin-top: 20px; width:100%;}
 .sub01-btn li {background-color:black;float:left; width: 150px; height: 50px; margin-right:10px;}
 .sub01-btn li a {color: #fff; text-align: center; line-height: 50px;display: block; font-size: 16px; font-weight: bold;}
-#like{ background-color:red;}
+#disScore {width:340px;background-color:white; color:black;}
+/* #score { background-color:white; color:black;} */
 /* 닫기 버튼 */
 .sub01-close {width: 70px; position: absolute; top: 10px; right: 10px;}
 .sub01-close img { width:100%;}
@@ -40,8 +42,8 @@
 .con3-top-img{width: 30%; height: 250px;}
 .con3-top-img > img{ width: 100%; height: 100%;}
 /* 상단-텍스트 */
-.con3-top-text{margin-top: 40px; margin-left: 36px; width:65%;}
-.con3-top-text h4{font-size: 14px;}
+.con3-top-text{margin-top: 5px; margin-left: 20px; width:65%;}
+.con3-top-text h4{font-size: 30px;}
 .con3-top-text h3{font-size: 22px; margin-top: 18px; margin-bottom: 12px;}
 .con3-top-text p{font-size: 12px;}
 /* 하단-내용 */
@@ -77,11 +79,11 @@
 .con4-top-img > img{ width: 100%; height: 100%;}
 /* 작품 소개 끝 */
 /* BEST 한줄평/후기 시작 */
-.con4-top-text{margin-top: 5px; margin-left: 36px; width:65%;}
+.con4-top-text{margin-top: 5px; margin-left: 20px; width:65%;}
 .con4-bot-title {width:100%; background-color:#191919; height:50px; line-height:50px; text-align:center; color:white; font-size:18px;}
-.con4-top-text h4{font-size: 14px;}
-.con4-top-text h3{font-size: 22px; margin-top: 18px; margin-bottom: 12px;}
-.con4-top-text p{font-size: 12px;}
+.con4-top-text h4{font-size: 30px;}
+.con4-top-text h3{font-size: 22px; margin-top: 10px; margin-bottom: 12px;}
+.con4-top-text p{font-size: 12px; min-height:80px;}
 .con4-bot-text-list {border-bottom:1px solid #191919;}
 .con4-epilogue { background-image:url(../img/ep-on.png); padding:5px 0px; background-repeat:no-repeat; background-position:right 20px top 17px; background-size:25px;}
 .con4-epilogue.on { background-image:url(../img/ep-off.png);}
@@ -93,11 +95,22 @@
 .con4-ep-cont { display:none; background-color:#f4f4f4; padding-left:205px; line-height:30px;}
 .con4-btn{margin-top:16px;}
 .con4-btn .btn-group li {width:398px;}
-.con4-btn input[type="submit"]{width:398px; height: 50px;background-color: #191919; border: none;color: #fff; font-size: 16px;}
+.con4-btn input[type="button"]{width:398px; height:50px; background-color: #191919; border: none;color: #fff; font-size: 16px;}
 .con4-btn #submit-btn2{width:398px; height: 50px;background-color: #191919;color: #fff; font-size: 16px; border: none;}
 .write li {float:left; margin-top:20px;}
 .con4 input[type="text"] {width:696px; margin-right:20px; border:2px solid black; height:35px;}
 #write-submit {width:100px; height:40px; border:none; border:2px solid black; background-color:transparent;}
+span.star-prototype, span.star-prototype > * {
+    height: 25px; 
+    background: url(http://i.imgur.com/YsyS5y8.png) 0 -25px repeat-x;
+    background-size:25px;
+    width: 127px;
+    display: inline-block;
+}
+span.star-prototype > * {
+    background-position: 0 0;
+    max-width:127px; 
+}
 /* BEST 한줄평/후기 끝 */
 /* 상세 페이지 */
 .con5-btn { width:100%;}
@@ -107,6 +120,29 @@
 .con5-top li { float: left;}
 .con5-top .detail { width:50%;}
 .con5-top .review { width:50%;}
+.con5-top .con5-contents{margin: 5px; height: 370px; overflow:auto;}
+.con5-reviews{margin-top:5px;}
+.review-table{text-align:center; width:100%; border-top: 2px solid #191919;font-size: 18px;}
+.review-table .reviewTh{background-color:#ccc;}
+.review-table .reviewTr{height:110px;}
+.review-table img{height:90px;}
+.review-table .reviewtitle{width:500px;}
+.review-table .reviewscore{width:100px;}
+.reviewTr a{color:black;}
+.reviewTr a:hover{text-decoration:underline;}
 /* 상세 페이지 종료*/
+/* 리뷰 상세페이지 */
+.con6-reviewView-box { margin-top:10px; }
+.con6-reviewView-box .viewTitle{ font-size:30px; padding-left:15px; padding-right:15px; border-bottom-style: dashed; border-bottom-width: 1px;}
+.con6-reviewView-box .viewTitle .reviewTitle{ float:left;}
+.con6-reviewView-box .viewTitle .writedate{ float:right;  margin-top:20px;}
+.con6-reviewView-box .viewTitle .writedate td{ color:#5a5a5a; font-size:14px;}
+.con6-reviewView-box .viewWriter{ font-size:15px; margin-left:10px; float:left;}
+.con6-reviewView-box .viewReadno{ font-size:15px; float:right; margin-right:15px;}
+.con6-reviewView-box .viewContents{ font-size:20px; margin:30px 0 10px 10px; height:250px; overflow:auto;}
+.con6-reviewView-box .viewContents img{width:250px; float:left; margin:5px;}
+.con6-reviewView-box .btn .btnLeft{position:relative; color:#797979 !important; float:left; padding:5px 0 0 0; overflow:hidden; font-size:11px; text-align:left; /*width:40%;*/ height:40px;}
+.con6-reviewView-box .btn .btnLeft a.btns{display:inline-block; padding-right:4px; background:url(/manage/img/btn_bg.gif) no-repeat 100% 0; font-size:11px;color:#797979;line-height:26px;word-spacing:-1px;text-decoration:none !important;white-space:nowrap; color:#797979 !important;}  
+.con6-reviewView-box .btn .btnLeft a.btns strong{display:block; padding:1px 8px 0 12px; background:url(/manage/img/btn_bg.gif) no-repeat; color:#797979 !important;}
 /* 풋터 */
 #footer{margin-top: 120px;}

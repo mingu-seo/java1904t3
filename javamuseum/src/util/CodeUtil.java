@@ -694,11 +694,11 @@ public class CodeUtil {
 	
 	public static String getCategory(int Category) {
 		String result = "";
-		if (Category == 1) {
+		if (Category == 0) {
 			result = "아동";
-		} else if (Category == 0) {
+		} else if (Category == 1) {
 			result = "청소년";
-		} else if (Category == -1) {
+		} else if (Category == 2) {
 			result = "성인";
 		}
 		return result;
@@ -708,7 +708,7 @@ public class CodeUtil {
         StringBuffer result = new StringBuffer();
         	result.append("<option value='0'"+Function.getSelected(0,arg)+">"+getCategory(0)+"</option>");
         	result.append("<option value='1'"+Function.getSelected(1,arg)+">"+getCategory(1)+"</option>");
-        	result.append("<option value='-1'"+Function.getSelected(-1,arg)+">"+getCategory(-1)+"</option>");
+        	result.append("<option value='2'"+Function.getSelected(2,arg)+">"+getCategory(2)+"</option>");
         return result.toString();
     }
 		
@@ -943,9 +943,6 @@ public class CodeUtil {
 
 				return result.toString();
 			}
-		
-	
-	
 	 	
 }
 

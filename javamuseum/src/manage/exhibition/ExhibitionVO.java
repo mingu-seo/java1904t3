@@ -12,7 +12,7 @@ public class ExhibitionVO extends Parameter {
 	protected String artist;						//아티스트 작가
 	protected int hallnumber;						//관 번호
 	protected String contents;			
-	protected int score;							//평점
+	protected double score;							//평점
 	protected String imagename;						//목록 이미지
 	protected int state;							//전시 상태
 	private String[] sstate;
@@ -82,10 +82,10 @@ public class ExhibitionVO extends Parameter {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public int getScore() {
+	public double getScore() {
 		return score;
 	}
-	public void setScore(int score) {
+	public void setScore(double score) {
 		this.score = score;
 	}
 	public String getImagename() {

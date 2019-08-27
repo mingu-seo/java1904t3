@@ -36,7 +36,7 @@
    
    	<!-- 티켓 등록 페이지에서 필요한 진행 중인 전시 작품 리스트 -->
    	<select id="ingList" parameterClass="exhibitionvo" resultClass="exhibitionvo">
-   		SELECT no, artist, title, hallnumber FROM display 
+   		SELECT no, artist, title, hallnumber, imagename, startdate, enddate FROM display 
    		WHERE state=2
    		ORDER BY hallnumber ASC
    	</select>
@@ -81,4 +81,8 @@
     	WHERE no=#no#
     </delete>
     
+    <update id="reviewScore" parameterClass="exhibitionvo">
+    	UPDATE display SET score=#score#
+    	WHERE no = #no#
+    </update>
 </sqlMap>

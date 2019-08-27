@@ -1,5 +1,7 @@
 package user;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import manage.exhibition.ExhibitionService;
+import manage.exhibition.ExhibitionVO;
 import manage.member.MemberVO;
 import property.SiteProperty;
 import user.member.UmemberService;
@@ -16,10 +20,15 @@ import user.member.UmemberService;
 public class UserMainController {
 	@Autowired
 	private UmemberService umemberService;
-
+	@Autowired
+	private ExhibitionService exhibitionService;
+	
 	// 메인페이지 구경용
 	@RequestMapping("/user/index")
-	public String main(Model model) throws Exception {
+	public String main(Model model, ExhibitionVO param) throws Exception {
+		ArrayList<ExhibitionVO> list = exhibitionService.ingList(param);
+		
+		model.addAttribute("list", list);
 		return "/user/index";
 	}
 	
@@ -62,6 +71,21 @@ public class UserMainController {
 		model.addAttribute("url", "/user/index");
 		
 		return "include/alert";
+	}
+	
+	@RequestMapping("/user/visit/visit1")
+	public String visit1(Model model) throws Exception {
+		return "user/visit/visit1";
+	}
+	
+	@RequestMapping("/user/visit/visit2")
+	public String visit2(Model model) throws Exception {
+		return "user/visit/visit2";
+	}
+	
+	@RequestMapping("/user/visit/visit3")
+	public String visit3(Model model) throws Exception {
+		return "user/visit/visit3";
 	}
 	
 	@RequestMapping("/user/test")

@@ -74,5 +74,15 @@
         UPDATE review SET readno = readno+1 WHERE no = #no#
     </update>
 
+	<select id="reviewCount" parameterClass="Integer" resultClass="Integer">
+		SELECT COUNT(*) FROM review WHERE display_pk=#display_pk#
+	</select>
     
+    <select id="displayReview" parameterClass="Integer" resultClass="review_vo">
+    	SELECT review.no, review.imagename, review.reviewtitle, review.review_score FROM review 
+    	LEFT OUTER JOIN member ON review.member_pk = member.no
+        LEFT OUTER JOIN display ON review.display_pk = display.no
+        WHERE display_pk=#no#
+        ORDER BY readno DESC
+    </select>
 </sqlMap>

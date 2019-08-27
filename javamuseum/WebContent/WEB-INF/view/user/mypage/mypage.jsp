@@ -40,16 +40,17 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 	});
 	
 	//대관 & QnA 클릭시
-	function qnaShow() {
+	function qnaShow(reqPageNo) {
 		$(".members-wrap > div").hide();
 		$.ajax({
 			type: "POST",
 			url: "/user/mypage/qna",
-			data: {"memberid" : "<%=member.getId()%>" },
+			data: {"memberid" : "<%=member.getId()%>", "reqPageNo":reqPageNo },
 			async: false,
 			success: function(data) {
 				$(".con7").html(data);
 				$(".con7").show();
+				$(".con77-center").hide();
 			}
 		});
 	}
@@ -151,7 +152,7 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 			success: function() {
 				alert("답변 등록에 성공하셨습니다.");
 				$(".members-wrap > div").hide();
-				qnaShow();
+				qnaShow(1);
 				$(".members-wrap > div").hide();
 				$(".members-wrap > div").eq(3).show();
 			}
@@ -161,6 +162,17 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 	function goIndex() {
 		$(".members-wrap > div").hide();
 		$(".con7").show();
+		$(".con77-center").hide();
+	}
+	
+	function pageIndex(curpage) {
+		$.ajax({
+			
+		})
+	}
+	
+	function getAjaxPage(reqPage) {
+		qnaShow(reqPage);
 	}
 </script>
 </head>
@@ -192,10 +204,10 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 					<h3>예매내역</h3>
 					<p>최근 예매한 작품이<br>궁금하다면?</p>
 				</li>
-				<li class="con2-gr" onclick="qnaShow()">
+				<li class="con2-gr" onclick="qnaShow(1)">
 					<img src="/img/mypage-con1-4.png">
 					<h3>대관문의 & QnA</h3>
-					<p>고객님의 문의한 대관내역이<br>궁금하다면?</p>
+					<p>고객님의 문의한 내역이<br>궁금하다면?</p>
 				</li>
 			</ul>
 		</div>

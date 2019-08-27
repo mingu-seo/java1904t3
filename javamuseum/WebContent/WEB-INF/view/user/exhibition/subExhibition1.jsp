@@ -1,12 +1,10 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
 <%@ page import="user.exhibition.*" %>
-<%@ page import="manage.review.*" %>
 <%
 MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 ArrayList<UExhibitionVO> list = (ArrayList)request.getAttribute("ingList");
 UExhibitionVO param = (UExhibitionVO)request.getAttribute("param");
-/* ReviewVO rList = (ReviewVO)request.getAttribute("rList"); */
 int totCount = (Integer)request.getAttribute("totCount");
 int totPage = (Integer)request.getAttribute("totPage");
 %>
@@ -20,7 +18,11 @@ int totPage = (Integer)request.getAttribute("totPage");
 	    
 <link rel="stylesheet" href="/css/sub-exhibition1.css">
 <title>미술관소개</title>
-	
+
+<link rel="stylesheet" href="/css/jquery-ui.css">
+<script src="/js/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 <script src="https://kit.fontawesome.com/3db09483e7.js"></script>
 <script type="text/javascript" src="/js/slick.js"></script>
 <script type="text/javascript" src="/js/aos.js"></script>
@@ -50,11 +52,33 @@ int totPage = (Integer)request.getAttribute("totPage");
 			url : "/user/exhibition/detail?no="+i,
 			async : false,
 			success : function(data) {
-				$(".con3").html(data);
-				$(".con4-bg").show();
+					$(".con3").html(data);
+					$(".con4-bg").show();
+			}
+		
+		});
+	};
+	
+	function reviewView(no) {
+		$.ajax({
+			type: "POST",
+			url: "/user/exhibition/reviewView?no="+no,
+			async: false,
+			success: function(data) {
+				$(".con5-reviews").hide();
+				$(".con6-reviewView").html(data);
+				$(".con6-reviewView").show();
 			}
 		});
 	};
+	
+	function goIndex() {
+		$(this).addClass("on");
+		$(".detail").removeClass("on");
+		$(".con6-reviewView").hide();
+		$(".con5-contents").hide();
+		$(".con5-reviews").show();
+	}
 	
 	$(function(){
 		$(".con2-bggroup > li > a").click(function(event){ // a링크 정지
@@ -82,7 +106,12 @@ int totPage = (Integer)request.getAttribute("totPage");
 				$(this).siblings(".con4-ep-cont").stop().slideDown();
 			}	
 		})
+		
 	})
+	
+	
+
+
 </script>
 </head>
 <body>
@@ -115,8 +144,7 @@ int totPage = (Integer)request.getAttribute("totPage");
                         <div class="con2-sub01 clear">
                             <img src="/upload/exhibition/<%=list.get(i).getImagename()%>"/>
                             <div class="sub01-text">
-                                <h4>로봇 일러스트레이션을 통해</h4>
-                                <h4>기계적 판타지를 구현하는</h4>
+                                <h4><%=list.get(i).getTitle() %></h4>
                                 <h3><%=list.get(i).getArtist()%></h3>
                                 <p><%=list.get(i).getPreview().replaceAll("\n","<br>")%></p>
 								<ul class="sub01-btn clear">

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import board.qna.QnaService;
 import board.qna.QnaVO;
 import manage.member.MemberVO;
+import manage.rental.RentalService;
+import manage.rental.RentalVO;
 import manage.program.ProgramService;
 import manage.reservation.ReservationVO;
 import manage.ticket.TicketVO;
@@ -33,6 +35,8 @@ public class MypageController {
 	@Autowired
 	private QnaService qnaService;
 	@Autowired
+	private RentalService rentalService;
+	@Autowired
 	private ProgramService programService;
 
 	@RequestMapping("/user/mypage/mypage")
@@ -46,12 +50,9 @@ public class MypageController {
 	@RequestMapping("/user/mypage/ticket")
 	public String ticket(Model model, UTicketVO param, TicketVO tparam) throws Exception {
 		ArrayList<UTicketVO> myResList = mypageService.myResList(param.getMember_pk());
-		int[] resRowPageCount = mypageService.resCount(param);		//마이페이지 예매내역 페이징
 
 		model.addAttribute("tparam", tparam);
 		model.addAttribute("myResList", myResList);
-		model.addAttribute("restotCount", resRowPageCount[0]);
-		model.addAttribute("restotPage", resRowPageCount[1]);
 		return "user/mypage/ticket";
 	}
 
@@ -77,11 +78,13 @@ public class MypageController {
 	}
 	
 	@RequestMapping("/user/mypage/qna")
-	public String qna(Model model, QnaVO param) throws Exception {
+	public String qna(Model model, QnaVO param, RentalVO rparam) throws Exception {
 		ArrayList<QnaVO> qnaList = (ArrayList)qnaService.list(param);
+		ArrayList<RentalVO> rentalList = rentalService.list(rparam);
 		int[] qnaRowPageCount = qnaService.count(param);
 		model.addAttribute("param", param);
 		model.addAttribute("qnaList", qnaList);
+		model.addAttribute("rentalList", rentalList);
 		model.addAttribute("qnatotCount", qnaRowPageCount[0]);
 		model.addAttribute("qnatotPage", qnaRowPageCount[1]);
 		return "user/mypage/qna";
