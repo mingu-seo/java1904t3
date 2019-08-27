@@ -25,7 +25,9 @@ int totPage = (Integer)request.getAttribute("totPage");
 <title>전체 리뷰</title>
 <link rel="stylesheet" href="/css/sub-exhibition3.css">
 <style>
-
+	.tbl-box td{
+		"text-align:center";
+	}
 </style>
 <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="/js/slick.js"></script>
@@ -70,7 +72,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 										<th scope="col">작성일</th> 
 									</tr>
 								</thead>
-								<tbody>
+								<tbody >
 								<% if (totCount == 0) { %>
 									<tr>
 										<td class="first" colspan="9">등록된 글이 없습니다.</td>
@@ -111,8 +113,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 				</div>
 				<div class="btn" >
 						<div class="btnRight">
-							<input type="button" value="리뷰쓰기" onclick="location.href='http://localhost:8080/user/review/writes'">
-							<a class="wbtn" href="write"><strong>리뷰쓰기</strong> </a>
+							<a class="wbtn" href="write" ><button>리뷰쓰기</button> </a>
 						</div>
 				</div>
 				<!-- 페이징 처리 -->
@@ -131,7 +132,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 										
 									</select>
 									<input type="text" name="sval" value="<%=param.getSval()%>" title="검색할 내용을 입력해주세요" />
-									<input type="image" src="/manage/img/btn_search.gif" class="sbtn" alt="검색" />
+									<input type="image" src="/manage/img/btn_search.gif" class="submit" alt="검색" />
 								</div>
 							</form>
 				</div>

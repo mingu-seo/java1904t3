@@ -92,8 +92,8 @@ function goDelete() {
 										<img src="/upload/review/<%=data.getImagename()%>" width="20%" height="auto" /></td>
 										<%} %>
 										</tr>
-										<tr>
-											<th scope="row"><label for="">내용</label></th>
+										<tr style="min-height:100px">
+											<th scope="row"  ><label for="">내용</label></th>
 											<td colspan="3"><%=data.getContents()%></td>
 										</tr>
 										<tr>
@@ -109,11 +109,11 @@ function goDelete() {
 				
 							<div class="btn">
 									<div class="btnLeft">
-										<a class="btns"	href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
+										<a class="btns"	href="<%=param.getTargetURLParam("index", param, 0)%>"><button>목록</button></a>
 									</div>
 									<div class="btnRight">
-										<a class="btns" href="<%=param.getTargetURLParam("edit", param, data.getNo())%>"><strong>수정</strong></a>
-										<a class="btns" href="#" onclick="goDelete();"><strong>삭제</strong></a>
+										<a class="btns" href="<%=param.getTargetURLParam("edit", param, data.getNo())%>"><button>수정</button></a>
+										<a class="btns" href="#" onclick="goDelete();"><button>삭제</button></a>
 									</div>
 							</div>
 			</div>

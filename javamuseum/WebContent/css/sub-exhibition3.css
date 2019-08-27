@@ -14,7 +14,7 @@
 
 /* 공지사항 표 구역 */
 .tbl-box {width:1000px; font-size:16px; border-top:1px solid black; border-bottom:1px solid black; margin-top:50px;}
-.tbl-box td {height:50px; border-bottom:1px solid #e9e9e9;}
+.tbl-box td {height:50px; border-bottom:1px solid #e9e9e9; }
 .tbl-box td a {color:black; display:block;}
 .tbl-box th {height:50px; border-bottom:1px solid black; background-color:#e9e9e9;}
 .tbl-box .num {text-align:center;}
@@ -25,18 +25,23 @@
 .th3 {width:100px;}
 
 /* 공지사항 페이지 넘기는 번호구역 */
-.number-box {width:350px; margin:30px auto; text-align:center; }
-.number-box div a {display:block; color:black;}
-.number-box div {float:left; width:25px; height:25px; text-align:center; border:1px solid black; line-height:25px; margin-right:5px;}
+.number-box {width:100%; margin:50px auto; text-align:center; }
+.number-box div a {display:block; color:black; }
+.number-box div {display:inline-block;width:25px; height:25px; text-align:center; border:1px solid black; line-height:25px; margin-right:5px;}
 .number-box div:last-child {margin-right:0;}
-.number-box div a.cur {background-color:black; color:white;}
+.number-box div a.cur {background-color:black; color:white; }
 .number-box .img-box {position:relative;}
-.number-box .img-box img {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);}
+
+.btn {margin-top:10px;}
+.btnLeft {float:left;}
+.btnRight {float:Right;}
 
 
-.form-box {width:480px; margin:0 auto; height:30px;}
+
+.form-box {width:520px; margin:0 auto; height:30px;}
 .form-box input {height:30px;}
+.form-box input[type='image'] {position:absolute;}
 .form-box select {width:80px; height:30px;font-size:14px; padding-left:5px;}
 .form-box input[type="text"] {width:300px; font-size:16px; padding:0; padding-left:5px;border:1px solid #a9a9a9; height:28px; position:relative; bottom:1px;}
 .form-box input[type="text"]::placeholder {font-size:14px;}
-.form-box input[type="submit"] {width:80px;}
+.form-box input[type="submit"] {width:80px; height:30px;}
