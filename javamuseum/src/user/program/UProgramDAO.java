@@ -41,6 +41,9 @@ public class UProgramDAO extends SqlMapClientDAOSupport {
 		return (Integer)getSqlMapClient().queryForObject("uprogram.countMem", param);
 	}
 
+	public int resnum(ReservationVO param) throws SQLException {
+		return (Integer)getSqlMapClient().queryForObject("uprogram.resnum", param);
+	}
 	
    public static void main(String[] args) throws SQLException {
 	      UProgramDAO pd = new UProgramDAO();

@@ -7,9 +7,6 @@
 UExhibitionVO ticket = (UExhibitionVO)request.getAttribute("ticket");
 MemberVO member = (MemberVO)request.getAttribute("member");
 %>
-<link rel="stylesheet" href="/css/jquery-ui.css">
-<script src="/js/jquery-ui.js"></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 /* $(function(){
 	var IMP = window.IMP;
@@ -45,44 +42,82 @@ function goSave(){
 		alert("결제 수단을 선택해주세요.");
 		return false;
 	}
-	<%-- var IMP = window.IMP;
-	IMP.init('imp10084821');
-	IMP.request_pay({
-	    pg : 'inicis', // version 1.1.0부터 지원.
-	    pay_method : 'card',
-	    merchant_uid : 'merchant_' + new Date().getTime(),
-	    name : '<%=ticket.getTitle()%>',
-	    amount : $("#totalPrice").val(),
-	    buyer_email : '<%=member.getEmail()%>',
-	    buyer_name : '<%=member.getName()%>',
-	    buyer_tel : '<%=member.getTel()%>',
-	    buyer_addr : '<%=member.getAddr1()%>',
-	    buyer_postcode : '<%=member.getZipcode()%>',
-	}, function(rsp) {
-	    if ( rsp.success ) {
-	        var msg = '결제가 완료되었습니다.';
-	        msg += '고유ID : ' + rsp.imp_uid;
-	        msg += '상점 거래ID : ' + rsp.merchant_uid;
-	        msg += '결제 금액 : ' + rsp.paid_amount;
-	        msg += '카드 승인번호 : ' + rsp.apply_num;
-	        
-	        $.ajax({
-	        	type: "POST",
-	        	url: "/user/exhibition/process",
-	        	async: false,
-	        	data: $("[name=frm]").serialize(),
-	        	success: function(data){
-	        		
-	        	}
-	        });
-	    } else {
-	        var msg = '결제에 실패하였습니다.';
-	        msg += '에러내용 : ' + rsp.error_msg;
-	    }
-	    alert(msg);
-	});
 	
-	return false; --%>
+	var IMP = window.IMP;
+	IMP.init('imp10084821');
+	if($("#chk01").prop("checked")){
+		console.log("bank");
+		IMP.request_pay({
+		    pg : 'inicis', // version 1.1.0부터 지원.
+		    pay_method : 'vbank',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : '<%=ticket.getTitle()%>',
+		    amount : $("#totalPrice").val() - $("#con3-usepoint").val(),
+		    buyer_email : '<%=member.getEmail()%>',
+		    buyer_name : '<%=member.getName()%>',
+		    buyer_tel : '<%=member.getTel()%>',
+		    buyer_addr : '<%=member.getAddr1()%>',
+		    buyer_postcode : '<%=member.getZipcode()%>',
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		        var msg = '결제가 완료되었습니다.';
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		        
+		        $.ajax({
+		        	type: "POST",
+		        	url: "/user/exhibition/process",
+		        	async: false,
+		        	data: $("[name=frm]").serialize(),
+		        	success: function(data){
+		        		
+		        	}
+		        });
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		    }
+		    alert(msg);
+		});
+	} else if($("#chk02").prop("checked")) {
+		IMP.request_pay({
+		    pg : 'inicis', // version 1.1.0부터 지원.
+		    pay_method : 'card',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : '<%=ticket.getTitle()%>',
+		    amount : $("#totalPrice").val() - $("#con3-usepoint").val(),
+		    buyer_email : '<%=member.getEmail()%>',
+		    buyer_name : '<%=member.getName()%>',
+		    buyer_tel : '<%=member.getTel()%>',
+		    buyer_addr : '<%=member.getAddr1()%>',
+		    buyer_postcode : '<%=member.getZipcode()%>',
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		        var msg = '결제가 완료되었습니다.';
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		        
+		        $.ajax({
+		        	type: "POST",
+		        	url: "/user/exhibition/process",
+		        	async: false,
+		        	data: $("[name=frm]").serialize(),
+		        	success: function(data){
+		        		
+		        	}
+		        });
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		    }
+		    alert(msg);
+		});
+	}
+	return false;
 	
 }
 
@@ -115,7 +150,7 @@ $(function(){
 	
 	$("#submit-btn2").click(function(event){
 		event.preventDefault();
-		$(".con3-bg").hide();
+		$(".con3-bg").remove();
 	});
 })
  
@@ -130,9 +165,8 @@ $(function(){
 			<ul class="con3-top clear">
 				<li class="con3-top-img"><img src="/upload/exhibition/<%=ticket.getImagename()%>" /></li>
 				<li class="con3-top-text">
-					<h4>로봇 일러스트레이션을 통해</h4>
-					<h4>기계적 판타지를 구현하는</h4>
-					<h3><%=ticket.getArtist()%>/ Hajime Sorayama</h3>
+					<h4><%=ticket.getTitle() %></h4>
+					<h3><%=ticket.getArtist()%></h3>
 					<p><%=ticket.getPreview().replace("\n","<br/>")%></p>
 				</li>
 			</ul>
@@ -189,7 +223,7 @@ $(function(){
 						</tr>
 						<tr>
 							<th>사용포인트</th>
-							<td colspan="2"><input type="text" id="con3-point" name="usepoint" value="0" onkeydown="minPrice()"></td>
+							<td colspan="2"><input type="text" id="con3-usepoint" name="usepoint" value="0" onkeydown="minPrice()"></td>
 							<td colspan="2"><span class="point-span">점</span></td>
 						</tr>
 						<tr>

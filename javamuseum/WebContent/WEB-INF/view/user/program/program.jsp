@@ -22,6 +22,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 <title>미술관소개</title>
 <link rel="stylesheet" href="/css/program.css">
 <style>
+
 </style>
 <script type="text/javascript" src="/js/slick.js"></script>
 <script type="text/javascript" src="/js/aos.js"></script>
@@ -33,9 +34,8 @@ function getProgram(i) {
 		url : "/user/program/reserve?no="+i,
 		async : false,
 		success : function(data) {
-			$(".con4").html(data);
-			$(".con4-bg").show();
-			
+			$(".con3").html(data);
+			$(".con3-bg").show();
 		}
 	});
 	<%} else {%>
@@ -51,42 +51,41 @@ function getDetail(i) {
 		url : "/user/program/detail?no="+i,
 		async : false,
 		success : function(data) {
-			$(".con3").html(data);
+			$(".con3").empty();
+			$(".con4").html(data);
 			$(".con4-bg").show();
 		}
 	});
 };
 
 $(function(){
-            
-            $(".con2-bggroup > li > a").click(function(event){ // a링크 정지
-                event.preventDefault(); // a링크 정지
-                $(this).siblings(".con2-sub01").stop().fadeIn(); 
-            });
+	$(".con2-bggroup > li > a").click(function(event){ // a링크 정지
+		event.preventDefault(); // a링크 정지
+		$(this).siblings(".con2-sub01").stop().fadeIn(); 
+	});
 
-            $(".sub01-btn .li1").click(function(event){
-                event.preventDefault();
-                $(".con3-bg").show();
-            });
-       		$("#submit-btn2").click(function(){
-                $(".con3-bg").hide();
-            });
-            $(".con4-epilogue").click(function(event){
-                event.preventDefault();
-                var list=$(this).hasClass("on") //클릭한 자기자신에게 on이 붙어있는지 없는지 확인
+	$(".sub01-btn .li1").click(function(event){
+		event.preventDefault();
+		$(".con3-bg").show();
+	});
+	$("#submit-btn2").click(function(event){
+		event.preventDefault();
+		$(".con3-bg").hide();
+	});
+	$(".con4-epilogue").click(function(event){
+		event.preventDefault();
+		var list=$(this).hasClass("on") //클릭한 자기자신에게 on이 붙어있는지 없는지 확인
                 
 
-                if(list) { //on이 붙어있을때 - true
-                    $(this).removeClass("on");
-                    $(this).siblings(".con4-ep-cont").stop().slideUp();
-                }
-                else { //on이 없을때 - false
-
-                    $(".con4-epilogue").removeClass("on")
-                    $(this).addClass("on");
-                }
-            })
-        })
+		if(list) { //on이 붙어있을때 - true
+			$(this).removeClass("on");
+			$(this).siblings(".con4-ep-cont").stop().slideUp();
+		} else { //on이 없을때 - false
+			$(".con4-epilogue").removeClass("on")
+			$(this).addClass("on");
+		}
+	})
+})
 
 </script>
 </head>

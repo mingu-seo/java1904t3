@@ -12,13 +12,11 @@ ArrayList<HashMap> list = (ArrayList<HashMap>) request.getAttribute("list");
 <link rel="stylesheet" href="/css/program.css">
 <script src="/js/jquery-ui.js"></script>
 <script>
-
-$("#submit-btn2").click(function(event){
+/* $("#submit-btn2").click(function(event){
 	event.preventDefault();
-	$(".con3-bg").hide();
+	$(".con3-bg").remove();
 });
-
-
+ */
 function getProgramTime(){
 	$.ajax({
 		type : "GET",
@@ -50,7 +48,6 @@ function getProgram_membCount(){
 	<div class="con3-gr">
 		<div class="con3-header">
 			<h3><%=reserve.getTitle() %>프로그램 신청</h3>
-			
 		</div>
 		<div class="con3-center">
 			<ul class="con3-top clear">
@@ -79,9 +76,9 @@ function getProgram_membCount(){
 									<% } %>
 								</select>	
 							</td>
-							
 							<th>프로그램 시간</th>
 							<td colspan="" class="program_time">
+							
 							</td>
 						</tr>
 						<tr>
@@ -106,4 +103,3 @@ function getProgram_membCount(){
 	</div>
 </div>
 <!-- //con2에서 예매하기 버튼 클릭 시 //con3-bg 종료 -->
-

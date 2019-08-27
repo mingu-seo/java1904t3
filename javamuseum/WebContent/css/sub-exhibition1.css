@@ -16,14 +16,15 @@
 .con2-sub01{width: 1200px;height: 400px; background-color: #fff; position: absolute; top:0; right: 0; display: none;}
 .con2-sub01 img{float: left;width: 400px;}
 .sub01-text{float: left; margin-left: 30px;margin-top: 30px; width: 700px;}
-.sub01-text h4{ font-size: 18px; line-height: 30px; font-weight: bold;}
+.sub01-text h4{ font-size: 40px; line-height: 30px; font-weight: bold;}
 .sub01-text h3{font-size: 28px; margin-top: 20px; margin-bottom: 20px;}
 .sub01-text p{font-size: 16px; line-height: 30px;}
 /* 예매 버튼 */
-.sub01-btn{  margin-top: 20px; width:320px;}
+.sub01-btn{  margin-top: 20px; width:100%;}
 .sub01-btn li {background-color:black;float:left; width: 150px; height: 50px; margin-right:10px;}
 .sub01-btn li a {color: #fff; text-align: center; line-height: 50px;display: block; font-size: 16px; font-weight: bold;}
-#like{ background-color:red;}
+#disScore {width:340px;background-color:white; color:black;}
+/* #score { background-color:white; color:black;} */
 /* 닫기 버튼 */
 .sub01-close {width: 70px; position: absolute; top: 10px; right: 10px;}
 .sub01-close img { width:100%;}
@@ -41,8 +42,8 @@
 .con3-top-img{width: 30%; height: 250px;}
 .con3-top-img > img{ width: 100%; height: 100%;}
 /* 상단-텍스트 */
-.con3-top-text{margin-top: 40px; margin-left: 36px; width:65%;}
-.con3-top-text h4{font-size: 14px;}
+.con3-top-text{margin-top: 5px; margin-left: 20px; width:65%;}
+.con3-top-text h4{font-size: 30px;}
 .con3-top-text h3{font-size: 22px; margin-top: 18px; margin-bottom: 12px;}
 .con3-top-text p{font-size: 12px;}
 /* 하단-내용 */
@@ -78,11 +79,11 @@
 .con4-top-img > img{ width: 100%; height: 100%;}
 /* 작품 소개 끝 */
 /* BEST 한줄평/후기 시작 */
-.con4-top-text{margin-top: 5px; margin-left: 36px; width:65%;}
+.con4-top-text{margin-top: 5px; margin-left: 20px; width:65%;}
 .con4-bot-title {width:100%; background-color:#191919; height:50px; line-height:50px; text-align:center; color:white; font-size:18px;}
-.con4-top-text h4{font-size: 14px;}
-.con4-top-text h3{font-size: 22px; margin-top: 18px; margin-bottom: 12px;}
-.con4-top-text p{font-size: 12px;}
+.con4-top-text h4{font-size: 30px;}
+.con4-top-text h3{font-size: 22px; margin-top: 10px; margin-bottom: 12px;}
+.con4-top-text p{font-size: 12px; min-height:80px;}
 .con4-bot-text-list {border-bottom:1px solid #191919;}
 .con4-epilogue { background-image:url(../img/ep-on.png); padding:5px 0px; background-repeat:no-repeat; background-position:right 20px top 17px; background-size:25px;}
 .con4-epilogue.on { background-image:url(../img/ep-off.png);}
@@ -99,6 +100,17 @@
 .write li {float:left; margin-top:20px;}
 .con4 input[type="text"] {width:696px; margin-right:20px; border:2px solid black; height:35px;}
 #write-submit {width:100px; height:40px; border:none; border:2px solid black; background-color:transparent;}
+span.star-prototype, span.star-prototype > * {
+    height: 25px; 
+    background: url(http://i.imgur.com/YsyS5y8.png) 0 -25px repeat-x;
+    background-size:25px;
+    width: 127px;
+    display: inline-block;
+}
+span.star-prototype > * {
+    background-position: 0 0;
+    max-width:127px; 
+}
 /* BEST 한줄평/후기 끝 */
 /* 상세 페이지 */
 .con5-btn { width:100%;}

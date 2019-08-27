@@ -61,6 +61,9 @@ public class UProgramService {
 		return list;
 	}
 
-	
+	public int resnum(ReservationVO vo) throws Exception {
+		int countMem = uprogramDao.resnum(vo);
+		return countMem;
+	}
 	
 }
