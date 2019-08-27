@@ -47,6 +47,7 @@ public class UProgramController {
 		model.addAttribute("totPage", rowPageCount[1]);
 		model.addAttribute("list", list);
 		model.addAttribute("param", param);
+		model.addAttribute("vo", vo);
 		model.addAttribute("olist", olist);
 		
 		return "user/program/program";
@@ -98,7 +99,7 @@ public class UProgramController {
 	}
 	
     @RequestMapping("/user/program/process")
-    public String process(Model model, ReservationVO param,  HttpServletRequest request) throws Exception {
+    public String process(Model model, ReservationVO param, HttpServletRequest request) throws Exception {
        
        int e = uprogramService.resnum(param);
        String msg = "";
@@ -113,4 +114,5 @@ public class UProgramController {
        model.addAttribute("url", param.getTargetURLParam("program", param, 0));
        return "include/alert";
     }
+
 }
