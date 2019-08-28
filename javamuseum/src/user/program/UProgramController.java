@@ -33,11 +33,9 @@ public class UProgramController {
 		ArrayList<ArrayList<HashMap>> olist = new ArrayList<ArrayList<HashMap>>();
 
 		for (int i=0; i<list.size(); i++) {
-		ArrayList<HashMap> ohmlist = uprogramService.listOption(list.get(i).getNo());
-		ArrayList<HashMap> optlist = new ArrayList<HashMap>();
-		System.out.println(ohmlist.size());
+			ArrayList<HashMap> ohmlist = uprogramService.listOption(list.get(i).getNo());
+			ArrayList<HashMap> optlist = new ArrayList<HashMap>();
 			for (int j=0; j<ohmlist.size(); j++) {
-				System.out.println(ohmlist.get(j).get("no"));
 				optlist.add(ohmlist.get(j));
 			}
 			olist.add(optlist);
@@ -66,13 +64,14 @@ public class UProgramController {
 	
 
 	@RequestMapping("/user/program/programTime")
-	public String ProgramDate(Model model, ProgramVO param, HttpServletRequest request) throws Exception {
-		int no = Integer.parseInt(request.getParameter("no"));
-		String date = request.getParameter("date");
-		ArrayList<ProgramVO> olist = uprogramService.list_time(param);
+	public String ProgramDate(Model model, ProgramVO param, ReservationVO rvo) throws Exception {
+		ArrayList<ProgramVO> olist = uprogramService.list_time(param);				//해당 날짜의 시간 리스트
+		ArrayList<HashMap> list = uprogramService.listOption(param.getNo());		//해당 프로그램 옵션과 맴버 카운트
+		ProgramVO pvo = uprogramService.detail(param.getNo());
 		
-		
+		model.addAttribute("list", list);
 		model.addAttribute("olist", olist);
+		model.addAttribute("max_mem", pvo.getMax_mem());
 		
 		return "user/program/programTime";
 	}
@@ -87,7 +86,7 @@ public class UProgramController {
 	}
 	
 	@RequestMapping("/user/program/reserve")
-	public String ticket(Model model, ProgramVO param) throws Exception {
+	public String reserve(Model model, ProgramVO param) throws Exception {
 		ProgramVO reserve = (ProgramVO)uprogramService.detail(param.getNo());
 		ArrayList<HashMap> olist = uprogramService.listOption_user(param.getNo());
 		ArrayList<HashMap> list = uprogramService.listOption(param.getNo());
@@ -107,7 +106,7 @@ public class UProgramController {
           msg = "이미 신청하였습니다.";
        }else {
            int r = reservationService.insert(param);
-           if (r>0) msg = "신청이 완료되었습니다."; else msg = "등록실패";
+           if(r>0) msg = "신청이 완료되었습니다."; else msg = "등록실패";
        }
        model.addAttribute("code", "alertMessageUrl");
        model.addAttribute("message", msg);

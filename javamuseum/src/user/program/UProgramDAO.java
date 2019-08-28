@@ -47,19 +47,8 @@ public class UProgramDAO extends SqlMapClientDAOSupport {
 	}
 	
    public static void main(String[] args) throws SQLException {
-	      UProgramDAO pd = new UProgramDAO();
-	      ProgramVO av = new ProgramVO();
-	      ReservationVO pv = new ReservationVO();
-	      
-//	      pd.list(av);
-//	      pd.count(av);
-//	     pd.detail(187);
-//	     
-//	      pd.list_time(av);
-
-	      pv.setProgram_pk(189);
-	      pv.setDate("2019-08-06");
-	      pv.setTime(2);
-	      pd.countMem(pv);
+	   UProgramDAO pd = new UProgramDAO();
+	   ProgramVO av = new ProgramVO();
+	   ReservationVO pv = new ReservationVO();
    }
 }

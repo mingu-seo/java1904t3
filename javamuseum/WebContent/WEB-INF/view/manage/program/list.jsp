@@ -114,8 +114,6 @@ function goSearch() {
 											data = list.get(i);
 											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("read", param, list.get(i).getNo())+"'\"";
 								%>
-								
-								
 									<tr>
 										<td class="first"rowspan="<%=olist.get(i).size()%>"><input type="checkbox" name="no" id="no" value="<%=list.get(i).getNo()%>"/></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=data.getNo()%></td>
@@ -124,21 +122,17 @@ function goSearch() {
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=data.getTitle()%></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>" ><%=data.getInstructor()%></td>
 										
-	
-										
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=data.getPrice()%></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=CodeUtil.getDisplayName(Integer.parseInt(data.getState()))%></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=DateUtil.getDateTimeFormat(data.getRegistdate())%></td>
 										<td rowspan="<%=olist.get(i).size()%>"><input type = "button" value="삭제" onclick="goDelete(<%=list.get(i).getNo()%>);"/></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=data.getP_time()%></td>
-												<% for (int j=0; j<olist.get(i).size(); j++) { %>
-														<td <%=targetUrl%>rowspan="1"><%=olist.get(i).get(j).get("date") %></td>
-														<td <%=targetUrl%>rowspan="1"><%=CodeUtil.getP_timeName((Integer)olist.get(i).get(j).get("time")) %></td>
-														<td class = "last"<%=targetUrl%>rowspan="1" ><%=olist.get(i).get(j).get("member_cnt") %> 명/<%=data.getMax_mem()%> 명</td>
-														</tr>
-													<% } %>
-									
+										<% for (int j=0; j<olist.get(i).size(); j++) { %>
+										<td <%=targetUrl%>rowspan="1"><%=olist.get(i).get(j).get("date") %></td>
+										<td <%=targetUrl%>rowspan="1"><%=CodeUtil.getP_timeName((Integer)olist.get(i).get(j).get("time")) %></td>
+										<td class = "last"<%=targetUrl%>rowspan="1" ><%=olist.get(i).get(j).get("member_cnt") %> 명/<%=data.getMax_mem()%> 명</td>
 									</tr>
+										<% } %>
 								<%
 									}
 								}

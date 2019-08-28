@@ -2,8 +2,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="manage.reservation.*" %>
 <%@ page import="manage.program.*" %>
-
-<%@page import="com.sun.org.apache.bcel.internal.classfile.Code"%>
+<%@ page import="com.sun.org.apache.bcel.internal.classfile.Code"%>
 <%@ page import="property.SiteProperty" %>
 <%@ page import="util.*" %>
 <%
@@ -30,16 +29,13 @@ int totPage = (Integer)request.getAttribute("totPage");
 <script type="text/javascript" src="/js/slick.js"></script>
 <script type="text/javascript" src="/js/aos.js"></script>
 <script>
-function getProgram(i) {
+function getReserve(i) {
 	<%if(member != null) {%>
 	$.ajax({
 		type : "GET",
 		url : "/user/program/reserve?no="+i,
 		async : false,
 		success : function(data) {
-			$(".con3").html(data);
-			$(".con3-bg").show();
-			console.log(3);
 			$(".con4").hide();
 			$(".con3").html(data);
 			$(".con3-bg").show();
@@ -60,49 +56,11 @@ function getDetail(i) {
 		success : function(data) {
 			$(".con3").empty();
 			$(".con4").html(data);
+			$(".con4").show();
 			$(".con4-bg").show();
 		}
 	});
 };
-
-$(function(){
-	$(".con2-bggroup > li > a").click(function(event){ // a링크 정지
-		event.preventDefault(); // a링크 정지
-		$(this).siblings(".con2-sub01").stop().fadeIn(); 
-	});
-
-	$(".sub01-btn .li1").click(function(event){
-		event.preventDefault();
-		$(".con3-bg").show();
-	});
-	$("#submit-btn2").click(function(event){
-		event.preventDefault();
-		$(".con3-bg").hide();
-	});
-	$(".con4-epilogue").click(function(event){
-		event.preventDefault();
-		var list=$(this).hasClass("on") //클릭한 자기자신에게 on이 붙어있는지 없는지 확인
-		$(".sub01-btn .li1").click(function(event){
- 			event.preventDefault();
-			$(".con3-bg").show();
-		});
-		$("#submit-btn2").click(function(){
-			$(".con3-bg").hide();
-		});
-		$(".con4-epilogue").click(function(event){
-			event.preventDefault();
-			var list=$(this).hasClass("on") //클릭한 자기자신에게 on이 붙어있는지 없는지 확인
-			
-			if(list) { //on이 붙어있을때 - true
-				$(this).removeClass("on");
-				$(this).siblings(".con4-ep-cont").stop().slideUp();
-			} else { //on이 없을때 - false
-				$(".con4-epilogue").removeClass("on")
-				$(this).addClass("on");
-			}
-		});
-	});
-})
 
 </script>
 </head>
@@ -124,7 +82,6 @@ $(function(){
 						<h3>프로그램</h3>
 					</div>
 				</div>
-				<!-- 전시 작품 박스 -->
 				<div class="con2-box-wrap">
 					<div class="con2-box">
 						<%for(int i = 0; i < list.size(); i++){ %>
@@ -136,29 +93,33 @@ $(function(){
 								<h4><%=list.get(i).getTitle() %></h4>
 								<p>대상 : <%=list.get(i).getTarget() %></p>
 								<p>시간 : <%=list.get(i).getP_time() %></p>
-								<p>교육비 : <%=list.get(i).getPrice() %></p>
+								<p>교육비 : 
+								<% if(list.get(i).getPrice().equals("0")) {%>
+									<span>무료</span>
+								<% } else { %>
+								<%=list.get(i).getPrice() %>
+								<% } %>
+								</p>
 							    <ul class="sub01-btn">
-	                                <li class="li1" onclick="getProgram(<%=list.get(i).getNo()%>)"><a href="javascript:;">신청하기</a></li>
-	                                <li class="li2" onclick="getDetail(<%=list.get(i).getNo()%>)"><a href="javascript:;">상세보기</a></li>
+	                                <li class="li1"><a href="javascript:getReserve(<%=list.get(i).getNo()%>);">신청하기</a></li>
+	                                <li class="li2"><a href="javascript:getDetail(<%=list.get(i).getNo()%>);">상세보기</a></li>
                            		</ul>
 							</div>
 						</div>
-					<%
-						}
-					%>
+						<%
+							}
+						%>
 					</div>
 				</div>
 			</div>
 		</div>
-       <!-- //con2 종료 -->
 		<div class="con3">
 	
 		</div>
 		<div class="con4">
 	
 		</div>
-<div class="page"><a><%=Page.indexList(param.getReqPageNo(), totPage, request)%></a></div>
-        <!-- con3 예매 페이지 -->
+		<div class="page"><a><%=Page.indexList(param.getReqPageNo(), totPage, request)%></a></div>
 	</div>
 <%@ include file="/WEB-INF/view/user/include/footer.jsp" %>
 	

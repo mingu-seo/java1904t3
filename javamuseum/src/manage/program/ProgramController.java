@@ -45,7 +45,6 @@ public class ProgramController {
 		model.addAttribute("totPage", rowPageCount[1]);
 		model.addAttribute("list", list);
 		model.addAttribute("param", param);
-		
 		model.addAttribute("olist", olist);
 		
 		return "manage/program/list";
@@ -54,7 +53,6 @@ public class ProgramController {
 	@RequestMapping("/manage/program/read")
 	public String read(Model model, ProgramVO param) throws Exception {
 		ProgramVO data = programService.read(param.getNo());
-		
 		ArrayList<HashMap> olist = programService.listOption(param.getNo());
 		      
 		model.addAttribute("data", data);
@@ -69,6 +67,7 @@ public class ProgramController {
 	public String edit(Model model, ProgramVO param) throws Exception {
 		ProgramVO data = programService.read(param.getNo());
 		ArrayList<HashMap> olist = programService.listOption(param.getNo());
+		
 		model.addAttribute("data", data);
 		model.addAttribute("olist", olist);
 		  
