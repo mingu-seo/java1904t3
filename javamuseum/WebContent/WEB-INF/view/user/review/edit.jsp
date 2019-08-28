@@ -34,6 +34,11 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 <script>
 	
 
+var oEditors; // 에디터 객체 담을 곳
+//$(window).load(function(){
+$(function() {
+	oEditors = setEditor("contents"); // 에디터 셋팅
+});
 	
 function goSave() {
 	if ($("#title").val() == "") {
@@ -41,11 +46,15 @@ function goSave() {
 		$("#title").focus();
 		return false;
 	}
-	if ($("#contents").val() == "") {
+	var sHTML = oEditors.getById["contents"].getIR();
+	if (sHTML == "" || sHTML == "<p><br></p>") {
 		alert('내용을 입력하세요.');
 		$("#contents").focus();
 		return false;
+	} else {
+		oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
 	}
+	return true;
 	
 
 }
@@ -127,32 +136,32 @@ function goSave() {
 									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="3">
-											<input type="text" id="reviewtitle" name="reviewtitle" class="w50" value="<%=data.getReviewtitle()%>"/>	
+											<input type="text" id="reviewtitle" name="reviewtitle" class="w50" value="<%=Function.checkNull(data.getReviewtitle())%>"/>	
 										</td>
 									</tr>
 									<tr>
 										<td colspan="4">
-											<textarea id="contents" name="contents"  class="w50" value="<%=data.getContents()%>" style="width:100%;"></textarea>	
+											<textarea id="contents" name="contents"  class="w50"  style="width:100%;"><%=Function.checkNull(data.getContents())%></textarea>	
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="cmd" value="edit"/>
-							<input type="hidden" name="member_pk" value="<%=member.getNo()%>"/>
-							<input type="hidden" name="no" id="no" value="<%=data.getNo()%>"/>
-							</form>
+								<input type="hidden" name="cmd" value="edit"/>
+								<input type="hidden" name="member_pk" value="<%=member.getNo()%>"/>
+								<input type="hidden" name="no" id="no" value="<%=data.getNo()%>"/>
+						</form>
 				
-				
-				
+					</div>
 							<div class="btn">
-							<div class="btnLeft">
-										<a class="btns"	href="<%=param.getTargetURLParam("read", param, data.getNo())%>"><strong>목록</strong></a>
+								<div class="btnLeft">
+										<a class="btns"	href="<%=param.getTargetURLParam("read", param, data.getNo())%>"><button>목록</button></a>
 									</div>
 								<div class="btnRight">
-									<a class="btns" href="javascript:$('#frm').submit();"><strong>저장</strong></a>
+									<a class="btns" href="javascript:$('#frm').submit();"><button>저장</button></a>
 								</div>
 							</div>
-					</div>
+					
+					
 			</div>
 		</div>
 	</div>

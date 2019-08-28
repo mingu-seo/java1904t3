@@ -27,27 +27,21 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 <link rel="stylesheet" href="/css/sub-exhibition3.css">
 <style>
 </style>
-<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="/js/slick.js"></script>
 <script type="text/javascript" src="/js/aos.js"></script>
 <script type="text/javascript" src="/js/gnb.js"></script>
 <script>
 	
 var oEditors; // 에디터 객체 담을 곳
-jQuery(window).load(function(){
+//$(window).load(function(){
+$(function() {
 	oEditors = setEditor("contents"); // 에디터 셋팅
-	initCal({id:"registdate",type:"day",today:"y",timeYN:"y"});
 });
 	
 function goSave() {
 	if ($("#title").val() == "") {
 		alert('제목을 입력하세요.');
 		$("#title").focus();
-		return false;
-	}
-	if ($("#contents").val() == "") {
-		alert('내용을 입력하세요.');
-		$("#contents").focus();
 		return false;
 	}
 	var sHTML = oEditors.getById["contents"].getIR();
@@ -152,19 +146,18 @@ function goSave() {
 							</table>
 							<input type="hidden" name="cmd" value="write"/>
 							<input type="hidden" name="member_pk" value="<%=member.getNo()%>"/>
-							</form>
-				
-				
-				
+						</form>
+
+					</div>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
+									<a class="btns" href="<%=param.getTargetURLParam("index", param, 0)%>"><button>목록</button></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" href="javascript:$('#frm').submit();"><strong>저장</strong></a>
+									<a class="btns" href="javascript:$('#frm').submit();"><button>저장</button></a>
 								</div>
 							</div>
-					</div>
+					
 			</div>
 		</div>
 	</div>
