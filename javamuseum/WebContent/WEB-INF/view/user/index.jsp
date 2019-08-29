@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ page import="java.util.*" %>
 <%@ page import="manage.exhibition.*" %>
+<%@ page import="manage.program.*" %>
 <%
 ArrayList<ExhibitionVO> list = (ArrayList)request.getAttribute("list");
+ArrayList<ProgramVO> plist = (ArrayList)request.getAttribute("plist");
 %>
 <!DOCTYPE html>
 
@@ -111,51 +113,43 @@ ArrayList<ExhibitionVO> list = (ArrayList)request.getAttribute("list");
 					}
 					%>
                     </div>
+                    <div class="con3-more" data-aos="fade-down" data-aos-duration="1000"><a href="/user/exhibition/subExhibition1">More Exhibition</a></div>
                 </div>
             </div>
         </div>
         <!-- exhibition 구역 -->
-        <!-- event & progarams 구역 -->
+        <!-- progarams 구역 -->
         <div class="con3">
-            <div class="event" data-aos="fade-up" data-aos-duration="1000"><h2>Events & Programs</h2></div>
+            <div class="event" data-aos="fade-up" data-aos-duration="1000"><h2>Programs</h2></div>
             <div class="con3-box">
-                <div class="con3-box1 clear" data-aos="fade-right" data-aos-duration="1500">
+            	<% 
+            	for(int i = 0; i < plist.size(); i++) {
+            		if(i % 2 == 0) {
+            	%>
+            	<div class="con3-box1 clear" data-aos="fade-right" data-aos-duration="<%=1500+i*500%>">
                     <div class="con3-img">
-                        <img src="/img/con3-1.jpg">
+                        <img src="/upload/program/<%=plist.get(i).getImagename()%>"/>
                     </div>
                     <div class="con3-text">
-                        <h3>AUGUST 18</h3>
-                        <h4>20 Blank Canvases.<br/> 
-                            Melinda Rhodes</h4>
-                        <p>-Kim Youngjun-</p>
+                        <h4><%=plist.get(i).getTitle()%></h4>
+                        <p>-<%=plist.get(i).getLocation()%>-</p>
                     </div>
                 </div>
-                <div class="con3-box2 clear" data-aos="fade-left" data-aos-duration="2000">
+                <% } else { %>
+                <div class="con3-box2 clear" data-aos="fade-left" data-aos-duration="<%=1500+i*500%>">
                     <div class="con3-img2">
-                        <img src="/img/con3-2.jpg">
+                        <img src="/upload/program/<%=plist.get(i).getImagename()%>"/>
                     </div>
                     <div class="con3-text2">
-                        <h3>AUGUST 24</h3>
-                        <h4>Peasant Scenes And<br/>
-                            Landscapes</h4>
-                        <p>-Kristelle Rodeia-</p>
+                        <h4><%=plist.get(i).getTitle()%></h4>
+                        <p>-<%=plist.get(i).getLocation()%>-</p>
                     </div>
                 </div>
-                <div class="con3-box3 clear" data-aos="fade-right" data-aos-duration="2500">
-                    <div class="con3-img3">
-                        <img src="/img/con3-3.jpg">
-                    </div>
-                    <div class="con3-text3">
-                        <h3>AUGUST 30</h3>
-                        <h4>Portrait of Before -<br/>
-                            Max Andrews</h4>
-                        <p>-Kristelle Rodeia-</p>
-                    </div>
-                </div>
-                <div class="con3-more" data-aos="fade-up" data-aos-duration="1000"><a href="sub-exhibition1.html">More Exhibition</a></div>
+                <% } } %>
+                <div class="con3-more" data-aos="fade-up" data-aos-duration="1000"><a href="/user/program/program">More Programs</a></div>
             </div>
         </div>
-        <!-- event & progarams 구역 -->
+        <!-- progarams 구역 -->
         <!-- collection 구역 -->
         <div class="con4">
             <div class="con4-bg">

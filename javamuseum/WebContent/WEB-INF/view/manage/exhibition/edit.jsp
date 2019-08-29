@@ -80,6 +80,16 @@ ExhibitionVO data = (ExhibitionVO)request.getAttribute("data");
 										</td>
 									</tr>
 									<tr>
+										<th scope="row">전시상태</th>
+										<td colspan="3">
+											<select name="state">
+												<option value="1" <%=Function.getSelected(1, data.getState())%>>전시 대기</option>
+												<option value="2" <%=Function.getSelected(2, data.getState())%>>전시 중</option>
+												<option value="3" <%=Function.getSelected(3, data.getState())%>>전시 종료</option>
+											</select>
+										</td>									
+									</tr>
+									<tr>
 										<th scope="row"><label for="">작가</label></th>
 										<td colspan="3">
 											<input type="text" id="artist" name="artist" value="<%=data.getArtist()%>" />

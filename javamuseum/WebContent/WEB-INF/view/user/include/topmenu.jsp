@@ -63,7 +63,6 @@ MemberVO umembervo = (MemberVO)session.getAttribute("memberInfo");
                             <ul class="sub-menu">
                                 <li><a href="/user/program/program">프로그램</a></li>
                                 <li><a href="/user/notice/notice">공지사항</a></li>
-                                <li><a href="news2.html">이벤트</a></li>
                                 <li><a href="/user/faq/index">FAQ</a></li>
                             </ul>
                         </div>

@@ -7,10 +7,11 @@
 	<sql id="searchSql">
 		<dynamic prepend="where">
 			1=1
-			<isNotNull property="sstate" prepend="and state IN ">
-			<iterate property="sstate" open="(" close=")" conjunction="," prepend="and state IN">
-				#sstate[]#
-			</iterate>
+			<isNotNull property="sstate">
+				AND state IN 
+				<iterate property="sstate" open="(" close=")" conjunction=",">
+					#sstate[]#
+				</iterate>
 			</isNotNull>
 			<isNotEqual property="sval" compareValue="" prepend="and">
 				<isEqual property="stype" compareValue="all" prepend="and">

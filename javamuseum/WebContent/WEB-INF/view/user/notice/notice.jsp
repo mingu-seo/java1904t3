@@ -69,21 +69,16 @@ int totPage = (Integer)request.getAttribute("totPage");
 								</colgroup>
 								<thead>
 									<tr>
-										
 										<th scope="col">번호</th>
 										<th scope="col">작성자</th>
-										
 										<th scope="col">제목</th> 
-										
 										<th scope="col">작성일</th> 
-										
-										
 									</tr>
 								</thead>
 								<tbody>
 								<% if (totCount == 0) { %>
 									<tr>
-										<td class="first" colspan="7">등록된 글이 없습니다.</td>
+										<td class="first" colspan="7" style="text-align:center;">등록된 글이 없습니다.</td>
 									</tr>
 								<%
 									 } else {

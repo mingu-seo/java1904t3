@@ -76,6 +76,7 @@ function getDetail(i) {
 		</div>
 		<!-- 전시 목록 구역 -->
 		<div class="con2">
+		<%@ include file="/WEB-INF/view/user/include/newsside.jsp" %>
 			<div class="con2-center">
 				<div class="con2-text clear">
 					<div class="con2-text-h3" id="topArea">
@@ -109,8 +110,10 @@ function getDetail(i) {
 						<%
 							}
 						%>
+						
 					</div>
 				</div>
+				<div class="page"><a><%=Page.indexList(param.getReqPageNo(), totPage, request)%></a></div>
 			</div>
 		</div>
 		<div class="con3">
@@ -119,7 +122,7 @@ function getDetail(i) {
 		<div class="con4">
 	
 		</div>
-		<div class="page"><a><%=Page.indexList(param.getReqPageNo(), totPage, request)%></a></div>
+		<%-- <div class="page"><a><%=Page.indexList(param.getReqPageNo(), totPage, request)%></a></div> --%>
 	</div>
 <%@ include file="/WEB-INF/view/user/include/footer.jsp" %>
 	

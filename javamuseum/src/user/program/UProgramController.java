@@ -30,23 +30,12 @@ public class UProgramController {
 	public String index(Model model, ProgramVO param, ReservationVO vo) throws Exception {
 		int[] rowPageCount = uprogramService.count(param);
 		ArrayList<ProgramVO> list = uprogramService.list(param);
-		ArrayList<ArrayList<HashMap>> olist = new ArrayList<ArrayList<HashMap>>();
-
-		for (int i=0; i<list.size(); i++) {
-			ArrayList<HashMap> ohmlist = uprogramService.listOption(list.get(i).getNo());
-			ArrayList<HashMap> optlist = new ArrayList<HashMap>();
-			for (int j=0; j<ohmlist.size(); j++) {
-				optlist.add(ohmlist.get(j));
-			}
-			olist.add(optlist);
-		}	
 			  
 		model.addAttribute("totCount", rowPageCount[0]);
 		model.addAttribute("totPage", rowPageCount[1]);
 		model.addAttribute("list", list);
 		model.addAttribute("param", param);
 		model.addAttribute("vo", vo);
-		model.addAttribute("olist", olist);
 		
 		return "user/program/program";
 	}

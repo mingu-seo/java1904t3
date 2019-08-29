@@ -44,6 +44,17 @@ function getProgram_membCount(){
 	});
 }
 
+function goSave() {
+	if (!$("#program_date > option:selected").val()) {
+		alert("날짜를 선택해 주세요.");
+		return false;
+	}
+	if (!$("#program_time > option:selected").val()) {
+		alert("시간을 선택해 주세요.");
+		return false;
+	}
+}
+
 </script>
 <div class="con3-bg">
 	<div class="con3-gr">
@@ -93,7 +104,7 @@ function getProgram_membCount(){
 					<input type="hidden" name="time" id="time_hidden" value=""/>
 					<div class="con3-btn clear">
 						<ul class="btn-group">
-							<li><input type="submit" id="submit-btn1" name="submit-btn1" value="신청하기" onclick="javascript:$('#frm').submit();"></li>
+							<li><input type="submit" id="submit-btn1" name="submit-btn1" value="신청하기"></li>
 							<li><button id="submit-btn2" class="submit-btn2">닫기</button></li>
 						</ul>
 					</div>

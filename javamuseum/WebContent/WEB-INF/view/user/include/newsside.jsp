@@ -11,9 +11,6 @@
 						<a href="/user/notice/notice">공지사항</a>
 					</p>
 					<p>
-						<a href="news2.html">이벤트</a>
-					</p>
-					<p>
 						<a href="/user/faq/index">FAQ</a>
 					</p>
 				</div>

@@ -73,7 +73,7 @@ ExhibitionVO data = (ExhibitionVO)request.getAttribute("data");
 									</tr>
 									<tr>
 										<th scope="row"><label for="">좋아요</label></th>
-										<td><%=data.getLike_cnt()%></td>
+										<td><%-- <%=data.getLike_cnt()%> --%></td>
 										<th scope="row"><label for="">평점</label></th>
 										<td><%=data.getScore()%></td>
 									</tr>

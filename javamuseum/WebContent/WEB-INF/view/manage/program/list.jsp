@@ -84,7 +84,7 @@ function goSearch() {
 								</colgroup>
 								<thead>
 									<tr>
-										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check(this, document.frm.no)"/></th>
+										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onclick="check(this, document.frm.no)"/></th>
 										<th scope="col">번호</th>
 										<th scope="col">카테고리</th> 
 										<th scope="col">포스터</th>
@@ -98,7 +98,6 @@ function goSearch() {
 										<th scope="col">프로그램일자</th>
 										<th scope="col">프로그램시간</th>
 										<th scope="col"class="last">신청인원</th>
-										
 									</tr>
 								</thead>
 								<tbody>
@@ -118,10 +117,9 @@ function goSearch() {
 										<td class="first"rowspan="<%=olist.get(i).size()%>"><input type="checkbox" name="no" id="no" value="<%=list.get(i).getNo()%>"/></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=data.getNo()%></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=CodeUtil.getCategory(data.getCategory())%></td>
-										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><img src="/upload/program/<%=data.getImagename()%>" width="100" height="100"></td>
+										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><img src="/upload/program/<%=data.getImagename()%>" width="100" height="100"/></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=data.getTitle()%></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>" ><%=data.getInstructor()%></td>
-										
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=data.getPrice()%></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=CodeUtil.getDisplayName(Integer.parseInt(data.getState()))%></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=DateUtil.getDateTimeFormat(data.getRegistdate())%></td>
