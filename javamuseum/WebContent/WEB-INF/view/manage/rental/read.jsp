@@ -103,7 +103,7 @@ $(function() {
 										</td>
 										<th>대관 종료일</th>
 										<td>
-											<%=data.getStartdate()%>
+											<%=data.getEnddate()%>
 										</td>
 									</tr>
 									<tr>

@@ -35,7 +35,7 @@ MemberVO param = (MemberVO)request.getAttribute("vo");
     			type:'POST',
     			url:"/user/member/sendcernum",
     			data:{
-    				"email":email
+    				"email": email
     			},
     			async:false,
     			success:function(data) {

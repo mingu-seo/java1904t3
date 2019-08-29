@@ -88,7 +88,7 @@ ExhibitionVO data = (ExhibitionVO)request.getAttribute("data");
 										<td><%=DateUtil.getStrTimestamp(data.getRegistdate())%></td>
 									</tr>
 									<tr>
-										<td colspan="4" style="height:200px"><%=data.getContents()%></td>
+										<td colspan="4" style="height:200px"><%=data.getContents().replace("\n","<br>")%></td>
 									</tr>
 								</tbody>
 							</table>

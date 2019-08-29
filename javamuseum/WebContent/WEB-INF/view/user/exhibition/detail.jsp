@@ -9,8 +9,6 @@ UExhibitionVO detail = (UExhibitionVO)request.getAttribute("detail");
 ArrayList<ReviewVO> rList = (ArrayList)request.getAttribute("rList");
 MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 %>
-<link rel="stylesheet" href="/css/jquery-ui.css">
-<script src="/js/jquery-ui.js"></script>
 <script>
 
 $(function(){
@@ -55,9 +53,9 @@ $(function(){
 			<ul class="con4-top clear">
 				<li class="con4-top-img"><img src="/upload/exhibition/<%=detail.getImagename()%>"></li>
 				<li class="con4-top-text">
-					<h4><%=detail.getTitle() %></h4>
-					<h3><%=detail.getArtist()%></h3>
-					<p><%=detail.getPreview()%></p>
+					<h4><%=detail.getPreview().replaceAll("\n","<br>")%></h4>
+					<h3><%=detail.getTitle()%></h3>
+					<p><%=detail.getPreview().replaceAll("\n","<br>") %></p>
 					<ul class="sub01-btn clear">
 						<li class="score" id="disScore"><span class="star-prototype"><%=detail.getScore()%></span><span style="font-size:30px;">&nbsp;<%=detail.getScore()%> / 5</span></li>
 						<li class="li1" id="rsv" onclick="getTicket(<%=detail.getNo()%>)"><a href="javascript:;">예매하기</a></li>

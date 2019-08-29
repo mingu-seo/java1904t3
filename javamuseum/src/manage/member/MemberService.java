@@ -98,7 +98,6 @@ public class MemberService extends Test {
 		String cerNum = numberGen(6,1);
 		vo.setEmail(vo.getEmail());
 		String email = vo.getEmail();
-		
 		SendMail.sendEmail("handrush@naver.com", email, "[JAVA MUSEUM] 회원가입 인증번호 발송", "인증번호: " + cerNum);
 		return cerNum;
 	}
