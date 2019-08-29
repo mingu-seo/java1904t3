@@ -9,8 +9,6 @@ UExhibitionVO detail = (UExhibitionVO)request.getAttribute("detail");
 ArrayList<ReviewVO> rList = (ArrayList)request.getAttribute("rList");
 MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 %>
-<link rel="stylesheet" href="/css/jquery-ui.css">
-<script src="/js/jquery-ui.js"></script>
 <script>
 
 $(function(){
@@ -55,10 +53,10 @@ $(function(){
 			<ul class="con4-top clear">
 				<li class="con4-top-img"><img src="/upload/exhibition/<%=detail.getImagename()%>"></li>
 				<li class="con4-top-text">
-					<h4>로봇 일러스트레이션을 통해</h4>
-					<h4>기계적 판타지를 구현하는</h4>
-					<h3><%=detail.getArtist()%></h3>
-					<p><%=detail.getPreview()%></p>
+					<h4><%=detail.getPreview().replaceAll("\n","<br>")%></h4>
+					<h3><%=detail.getTitle()%></h3>
+					<h4><%=detail.getArtist() %></h4><br/>
+					<p><%=detail.getPreview().replaceAll("\n","<br>") %></p>
 					<ul class="sub01-btn clear">
 						<li class="like" id="like"><a href="javascript:;"><%=detail.getScore()%></a></li>
 						<li class="li1" onclick="getTicket(<%=detail.getNo()%>)"><a href="javascript:;">예매하기</a></li>

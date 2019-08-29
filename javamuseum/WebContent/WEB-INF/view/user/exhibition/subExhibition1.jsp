@@ -15,7 +15,8 @@ int totPage = (Integer)request.getAttribute("totPage");
 <%@ include file="/WEB-INF/view/user/include/commonHtml.jsp" %>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	    
+<link rel="stylesheet" href="/css/jquery-ui.css">
+<script src="/js/jquery-ui.js"></script>
 <link rel="stylesheet" href="/css/sub-exhibition1.css">
 <title>미술관소개</title>
 	
@@ -32,6 +33,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 			success : function (data) {
 				$(".con3").html(data);
 				$(".con3-bg").show();
+				eventCal();
 			}
 		});
 		<%} else {%>
@@ -102,7 +104,30 @@ int totPage = (Integer)request.getAttribute("totPage");
 				$(this).siblings(".con4-ep-cont").stop().slideDown();
 			}	
 		})
-	})
+	});
+	
+	function eventCal() {
+		//$("#con3-day-start").off(); 
+		//$("#submit-btn2").off("click");
+		
+		$("#con3-day-start").datepicker({
+			dayNamesMin:['일','월','화','수','목','금','토'], // 요일 변경 구문
+			monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], // 월 변경 구문
+			// 달력안에 오늘날짜로 돌리는 내용과 닫는 창을 노출시키는 필수 구문
+			showButtonPanel: true, // 밑에 내용들 떄문에 써야하는 필수 구문
+			currentText: '오늘 날짜', // 오늘 날짜로 돌아오는 구문 
+			closeText: '닫기', // 달력창 닫기
+
+			dateFormat: "yy-mm-dd", // 날짜 클릭시 text box에 담겨지는 순서
+			yearRange: "2019:2019", // 2019년에서만 선택할 수 있게하는 구문
+			minDate: "0D" //오늘 기준에서 이전거는 선택할 수 없게하는 구문
+		});
+
+		$("#submit-btn2").click(function(event){
+			event.preventDefault();
+			$(".con3-bg").hide();
+		});
+	}
 </script>
 </head>
 <body>
@@ -135,10 +160,9 @@ int totPage = (Integer)request.getAttribute("totPage");
                         <div class="con2-sub01 clear">
                             <img src="/upload/exhibition/<%=list.get(i).getImagename()%>"/>
                             <div class="sub01-text">
-                                <h4>로봇 일러스트레이션을 통해</h4>
-                                <h4>기계적 판타지를 구현하는</h4>
+                                <h4><%=list.get(i).getPreview().replaceAll("\n","<br>") %></h4>
                                 <h3><%=list.get(i).getArtist()%></h3>
-                                <p><%=list.get(i).getPreview().replaceAll("\n","<br>")%></p>
+                                <p><%=list.get(i).getContents().replaceAll("\n","<br>")%></p>
 								<ul class="sub01-btn clear">
                                     <li class="li1" onclick="getTicket(<%=list.get(i).getNo()%>)"><a href="javascript:;">예매하기</a></li>
                                     <li class="li2" onclick="getDetail(<%=list.get(i).getNo()%>)"><a href="javascript:;">작품 상세 보기</a></li>

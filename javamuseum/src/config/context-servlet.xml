@@ -31,10 +31,32 @@
 			<mvc:exclude-mapping path="/user/index"/>
 			<mvc:exclude-mapping path="/user"/>
 			<mvc:exclude-mapping path="/user/login.do"/>
+			<mvc:exclude-mapping path="/user/idfind"/>
+			<mvc:exclude-mapping path="/user/pwfind"/>
 			<mvc:exclude-mapping path="/user/membership"/>
+			<mvc:exclude-mapping path="/user/member/sendcernum"/>
+			<mvc:exclude-mapping path="/user/visit/visit1"/>
+			<mvc:exclude-mapping path="/user/visit/visit2"/>
+			<mvc:exclude-mapping path="/user/visit/visit3"/>
+			<mvc:exclude-mapping path="/user/exhibition/subExhibition1"/>
+			<mvc:exclude-mapping path="/user/exhibition/subExhibition2"/>
+			<mvc:exclude-mapping path="/user/rental/hall"/>
 			
-			<mvc:exclude-mapping path="/user/hall"/>
 			<bean class="interceptors.MemberLoginInterceptor"/>
+		</mvc:interceptor>
+		
+		<!-- 관리자 인터셉터 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/manage/**"/>
+			<mvc:exclude-mapping path="/manage/"/>
+			<mvc:exclude-mapping path="/manage/login.do"/>
+			<mvc:exclude-mapping path="/manage/css/*"/>
+			<mvc:exclude-mapping path="/manage/js/*"/>
+			<mvc:exclude-mapping path="/manage/img/*"/>
+			
+			
+			
+			<bean class="interceptors.AdminLoginInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	

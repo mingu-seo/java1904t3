@@ -49,5 +49,9 @@ public class SendMail {
 		}
 		return result;
 	}
+	
+	public static void main(String[] args) throws Exception {
+		sendEmail("handrush@naver.com", "handrush@naver.com", "test", "test"); 
+	}
 
 }

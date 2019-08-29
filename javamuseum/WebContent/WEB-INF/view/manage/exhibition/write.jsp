@@ -10,9 +10,7 @@ ExhibitionVO param = (ExhibitionVO)request.getAttribute("vo");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/manage/include/headHtml.jsp" %>
 <script>
-var oEditors; // 에디터 객체 담을 곳
 jQuery(window).load(function(){
-	oEditors = setEditor("contents"); // 에디터 셋팅
 	initCal({id:"startdate",type:"day",today:"y"});  
 	initCal({id:"enddate",type:"day",today:"y"});
 });
@@ -29,14 +27,6 @@ function goSave() {
 		return false;
 	}
 	
-	var sHTML = oEditors.getById["contents"].getIR();
-	if (sHTML == "" || sHTML == "<p><br></p>") {
-		alert('내용을 입력하세요.');
-		$("#contents").focus();
-		return false;
-	} else {
-		oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
-	}
 	return true;
 }
 
@@ -92,7 +82,7 @@ function goSave() {
 									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="3">
-											<input type="text" id="title" name="title" value="" title="전시 제목을 입력해주세요." />
+											<input type="text" id="title" name="title" value="" title="전시 제목을 입력해주세요." size="40" />
 										</td>
 									</tr>
 									<tr>
@@ -130,8 +120,9 @@ function goSave() {
 										</td>
 									</tr>
 									<tr>
-										<td colspan="4">
-											<textarea id="contents" name="contents" title="내용을 입력해주세요" style="width:100%" ></textarea>
+										<th scope="row"><label for="">상세내용</label></th>
+										<td colspan="3">
+											<textarea id="contents" name="contents" title="내용을 입력해주세요" rows="16" style="width:100%" ></textarea>
 										</td>
 									</tr>
 								</tbody>

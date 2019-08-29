@@ -66,4 +66,10 @@ public class MainController {
 		
 		return "include/alert";		
 	}
+	
+	@RequestMapping("/manage/test")
+	public String test(Model model) {
+		
+		return "manage/test";		
+	}
 }

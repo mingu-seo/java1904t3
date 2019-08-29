@@ -7,9 +7,6 @@
 UExhibitionVO ticket = (UExhibitionVO)request.getAttribute("ticket");
 MemberVO member = (MemberVO)request.getAttribute("member");
 %>
-<link rel="stylesheet" href="/css/jquery-ui.css">
-<script src="/js/jquery-ui.js"></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 /* $(function(){
 	var IMP = window.IMP;
@@ -99,24 +96,7 @@ function sumPrice() {
 	$("#totalPrice").val(totalprice);
 }
 $(function(){
-	// 대관 시작
-	$("#con3-day-start").datepicker({
-		dayNamesMin:['일','월','화','수','목','금','토'], // 요일 변경 구문
-		monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], // 월 변경 구문
-		// 달력안에 오늘날짜로 돌리는 내용과 닫는 창을 노출시키는 필수 구문
-		showButtonPanel: true, // 밑에 내용들 떄문에 써야하는 필수 구문
-		currentText: '오늘 날짜', // 오늘 날짜로 돌아오는 구문 
-		closeText: '닫기', // 달력창 닫기
-
-		dateFormat: "yy-mm-dd", // 날짜 클릭시 text box에 담겨지는 순서
-		yearRange: "2019:2019", // 2019년에서만 선택할 수 있게하는 구문
-		minDate: "0D" //오늘 기준에서 이전거는 선택할 수 없게하는 구문
-	});
-	
-	$("#submit-btn2").click(function(event){
-		event.preventDefault();
-		$(".con3-bg").hide();
-	});
+	console.log("<%=ticket.getContents().replace("\n","<br/>")%>");
 })
  
 </script>
@@ -130,10 +110,9 @@ $(function(){
 			<ul class="con3-top clear">
 				<li class="con3-top-img"><img src="/upload/exhibition/<%=ticket.getImagename()%>" /></li>
 				<li class="con3-top-text">
-					<h4>로봇 일러스트레이션을 통해</h4>
-					<h4>기계적 판타지를 구현하는</h4>
-					<h3><%=ticket.getArtist()%>/ Hajime Sorayama</h3>
-					<p><%=ticket.getPreview().replace("\n","<br/>")%></p>
+					<h4><%=ticket.getPreview().replaceAll("\n","<br>") %></h4>
+					<h3><%=ticket.getArtist()%></h3>
+					<p><%=ticket.getContents().replace("\n","<br/>")%></p>
 				</li>
 			</ul>
 			<!-- 예매하기 전송 내용 -->

@@ -1,6 +1,7 @@
 package util;
 
 import java.awt.Image;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -1393,8 +1394,6 @@ public class Function {
 	        }
 	    return calDateDays;
 	}   
-	
-	
 	
 	public static void main(String[] args)throws Exception{
 //		System.out.println(strCut("MONTBLANCＩTABLE_MONTBLANCBENCH_COCOROCHAIR", "", 30, 0, true, true));
