@@ -63,7 +63,6 @@ function goSave() {
 $(function(){
     var trIdx = 0;
     $(".addBtn").click(function(){
-    	var trIdx = 1;
     	var trObj ="<tr class='addTr'>";
 		trObj += "<td><input type='text' id='date"+trIdx+"'";
 		trObj += "name='date'"  ;

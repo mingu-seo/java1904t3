@@ -42,44 +42,82 @@ function goSave(){
 		alert("결제 수단을 선택해주세요.");
 		return false;
 	}
-	<%-- var IMP = window.IMP;
-	IMP.init('imp10084821');
-	IMP.request_pay({
-	    pg : 'inicis', // version 1.1.0부터 지원.
-	    pay_method : 'card',
-	    merchant_uid : 'merchant_' + new Date().getTime(),
-	    name : '<%=ticket.getTitle()%>',
-	    amount : $("#totalPrice").val(),
-	    buyer_email : '<%=member.getEmail()%>',
-	    buyer_name : '<%=member.getName()%>',
-	    buyer_tel : '<%=member.getTel()%>',
-	    buyer_addr : '<%=member.getAddr1()%>',
-	    buyer_postcode : '<%=member.getZipcode()%>',
-	}, function(rsp) {
-	    if ( rsp.success ) {
-	        var msg = '결제가 완료되었습니다.';
-	        msg += '고유ID : ' + rsp.imp_uid;
-	        msg += '상점 거래ID : ' + rsp.merchant_uid;
-	        msg += '결제 금액 : ' + rsp.paid_amount;
-	        msg += '카드 승인번호 : ' + rsp.apply_num;
-	        
-	        $.ajax({
-	        	type: "POST",
-	        	url: "/user/exhibition/process",
-	        	async: false,
-	        	data: $("[name=frm]").serialize(),
-	        	success: function(data){
-	        		
-	        	}
-	        });
-	    } else {
-	        var msg = '결제에 실패하였습니다.';
-	        msg += '에러내용 : ' + rsp.error_msg;
-	    }
-	    alert(msg);
-	});
 	
-	return false; --%>
+	var IMP = window.IMP;
+	IMP.init('imp10084821');
+	if($("#chk01").prop("checked")){
+		console.log("bank");
+		IMP.request_pay({
+		    pg : 'inicis', // version 1.1.0부터 지원.
+		    pay_method : 'vbank',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : '<%=ticket.getTitle()%>',
+		    amount : $("#totalPrice").val() - $("#con3-usepoint").val(),
+		    buyer_email : '<%=member.getEmail()%>',
+		    buyer_name : '<%=member.getName()%>',
+		    buyer_tel : '<%=member.getTel()%>',
+		    buyer_addr : '<%=member.getAddr1()%>',
+		    buyer_postcode : '<%=member.getZipcode()%>',
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		        var msg = '결제가 완료되었습니다.';
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		        
+		        $.ajax({
+		        	type: "POST",
+		        	url: "/user/exhibition/process",
+		        	async: false,
+		        	data: $("[name=frm]").serialize(),
+		        	success: function(data){
+		        		
+		        	}
+		        });
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		    }
+		    alert(msg);
+		});
+	} else if($("#chk02").prop("checked")) {
+		IMP.request_pay({
+		    pg : 'inicis', // version 1.1.0부터 지원.
+		    pay_method : 'card',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : '<%=ticket.getTitle()%>',
+		    amount : $("#totalPrice").val() - $("#con3-usepoint").val(),
+		    buyer_email : '<%=member.getEmail()%>',
+		    buyer_name : '<%=member.getName()%>',
+		    buyer_tel : '<%=member.getTel()%>',
+		    buyer_addr : '<%=member.getAddr1()%>',
+		    buyer_postcode : '<%=member.getZipcode()%>',
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		        var msg = '결제가 완료되었습니다.';
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		        
+		        $.ajax({
+		        	type: "POST",
+		        	url: "/user/exhibition/process",
+		        	async: false,
+		        	data: $("[name=frm]").serialize(),
+		        	success: function(data){
+		        		
+		        	}
+		        });
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		    }
+		    alert(msg);
+		});
+	}
+	return false;
 	
 }
 
@@ -96,7 +134,24 @@ function sumPrice() {
 	$("#totalPrice").val(totalprice);
 }
 $(function(){
-	console.log("<%=ticket.getContents().replace("\n","<br/>")%>");
+	// 대관 시작
+	$("#con3-day-start").datepicker({
+		dayNamesMin:['일','월','화','수','목','금','토'], // 요일 변경 구문
+		monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], // 월 변경 구문
+		// 달력안에 오늘날짜로 돌리는 내용과 닫는 창을 노출시키는 필수 구문
+		showButtonPanel: true, // 밑에 내용들 떄문에 써야하는 필수 구문
+		currentText: '오늘 날짜', // 오늘 날짜로 돌아오는 구문 
+		closeText: '닫기', // 달력창 닫기
+
+		dateFormat: "yy-mm-dd", // 날짜 클릭시 text box에 담겨지는 순서
+		yearRange: "2019:2019", // 2019년에서만 선택할 수 있게하는 구문
+		minDate: "0D" //오늘 기준에서 이전거는 선택할 수 없게하는 구문
+	});
+	
+	$("#submit-btn2").click(function(event){
+		event.preventDefault();
+		$(".con3-bg").remove();
+	});
 })
  
 </script>
@@ -110,9 +165,15 @@ $(function(){
 			<ul class="con3-top clear">
 				<li class="con3-top-img"><img src="/upload/exhibition/<%=ticket.getImagename()%>" /></li>
 				<li class="con3-top-text">
+<<<<<<< HEAD
 					<h4><%=ticket.getPreview().replaceAll("\n","<br>") %></h4>
 					<h3><%=ticket.getArtist()%></h3>
 					<p><%=ticket.getContents().replace("\n","<br/>")%></p>
+=======
+					<h4><%=ticket.getTitle() %></h4>
+					<h3><%=ticket.getArtist()%></h3>
+					<p><%=ticket.getPreview().replace("\n","<br/>")%></p>
+>>>>>>> branch 'master' of https://github.com/mingu-seo/java1904t3.git
 				</li>
 			</ul>
 			<!-- 예매하기 전송 내용 -->
@@ -168,7 +229,7 @@ $(function(){
 						</tr>
 						<tr>
 							<th>사용포인트</th>
-							<td colspan="2"><input type="text" id="con3-point" name="usepoint" value="0" onkeydown="minPrice()"></td>
+							<td colspan="2"><input type="text" id="con3-usepoint" name="usepoint" value="0" onkeydown="minPrice()"></td>
 							<td colspan="2"><span class="point-span">점</span></td>
 						</tr>
 						<tr>

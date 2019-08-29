@@ -55,11 +55,10 @@ $(function(){
 				<li class="con4-top-text">
 					<h4><%=detail.getPreview().replaceAll("\n","<br>")%></h4>
 					<h3><%=detail.getTitle()%></h3>
-					<h4><%=detail.getArtist() %></h4><br/>
 					<p><%=detail.getPreview().replaceAll("\n","<br>") %></p>
 					<ul class="sub01-btn clear">
-						<li class="like" id="like"><a href="javascript:;"><%=detail.getScore()%></a></li>
-						<li class="li1" onclick="getTicket(<%=detail.getNo()%>)"><a href="javascript:;">예매하기</a></li>
+						<li class="score" id="disScore"><span class="star-prototype"><%=detail.getScore()%></span><span style="font-size:30px;">&nbsp;<%=detail.getScore()%> / 5</span></li>
+						<li class="li1" id="rsv" onclick="getTicket(<%=detail.getNo()%>)"><a href="javascript:;">예매하기</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -112,3 +111,11 @@ $(function(){
 		</div>
 	</div>
 </div>
+<script>
+$.fn.generateStars = function() {
+	console.log('gs');
+    return this.each(function(i,e){$(e).html($('<span/>').width($(e).text()*25));});
+};
+//숫자 평점을 별로 변환하도록 호출하는 함수
+$('.star-prototype').generateStars();
+</script>

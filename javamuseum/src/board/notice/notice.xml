@@ -10,7 +10,7 @@
 		<dynamic prepend="where">
 			1=1
 			<!-- 검색어 검색 -->
-			<isNotEqual property="sval" compareValue="">
+			<isNotEqual property="sval" compareValue="" prepend="and">
 				<!-- 검색 타입이 all일 때 -->
 				<isEqual property="stype" compareValue="all" prepend="and">
 					( (writer like '%$sval$%' ) or (contents like '%$sval$%' ) or (title like '%$sval$%' ) ) 					

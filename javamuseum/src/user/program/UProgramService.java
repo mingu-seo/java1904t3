@@ -64,7 +64,5 @@ public class UProgramService {
 		
 		return list;
 	}
-
-	
 	
 }

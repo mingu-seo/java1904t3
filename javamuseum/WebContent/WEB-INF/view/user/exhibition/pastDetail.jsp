@@ -41,6 +41,12 @@ UExhibitionVO param = (UExhibitionVO)request.getAttribute("param");
 			$(".con5-reviews").show();
 		});
 	})
+	$.fn.generateStars = function() {
+	console.log('gs');
+	    return this.each(function(i,e){$(e).html($('<span/>').width($(e).text()*25));});
+	};
+	//숫자 평점을 별로 변환하도록 호출하는 함수
+	$('.star-prototype').generateStars();
 </script>
 <div class="con4-bg">
 	<div class="con4-gr">
@@ -51,12 +57,11 @@ UExhibitionVO param = (UExhibitionVO)request.getAttribute("param");
 			<ul class="con4-top clear">
 				<li class="con4-top-img"><img src="/upload/exhibition/<%=detail.getImagename()%>"></li>
 				<li class="con4-top-text">
-					<h4>로봇 일러스트레이션을 통해</h4>
-					<h4>기계적 판타지를 구현하는</h4>
+					<h4><%=detail.getTitle() %></h4>
 					<h3><%=detail.getArtist()%></h3>
-					<p><%=detail.getPreview()%></p>
+					<p style="min-height:80px;"><%=detail.getPreview()%></p>
 					<ul class="sub01-btn clear">
-						<li class="like" id="like" onclick="getDetail(<%=detail.getLike_cnt()%>)"><a href="javascript:;"><%=detail.getScore()%></a></li>
+						<li class="score" id="disScore"><span class="star-prototype"><%=detail.getScore()%></span><span style="font-size:30px;">&nbsp;<%=detail.getScore()%> / 5</span></li>
 					</ul>
 				</li>
 			</ul>

@@ -97,7 +97,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 									<tr <%=topClass%>>
 										
 										<td <%=targetUrl%>><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%></td>
-										<td <%=targetUrl%> class="writer"><%=data.getWriter()%></td>
+										<td <%=targetUrl%> class="writer">관리자</td>
 										<td <%=targetUrl%> class="title"><%=data.getTitle()%></td>
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getRegistdate())%></td>
 										
@@ -116,15 +116,19 @@ int totPage = (Integer)request.getAttribute("totPage");
 				<!-- //페이징 처리 -->
 				</div>
 				<div class="form-box">
-					<form method="GET" action="insert.php">
-						<select>
-							<option>전체</option>
-							<option>제목</option>
-							<option>내용</option>
-						</select> <input type="text" name="name" id="name"
-							placeholder="검색어를 입력하세요."> <input type="submit"
-							value="검색">
-					</form>
+					<form name="searchForm" id="searchForm" action="notice" method="post">
+								<div class="search">
+									
+									<select name="stype" title="검색을 선택해주세요">
+										<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>
+										<option value="title" <%=Function.getSelected(param.getStype(), "title") %>>제목</option>
+										<option value="contents" <%=Function.getSelected(param.getStype(), "contents") %>>내용</option>
+										
+									</select>
+									<input type="text" name="sval" value="<%=param.getSval()%>" title="검색할 내용을 입력해주세요" />
+									<input type="image" src="/manage/img/btn_search.gif" class="submit" alt="검색" />
+								</div>
+							</form>
 				</div>
 			</div>
 		</div>

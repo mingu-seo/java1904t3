@@ -25,11 +25,11 @@
 /* 설명란 호버시 */
 .con2-box-list a {display:block; width:100%; height:100%;}
 .con2-box-left {float:left; width:300px; height:300px;}
-.con2-box-left img {width:100%; height:100%;}
+.con2-box-left img {width:100%; height:100%; padding:10px;}
 .con2-box-right {float:left;  width:898px; height:300px; padding:40px; color:black; position:relative;}
 .con2-box-right h4 {font-size:25px;}
 .con2-box-right p {font-size:18px; margin-top:5px; line-height:30px;}
-.con2-box-right span {font-size:18px; margin-top:40px; display:inline-block;}
+.con2-box-right span {font-size:18px; display:inline-block;}
 /*이전 전시 목록 작업*/
 .con2-box-wrap > .con2-box:nth-child(1) {display:block;}
 

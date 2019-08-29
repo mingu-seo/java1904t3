@@ -19,7 +19,11 @@ int totPage = (Integer)request.getAttribute("totPage");
 <script src="/js/jquery-ui.js"></script>
 <link rel="stylesheet" href="/css/sub-exhibition1.css">
 <title>미술관소개</title>
-	
+
+<link rel="stylesheet" href="/css/jquery-ui.css">
+<script src="/js/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 <script src="https://kit.fontawesome.com/3db09483e7.js"></script>
 <script type="text/javascript" src="/js/slick.js"></script>
 <script type="text/javascript" src="/js/aos.js"></script>
@@ -104,6 +108,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 				$(this).siblings(".con4-ep-cont").stop().slideDown();
 			}	
 		})
+<<<<<<< HEAD
 	});
 	
 	function eventCal() {
@@ -128,6 +133,14 @@ int totPage = (Integer)request.getAttribute("totPage");
 			$(".con3-bg").hide();
 		});
 	}
+=======
+		
+	})
+	
+	
+
+
+>>>>>>> branch 'master' of https://github.com/mingu-seo/java1904t3.git
 </script>
 </head>
 <body>
@@ -160,7 +173,11 @@ int totPage = (Integer)request.getAttribute("totPage");
                         <div class="con2-sub01 clear">
                             <img src="/upload/exhibition/<%=list.get(i).getImagename()%>"/>
                             <div class="sub01-text">
+<<<<<<< HEAD
                                 <h4><%=list.get(i).getPreview().replaceAll("\n","<br>") %></h4>
+=======
+                                <h4><%=list.get(i).getTitle() %></h4>
+>>>>>>> branch 'master' of https://github.com/mingu-seo/java1904t3.git
                                 <h3><%=list.get(i).getArtist()%></h3>
                                 <p><%=list.get(i).getContents().replaceAll("\n","<br>")%></p>
 								<ul class="sub01-btn clear">

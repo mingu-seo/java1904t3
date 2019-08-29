@@ -13,17 +13,12 @@ ArrayList<HashMap> list = (ArrayList<HashMap>) request.getAttribute("list");
 <script src="/js/jquery-ui.js"></script>
 <script>
 $(function() {
-	$("#submit-btn2").click(function(event){
+	$(".submit-btn2").click(function(event){
 		event.preventDefault();
-		$(".con3-bg").hide();
+		$(".con3").empty();
 	});
 })
-/* $("#submit-btn2").click(function(event){
-	event.preventDefault();
-	$(".con3-bg").hide();
-}); */
-
-
+ 
 function getProgramTime(){
 	$.ajax({
 		type : "GET",
@@ -50,12 +45,10 @@ function getProgram_membCount(){
 }
 
 </script>
-<!-- con2에서 예매하기 버튼 클릭 시 -->
 <div class="con3-bg">
 	<div class="con3-gr">
 		<div class="con3-header">
 			<h3><%=reserve.getTitle() %>프로그램 신청</h3>
-			
 		</div>
 		<div class="con3-center">
 			<ul class="con3-top clear">
@@ -70,7 +63,6 @@ function getProgram_membCount(){
 					<p>신청 최대인원 : <%=reserve.getMax_mem()%></p>
 				</li>
 			</ul>
-			<!-- 예매하기 전송 내용 -->
 			<div class="con3-bot">
 				<form method="POST" action="process" name="frm" id="frm" onsubmit="return goSave();">
 					<table class="con3-tb">
@@ -84,14 +76,16 @@ function getProgram_membCount(){
 									<% } %>
 								</select>	
 							</td>
-							
 							<th>프로그램 시간</th>
 							<td colspan="" class="program_time">
+							
 							</td>
 						</tr>
 						<tr>
 							<th>현재 신청인원</th>
-							<td colspan="4" class="program_memNo"></td>
+							<td colspan="4" class="program_memNo">
+							
+							</td>
 						</tr>
 					</table>
 					<input type="hidden" name="program_pk" value="<%=reserve.getNo()%>"/>
@@ -100,15 +94,11 @@ function getProgram_membCount(){
 					<div class="con3-btn clear">
 						<ul class="btn-group">
 							<li><input type="submit" id="submit-btn1" name="submit-btn1" value="신청하기" onclick="javascript:$('#frm').submit();"></li>
-							<li><button id="submit-btn2">닫기</button></li>
+							<li><button id="submit-btn2" class="submit-btn2">닫기</button></li>
 						</ul>
 					</div>
 				</form>
-				<!-- //예매하기  -->
 			</div>
-			<!-- //예매하기 전송 종료 -->
 		</div>
 	</div>
 </div>
-<!-- //con2에서 예매하기 버튼 클릭 시 //con3-bg 종료 -->
-

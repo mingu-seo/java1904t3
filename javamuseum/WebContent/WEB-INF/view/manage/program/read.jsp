@@ -69,11 +69,11 @@
 									</colgroup>
 									<tbody>
 									<td rowspan="<%=olist.size()+10 %>">
-									<img src="/upload/program/<%=data.getImagename()%>" width="500" height="500">
+										<img src="/upload/program/<%=data.getImagename()%>" width="500" height="500">
 									</td>
 										<tr>
-											<th scope="row"><label for="">번호</label></th>
-											<td colspan="4"><%= data.getNo() %></td>
+											<th scope="row" style="border-top:1px solid #255182"><label for="">번호</label></th>
+											<td colspan="4" style="border-top:1px solid #255182"><%= data.getNo() %></td>
 										</tr>
 										<tr>
 											<th scope="row"><label for="">대상</label></th>
@@ -105,9 +105,7 @@
 											<td>프로그램 시간</td>
 											<td>프로그램 신청인원</td>
 											<td>프로그램 신청하기</td>
-											
 										</tr>
-										
 										<tr>
 											<%
 												for (int i = 0; i < olist.size(); i++) {
@@ -124,7 +122,6 @@
 													String a = "'"+olist.get(i).get("date")+"'";
 													
 												%>	
-												
 												<input type="button" value="신청" onclick="reserve(<%=a%>, <%=olist.get(i).get("time")%>)"/>
 												<%
 												}
@@ -134,23 +131,16 @@
 											<%} %>
 											<td></td>
 										</tr>
-
-
 										<tr>
 											<th scope="row"colspan="6" ><label for="">상세정보</label></th>
 										</tr>
 										<tr>
-										<td colspan="6"><%=data.getContents()%></td>
+											<td colspan="6"><%=data.getContents()%></td>
 										</tr>
 
 									</tbody>
-
-
 								</table>
-
-
 								<input type="hidden" name="program_pk" id="program_pk" value="<%=data.getNo()%>" />
-								
 								<div class="btn">
 									<div class="btnLeft">
 										<a class="btns"
