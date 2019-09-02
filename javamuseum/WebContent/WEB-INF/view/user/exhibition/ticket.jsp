@@ -46,7 +46,6 @@ function goSave(){
 	var IMP = window.IMP;
 	IMP.init('imp10084821');
 	if($("#chk01").prop("checked")){
-		console.log("bank");
 		IMP.request_pay({
 		    pg : 'inicis', // version 1.1.0부터 지원.
 		    pay_method : 'vbank',
@@ -96,10 +95,10 @@ function goSave(){
 		}, function(rsp) {
 		    if ( rsp.success ) {
 		        var msg = '결제가 완료되었습니다.';
-		        msg += '고유ID : ' + rsp.imp_uid;
-		        msg += '상점 거래ID : ' + rsp.merchant_uid;
-		        msg += '결제 금액 : ' + rsp.paid_amount;
-		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		        /* msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid; */
+		        msg += '결제 금액 : ' + rsp.paid_amount + "원이 결제 되었습니다.";
+		        /* msg += '카드 승인번호 : ' + rsp.apply_num; */
 		        
 		        $.ajax({
 		        	type: "POST",
@@ -125,9 +124,13 @@ function sumPrice() {
 	var totalPrice = 0;
 	var num = parseInt($("#old_number").val()) + parseInt($("#adult_number").val()) + parseInt($("#student_number").val());
 	if(num >= 5){
-		 totalprice = (parseInt($("#old_number").val()) * 5000) + ((parseInt($("#adult_number").val()) + parseInt($("#student_number").val())) * 7000);
+		 totalprice = (parseInt($("#old_number").val()) * 5000)
+		 +((parseInt($("#adult_number").val())
+		 +parseInt($("#student_number").val())) * 7000);
 	} else {
-		totalprice = (parseInt($("#old_number").val()) * 5000) + (parseInt($("#adult_number").val()) * 9000) + (parseInt($("#student_number").val()) * 8000);
+		totalprice = (parseInt($("#old_number").val()) * 5000)
+		+(parseInt($("#adult_number").val()) * 9000)
+		+(parseInt($("#student_number").val()) * 8000);
 	}
 	$("#totnumber").val(num);
 	$("#totalPrice").text(setComma(totalprice));
@@ -165,15 +168,9 @@ $(function(){
 			<ul class="con3-top clear">
 				<li class="con3-top-img"><img src="/upload/exhibition/<%=ticket.getImagename()%>" /></li>
 				<li class="con3-top-text">
-<<<<<<< HEAD
-					<h4><%=ticket.getPreview().replaceAll("\n","<br>") %></h4>
-					<h3><%=ticket.getArtist()%></h3>
-					<p><%=ticket.getContents().replace("\n","<br/>")%></p>
-=======
 					<h4><%=ticket.getTitle() %></h4>
 					<h3><%=ticket.getArtist()%></h3>
 					<p><%=ticket.getPreview().replace("\n","<br/>")%></p>
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1904t3.git
 				</li>
 			</ul>
 			<!-- 예매하기 전송 내용 -->

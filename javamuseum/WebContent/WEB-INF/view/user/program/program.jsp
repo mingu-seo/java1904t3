@@ -122,7 +122,6 @@ function getDetail(i) {
 		<div class="con4">
 	
 		</div>
-		<%-- <div class="page"><a><%=Page.indexList(param.getReqPageNo(), totPage, request)%></a></div> --%>
 	</div>
 <%@ include file="/WEB-INF/view/user/include/footer.jsp" %>
 	

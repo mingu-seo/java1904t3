@@ -53,10 +53,10 @@ int totPage = (Integer)request.getAttribute("totPage");
 			<!-- 공지사항 구역 -->
 			<div class="con2-right">
 				<h5>공지사항</h5>
-				<p>미술관 전체 소식을 알려드립니다.</p>
+				<p class="con2-right-text">미술관 전체 소식을 알려드립니다.</p>
 				<div class="tbl-box">
 				<p><span><strong>총 <%=totCount%>개</strong>  |  <%=param.getReqPageNo()%>/<%=totPage%>페이지</span></p>
-					<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
+					<table class="con2-right-table" width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
 									<col class="w1" />
 									<col class="w1" />

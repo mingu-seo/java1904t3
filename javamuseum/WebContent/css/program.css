@@ -67,9 +67,9 @@
 .con3-top-text p{font-size: 15px; margin-top: 5px;}
 /* 하단-내용 */
 .con3-tb{margin-top: 30px; width: 100%; border: 1px solid #191919;}
-.con3-tb tr{width: 820px; border-bottom: 1px solid #fff;}
+.con3-tb tr{width: 820px;}
 .con3-tb th{width: 200px; height: 60px; background-color: #191919; color: #fff;}
-.con3-tb td{padding-left: 20px; border: 1px solid #191919; width:245px;}
+.con3-tb td{padding-left: 20px; width:245px;}
 .con3-tb input[type="text"]{width: 154px; height: 30px; border: 1px solid #191919; padding-left: 10px;}
 .con3-tb select{width: 164px; height: 30px; border: 1px solid #191919; padding-left: 10px;}
 .point-span{position: relative; right: 120px;}

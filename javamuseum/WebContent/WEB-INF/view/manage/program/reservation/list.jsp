@@ -146,6 +146,5 @@ function goSearch() {
 	<!--//canvas -->
 </div>
 <!--//wrap -->
-
 </body>
 </html>

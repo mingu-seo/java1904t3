@@ -14,8 +14,12 @@ Integer max_mem = (Integer)request.getAttribute("max_mem");
 	for(int i=0;i<olist.size(); i++){
 			if(Integer.parseInt(String.valueOf(list.get(i).get("member_cnt"))) >= max_mem) {
 	%>
-	<option value="<%=olist.get(i).getTime()%>" disabled><%=CodeUtil.getP_timeName(Integer.parseInt(String.valueOf(olist.get(i).getTime()))) %> (인원마감)</option>
+	<option value="<%=olist.get(i).getTime()%>" disabled>
+		<%=CodeUtil.getP_timeName(Integer.parseInt(String.valueOf(olist.get(i).getTime()))) %> (인원마감)
+	</option>
 	<% } else { %>
-	<option value="<%=olist.get(i).getTime()%>"><%=CodeUtil.getP_timeName(Integer.parseInt(String.valueOf(olist.get(i).getTime()))) %></option>
+	<option value="<%=olist.get(i).getTime()%>">
+		<%=CodeUtil.getP_timeName(Integer.parseInt(String.valueOf(olist.get(i).getTime()))) %>
+	</option>
 	<% } } %>
 </select>

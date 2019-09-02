@@ -8,6 +8,7 @@ function memberInfo(no){
 			success: function(data){
 				$(".con3").html(data);
 				$(".con3-center clear").show();
+				$(".members-wrap > div").eq(0).show();
 			}
 		});
 	}

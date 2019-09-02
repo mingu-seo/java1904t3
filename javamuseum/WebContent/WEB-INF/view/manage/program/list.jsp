@@ -14,7 +14,6 @@ ArrayList<ArrayList<HashMap>> olist = (ArrayList<ArrayList<HashMap>>) request.ge
 int totCount = (Integer)request.getAttribute("totCount");
 int totPage = (Integer)request.getAttribute("totPage");
 %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
 <head>
@@ -22,8 +21,8 @@ int totPage = (Integer)request.getAttribute("totPage");
 <%@ include file="/WEB-INF/view/manage/include/headHtml.jsp" %>
 <script>
 function groupDelete() {	
-	if ( isSeleted(document.frm.no) ){
-		if (confirm ('삭제하시겠습니까?')) {
+	if( isSeleted(document.frm.no) ){
+		if(confirm ('삭제하시겠습니까?')) {
 			document.frm.submit();
 		}
 	} else {
@@ -189,6 +188,5 @@ function goSearch() {
 	<!--//canvas -->
 </div>
 <!--//wrap -->
-
 </body>
 </html>

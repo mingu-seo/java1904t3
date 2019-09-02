@@ -92,12 +92,6 @@ function goSave() {
 							
 							</td>
 						</tr>
-						<tr>
-							<th>현재 신청인원</th>
-							<td colspan="4" class="program_memNo">
-							
-							</td>
-						</tr>
 					</table>
 					<input type="hidden" name="program_pk" value="<%=reserve.getNo()%>"/>
 					<input type="hidden" name="member_pk" value="<%=member.getNo()%>"/>

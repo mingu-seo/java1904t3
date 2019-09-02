@@ -108,7 +108,6 @@ int totPage = (Integer)request.getAttribute("totPage");
 				$(this).siblings(".con4-ep-cont").stop().slideDown();
 			}	
 		})
-<<<<<<< HEAD
 	});
 	
 	function eventCal() {
@@ -133,14 +132,6 @@ int totPage = (Integer)request.getAttribute("totPage");
 			$(".con3-bg").hide();
 		});
 	}
-=======
-		
-	})
-	
-	
-
-
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1904t3.git
 </script>
 </head>
 <body>
@@ -173,13 +164,9 @@ int totPage = (Integer)request.getAttribute("totPage");
                         <div class="con2-sub01 clear">
                             <img src="/upload/exhibition/<%=list.get(i).getImagename()%>"/>
                             <div class="sub01-text">
-<<<<<<< HEAD
-                                <h4><%=list.get(i).getPreview().replaceAll("\n","<br>") %></h4>
-=======
                                 <h4><%=list.get(i).getTitle() %></h4>
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1904t3.git
                                 <h3><%=list.get(i).getArtist()%></h3>
-                                <p><%=list.get(i).getContents().replaceAll("\n","<br>")%></p>
+                                <p><%=list.get(i).getPreview().replaceAll("\n","<br>")%></p>
 								<ul class="sub01-btn clear">
                                     <li class="li1" onclick="getTicket(<%=list.get(i).getNo()%>)"><a href="javascript:;">예매하기</a></li>
                                     <li class="li2" onclick="getDetail(<%=list.get(i).getNo()%>)"><a href="javascript:;">작품 상세 보기</a></li>

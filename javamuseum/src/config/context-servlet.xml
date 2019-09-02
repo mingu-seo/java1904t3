@@ -35,12 +35,20 @@
 			<mvc:exclude-mapping path="/user/pwfind"/>
 			<mvc:exclude-mapping path="/user/membership"/>
 			<mvc:exclude-mapping path="/user/member/sendcernum"/>
+			<mvc:exclude-mapping path="/user/member/process.do"/>
+			<mvc:exclude-mapping path="/user/searchId"/>
 			<mvc:exclude-mapping path="/user/visit/visit1"/>
 			<mvc:exclude-mapping path="/user/visit/visit2"/>
 			<mvc:exclude-mapping path="/user/visit/visit3"/>
 			<mvc:exclude-mapping path="/user/exhibition/subExhibition1"/>
 			<mvc:exclude-mapping path="/user/exhibition/subExhibition2"/>
 			<mvc:exclude-mapping path="/user/rental/hall"/>
+			<mvc:exclude-mapping path="/user/exhibition/detail"/>
+			<mvc:exclude-mapping path="/user/program/program"/>
+			<mvc:exclude-mapping path="/user/notice/notice"/>
+			<mvc:exclude-mapping path="/user/faq/index"/>
+			<mvc:exclude-mapping path="/user/review/index"/>
+			<mvc:exclude-mapping path="/user/program/detail"/>
 			
 			<bean class="interceptors.MemberLoginInterceptor"/>
 		</mvc:interceptor>
@@ -53,7 +61,7 @@
 			<mvc:exclude-mapping path="/manage/css/*"/>
 			<mvc:exclude-mapping path="/manage/js/*"/>
 			<mvc:exclude-mapping path="/manage/img/*"/>
-			
+			<mvc:exclude-mapping path="/manage/member/idcheck"/>
 			
 			
 			<bean class="interceptors.AdminLoginInterceptor"/>
