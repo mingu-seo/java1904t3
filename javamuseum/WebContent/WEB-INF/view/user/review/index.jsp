@@ -56,7 +56,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 			<div class="con2-right">
 				<h5>전체 리뷰</h5>
 				<p>모든 리뷰를 한곳에!</p>
-				<div class="tbl-box">
+				<div class="tbl-box" id="tbl-box">
 				<p><span><strong>총 <%=totCount%>개</strong>  |  <%=param.getReqPageNo()%>/<%=totPage%>페이지</span></p>
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="리뷰입니다.">
 								

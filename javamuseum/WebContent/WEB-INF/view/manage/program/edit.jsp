@@ -56,7 +56,6 @@
 		} else {
 			oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
 		}
-
 		return true;
 	}
 

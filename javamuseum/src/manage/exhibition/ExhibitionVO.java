@@ -14,7 +14,7 @@ public class ExhibitionVO extends Parameter {
 	protected String contents;			
 	protected double score;							//평점
 	protected String imagename;						//목록 이미지
-	protected int state;							//전시 상태
+	protected int state;							//전시 상태 (1.전시대기 2.전시중 3.전시종료)
 	private String[] sstate;
 	protected HashMap<String, Integer> state_chk;	//상태 checkbox 검색
 	protected int like_cnt;							//좋아요 수

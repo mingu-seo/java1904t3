@@ -69,7 +69,6 @@ public class ExhibitionService {
 	}
 	
 	public int update(ExhibitionVO param, HttpServletRequest request) throws Exception {
-		param.setState(CodeUtil.getDisState(param.getStartdate(), param.getEnddate()));
 		ExhibitionVO data = exhibitionDao.read(param.getNo());
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);

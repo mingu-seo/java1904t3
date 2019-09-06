@@ -68,7 +68,7 @@ $(function(){
 					<li class="review">리뷰</li>
 				</ul>
 				<div class="con5-contents">
-					<%=detail.getContents()%>
+					<%=detail.getContents().replaceAll("\n", "<br>")%>
 				</div>
 				<div class="con5-reviews">
 					<table class="review-table">
@@ -104,7 +104,7 @@ $(function(){
 			</div>
 			<div class="con4-btn clear">
 				<ul class="btn-group clear">
-					<li><input type="button" id="moreReview" name="submit-btn1" value="후기 더보기" onclick="location.href='/user/review/index'"></li>
+					<li><input type="button" id="moreReview" name="submit-btn1" value="리뷰 더보기" onclick="location.href='/user/review/index'"></li>
 					<li><button id="submit-btn2">닫기</button></li>
 				</ul>
 			</div>
@@ -113,7 +113,6 @@ $(function(){
 </div>
 <script>
 $.fn.generateStars = function() {
-	console.log('gs');
     return this.each(function(i,e){$(e).html($('<span/>').width($(e).text()*25));});
 };
 //숫자 평점을 별로 변환하도록 호출하는 함수

@@ -126,7 +126,7 @@ function qnaChange() {
 		%>
 		<tr>
 			<td id="qnaTitle">
-				<a href='javascript:qnaRead(<%=rentalList.get(i).getNo()%>);' style="color:black;">
+				<a href='javascript:rentalRead(<%=rentalList.get(i).getNo()%>);' style="color:black;">
 				<%=rentalList.get(i).getStartdate()%> ~ <%=rentalList.get(i).getEnddate()%> 대관 문의입니다.
 			</a>
 		</td>

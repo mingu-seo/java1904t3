@@ -2,7 +2,7 @@
 
 /* con2 부분 exhibition */
 .con2 { margin-top:-100px;}
-.con2-bg { height:980px; padding-top:190px; background-image:url("../img/con2-bg.jpg"); background-attachment:fixed; background-size:cover; background-position:center center; background-repeat:no-repeat;}
+.con2-bg { height:1100px; padding-top:190px; background-image:url("../img/con2-bg.jpg"); background-attachment:fixed; background-size:cover; background-position:center center; background-repeat:no-repeat;}
 .con2-bg > h2 {font-size:100px; text-align:center; color:#fff; margin-bottom: 118px;}
 .con2-box { width:1200px; margin:0 auto;}
 .con2-box a { color:#fff;}
@@ -31,7 +31,7 @@
 .con3-img3 {float:left; box-shadow:3px 3px 15px black; width:500px; height:450px;}
 .con3-text3 {float:left; margin-left:100px;}
 .con3-box3 {margin-top:150px;}
-.con3-more {width:400px; margin:0 auto; margin-top:200px; height:60px; text-align:center; border:2px solid #c2ad6f; color:#c2ad6f; font-size:40px; line-height:60px;}
+.con3-more {width:400px; margin:0 auto; margin-top:100px; height:60px; text-align:center; border:2px solid #c2ad6f; color:#c2ad6f; font-size:40px; line-height:60px;}
 .con3-more a {display:block; color:#c2ad6f; transition:all 0.5s;}
 .con3-more:hover a {color:white; background-color:#c2ad6f;}
 /* con3 부분 */

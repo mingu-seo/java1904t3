@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import manage.exhibition.ExhibitionService;
 import manage.exhibition.ExhibitionVO;
 import manage.member.MemberVO;
+import manage.program.ProgramVO;
 import property.SiteProperty;
 import user.member.UmemberService;
+import user.program.UProgramService;
 
 @Controller
 public class UserMainController {
@@ -22,13 +24,17 @@ public class UserMainController {
 	private UmemberService umemberService;
 	@Autowired
 	private ExhibitionService exhibitionService;
+	@Autowired
+	private UProgramService uprogramService;
 	
 	// 메인페이지 구경용
 	@RequestMapping("/user/index")
-	public String main(Model model, ExhibitionVO param) throws Exception {
+	public String main(Model model, ExhibitionVO param, ProgramVO pparam) throws Exception {
 		ArrayList<ExhibitionVO> list = exhibitionService.ingList(param);
+		ArrayList<ProgramVO> plist = uprogramService.list(pparam);
 		
 		model.addAttribute("list", list);
+		model.addAttribute("plist", plist);
 		return "/user/index";
 	}
 	

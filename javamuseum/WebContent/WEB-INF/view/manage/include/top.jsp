@@ -73,7 +73,7 @@ $(window).load(function(){
 				<li><a href="<%=request.getContextPath()%>/manage/ticket/index" class="parent"><span>예매 관리</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/manage/exhibition/index" class="parent"><span>전시 관리</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/manage/rental/index" class="parent"><span>대관 관리</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/manage/" class="parent"><span>프로그램</span></a>
+				<li><a href="<%=request.getContextPath()%>/manage/program/list" class="parent"><span>프로그램</span></a>
 					<div>
 						<ul>
 							<li><a href="<%=request.getContextPath()%>/manage/program/list"><span>프로그램관리</span></a></li>
@@ -86,8 +86,6 @@ $(window).load(function(){
 					<div class="standard_left">
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/manage/board/notice/index.do"><span>공지사항</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/manage/board/event/index"><span>이벤트</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/manage/board/"><span>자유게시판</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/manage/board/qna/index"><span>1:1문의</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/manage/board/faq/index"><span>FAQ분류관리</span></a></li>
 						

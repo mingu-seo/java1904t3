@@ -28,11 +28,11 @@ MemberVO member = (MemberVO)session.getAttribute("memberInfo");
 	$(function(){
 		// 회원정보(1)
 		// 텝메뉴(버튼)
-		$(".con2-center li").click(function(){
+		/* $(".con2-center li").click(function(){
 			var btnmember = $(this).index();
 			$(".members-wrap > div").hide();
 			$(".members-wrap > div").eq(btnmember).show();
-		});
+		}); */
 		
 		memberInfo(<%=member.getNo()%>);
 		$(".members-wrap > div").eq(0).show();

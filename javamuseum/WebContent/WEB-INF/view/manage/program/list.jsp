@@ -14,7 +14,6 @@ ArrayList<ArrayList<HashMap>> olist = (ArrayList<ArrayList<HashMap>>) request.ge
 int totCount = (Integer)request.getAttribute("totCount");
 int totPage = (Integer)request.getAttribute("totPage");
 %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
 <head>
@@ -22,8 +21,8 @@ int totPage = (Integer)request.getAttribute("totPage");
 <%@ include file="/WEB-INF/view/manage/include/headHtml.jsp" %>
 <script>
 function groupDelete() {	
-	if ( isSeleted(document.frm.no) ){
-		if (confirm ('삭제하시겠습니까?')) {
+	if( isSeleted(document.frm.no) ){
+		if(confirm ('삭제하시겠습니까?')) {
 			document.frm.submit();
 		}
 	} else {
@@ -84,7 +83,7 @@ function goSearch() {
 								</colgroup>
 								<thead>
 									<tr>
-										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check(this, document.frm.no)"/></th>
+										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onclick="check(this, document.frm.no)"/></th>
 										<th scope="col">번호</th>
 										<th scope="col">카테고리</th> 
 										<th scope="col">포스터</th>
@@ -98,7 +97,6 @@ function goSearch() {
 										<th scope="col">프로그램일자</th>
 										<th scope="col">프로그램시간</th>
 										<th scope="col"class="last">신청인원</th>
-										
 									</tr>
 								</thead>
 								<tbody>
@@ -118,10 +116,9 @@ function goSearch() {
 										<td class="first"rowspan="<%=olist.get(i).size()%>"><input type="checkbox" name="no" id="no" value="<%=list.get(i).getNo()%>"/></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=data.getNo()%></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=CodeUtil.getCategory(data.getCategory())%></td>
-										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><img src="/upload/program/<%=data.getImagename()%>" width="100" height="100"></td>
+										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><img src="/upload/program/<%=data.getImagename()%>" width="100" height="100"/></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=data.getTitle()%></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>" ><%=data.getInstructor()%></td>
-										
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=data.getPrice()%></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=CodeUtil.getDisplayName(Integer.parseInt(data.getState()))%></td>
 										<td <%=targetUrl%>rowspan="<%=olist.get(i).size()%>"><%=DateUtil.getDateTimeFormat(data.getRegistdate())%></td>
@@ -191,6 +188,5 @@ function goSearch() {
 	<!--//canvas -->
 </div>
 <!--//wrap -->
-
 </body>
 </html>

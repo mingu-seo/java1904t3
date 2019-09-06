@@ -132,10 +132,6 @@ int totPage = (Integer)request.getAttribute("totPage");
 			$(".con3-bg").hide();
 		});
 	}
-		
-	
-
-
 </script>
 </head>
 <body>
