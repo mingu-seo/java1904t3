@@ -84,15 +84,14 @@ $(".con4-closebtn").click(function() {
 	        <div class="con3-gr-center">
 	            <div class="con3-gr">
 	                <h3>회원정보 수정</h3>
-	                <p class="con3-gr-fs"><span>연락처 이메일</span>:AB******@na***.com</p>
-	                <p><span>본인확인 이메일</span>:AB******@na***.com</p>
-	                <p><span>휴대전화</span>:-82 10-68**-****</p>
+	                <p class="con3-gr-fs"><span>회원 아이디</span>: <%=memberInfo.getId()%></p>
+	                <p><span>연락처 이메일</span>: <%=memberInfo.getEmail()%></p>
 	                <div class="con3-gr-btn">정보 변경</a></div>
 	            </div>
 	            <div class="con3-gr">
 	                <h3>회원탈퇴</h3>
 	                <h5>회원탈퇴를 신청하기 전에 안내 사항을 꼭 확인해주세요.</h5>
-	                <p>사용하고 계신 아이디(AB*****)는 탈퇴할 경우 재사용 및 복구가</p>
+	                <p>사용하고 계신 아이디(<%=memberInfo.getId()%>)는 탈퇴할 경우 재사용 및 복구가</p>
 	                <p>불가능합니다. 탈퇴한 아이디는 본인과 타인 모두 재사용</p>
 	                <p>및 복구가 불가하오니 신중하게 선택하시기 바랍니다.</p>
 	                <div class="con3-gr-delBtn">회원탈퇴</a></div>

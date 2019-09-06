@@ -15,7 +15,7 @@
 .con2-gr::after{float: left;content: ""; width: 1px; height: 200px; background-color: #191919; display: inline-block; position: relative; bottom: 185px;}
 .con2-gr:nth-child(1)::after{content: none;}
 /*회원정보 관련 가운데 정렬*/
-.members-wrap { width:1200px; margin:0 auto; min-height: 676px;}
+.members-wrap { width:1200px; margin:0 auto; min-height: 800px;}
 /* 텝메뉴-회원정보 */
 .con3{margin-top: 74px; position: relative;}
 .con3-center{width: 1200px; margin: 0 auto; border: 2px solid #191919; height: 680px; background-color: #fff; position: absolute;}

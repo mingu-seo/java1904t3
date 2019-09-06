@@ -53,8 +53,8 @@ $(function(){
 			<ul class="con4-top clear">
 				<li class="con4-top-img"><img src="/upload/exhibition/<%=detail.getImagename()%>"></li>
 				<li class="con4-top-text">
-					<h4><%=detail.getPreview().replaceAll("\n","<br>")%></h4>
-					<h3><%=detail.getTitle()%></h3>
+					<h4><%=detail.getTitle()%></h4>
+					<h3><%=detail.getArtist()%></h3>
 					<p><%=detail.getPreview().replaceAll("\n","<br>") %></p>
 					<ul class="sub01-btn clear">
 						<li class="score" id="disScore"><span class="star-prototype"><%=detail.getScore()%></span><span style="font-size:30px;">&nbsp;<%=detail.getScore()%> / 5</span></li>

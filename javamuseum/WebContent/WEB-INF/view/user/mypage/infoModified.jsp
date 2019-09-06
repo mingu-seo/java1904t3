@@ -18,7 +18,6 @@ String gender = Integer.toString(data.getGender());
 <input type="hidden" value="<%=data.getGender() %>"/>
 <link rel="stylesheet" href="/css/memberInfoModified.css">
 
-<div class="con3 clear">
 	<div class="conInfoMod-center clear">
         <!-- 회원가입 기본정보 입력란 -->
        	<div class="con3-text">
@@ -130,5 +129,4 @@ String gender = Integer.toString(data.getGender());
             <!-- 확인 취소 입력란 -->
 		</div>
 	</div>
-</div>
 

@@ -165,15 +165,9 @@ $(function(){
 			<ul class="con3-top clear">
 				<li class="con3-top-img"><img src="/upload/exhibition/<%=ticket.getImagename()%>" /></li>
 				<li class="con3-top-text">
-<<<<<<< HEAD
-					<h4><%=ticket.getPreview().replaceAll("\n","<br>") %></h4>
-					<h3><%=ticket.getArtist()%></h3>
-					<p><%=ticket.getContents().replace("\n","<br/>")%></p>
-=======
 					<h4><%=ticket.getTitle() %></h4>
 					<h3><%=ticket.getArtist()%></h3>
 					<p><%=ticket.getPreview().replace("\n","<br/>")%></p>
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1904t3.git
 				</li>
 			</ul>
 			<!-- 예매하기 전송 내용 -->
